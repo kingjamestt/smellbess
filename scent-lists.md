@@ -30,7 +30,7 @@
 
 ## 1. Bess List (approved)
 
-### Launch buy (locked 5 Oct 2026; 10 scents)
+### Launch buy (locked 5 Oct 2026; 11 scents)
 
 | Scent | For | Jomashop | Landed TT$ | TT$/ml | 10ml margin | KmG (5 / 10 / full) | Signal |
 |---|---|---|---|---|---|---|---|
@@ -44,13 +44,15 @@
 | Rayhaan Aquatica | Men / unisex | **Local TT$300** | 300 | 3.16 | 58% | not carried | FF stocks it. Fresh, good for heat |
 | Rayhaan Elixir | Unisex | **Local TT$300** | 300 | 3.16 | 58% | not carried | **FF sold out in all sizes** |
 | Supremacy Collector's Edition (Afnan) | Men | $54.99 ($44.99 with EXTRA10 ⚠️) | 650 | 6.84 | **A+: 35%** (44% with code) | not carried | Only Smell Bess carries it locally. **Tier A+** |
+| Asad Bourbon (Lattafa) | Men | ~$27.95 ⚠️ | 368 | 3.87 | 51% | not carried | Added 5 Oct for the Date Night set. Replaces Asad |
+
+**From the owner's shelf (no purchase):** Amber Oud Gold Edition (~50ml, A+, in the Fete Pack) and Marwa (~80ml, Tier A).
 
 ### Approved (wave 2 and later)
 
 | Scent | For | Jomashop | Landed TT$ | 10ml margin | KmG | Notes |
 |---|---|---|---|---|---|---|
 | Rare Reef (Afnan) | **Unisex** ✅ (Fragrantica: aromatic fruity, 2025) | $31.99 | 410 | 47% | not carried | Fresh citrus and fruity. Afnan's US webshop sold out |
-| Asad Bourbon (Lattafa) | Men | ~$27.95 ⚠️ | 368 | 51% | not carried | Replaces Asad |
 | CDN Untold (Armaf) | Unisex | $37.25 (105ml) | 465 | 44% | not carried | SA sells the full bottle at TT$595 |
 | Marwa (Arabiyat Prestige) | Men | $34.99 | 441 | 44% | 60 / 100 / 490 | Both competitors carry it. FF 15ml sold out |
 | Teriaq Intense (Lattafa) | Unisex | $34.99 | 441 | 44% | 60 / 100 / 399 | KmG popular |

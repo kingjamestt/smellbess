@@ -27,27 +27,50 @@ When a decision changes, update `business-plan.md` first, run `python tools/buil
   | D2: premium designer | 120 | 200 | 275 |
 
   Match market prices; don't undercut.
-- **Offers (one per order, Tier A only):**
-  - 5×10ml bundle: TT$350.
-  - Curated sets: 3×5ml TT$150, 3×10ml TT$280.
-  - Free 5ml (any in-stock Arabian) with 3+ single decants of 10ml or larger.
+- **Offers (one per order):**
+  - 5×10ml bundle (Tier A): TT$350 per full group of 5, so 10×10ml is TT$700.
+  - Curated sets: 3×5ml TT$150, 3×10ml TT$280, Tier A only. The **Fete Pack** is the exception: it has one A+ scent and costs TT$175 / TT$300. The 4 launch sets and their copy are in `business-plan.md` §2.3b.
+  - **Surprise free 5ml** with 3+ single decants of 10ml or larger, of any tier. The customer doesn't choose; we pick a Tier A 5ml when packing, to move slow sellers. The site shows a "you qualify" card with an animation.
   - **No vouchers. No free delivery.**
 - **Delivery (customer pays):**
-  - Free: Saturday pickup and workplace hand-off.
-  - Own-vehicle drop-off along a route: TT$30.
-  - ODeliver at cost: Urban 30 / Rural 40 / Extended 50 / Remote 60, Tobago 90.
+  - Free: Saturday pickup route (Price Plaza Chaguanas 10am, MovieTowne POS 1pm, East Gates Mall 5pm; editable in admin) and workplace hand-off (WhatsApp only, never on the public site).
+  - WhatsApp orders go to +1 868-305-0506. **Bank details are never on the website**; the owners send them on WhatsApp.
+  - **No own-drop-off option.** Customers pay the ODeliver rate. The owner delivers in person when passing (public spots and businesses only) and keeps the fee.
+  - ODeliver at cost: Urban 30 / Rural 40 / Extended 50 / Remote 60. Tobago 90 (60 + 30 inter-island, confirmed).
   - Payment before dispatch by bank transfer; cash is fine at pickup.
 - **Lineup:** see `scent-lists.md`.
   - **Bess List:** 20 approved scents. Must-haves: Liquid Brun, Hawas Ice, Hawas Diva, Angham, Supremacy Collector's Edition.
   - **Retired:** original Asad and original 9PM (played out).
-  - **Launch buy (locked, 10 scents).** From Jomashop (order on or after 17 Oct): Liquid Brun (original EDP), Hawas Ice, Hawas Diva, Angham, Khamrah, Khamrah Qahwa, Yara (pink), Supremacy CE (A+). From the local Rayhaan dealer at TT$300 each: Rayhaan Aquatica, Rayhaan Elixir.
-  - **Money:** card ≈ US$572 (TT$3,901), plus TT$600 cash for the Rayhaans.
+  - **Launch buy (locked, 11 scents).**
+    - From Jomashop (order on or after 17 Oct): Liquid Brun (original EDP), Hawas Ice, Hawas Diva, Angham, Khamrah, Khamrah Qahwa, Yara (pink), Supremacy CE (A+), Asad Bourbon.
+    - From the local Rayhaan dealer at TT$300 each: Rayhaan Aquatica, Rayhaan Elixir.
+  - **From the owner's shelf (no purchase):** Amber Oud Gold Edition (~50ml, A+) and Marwa (~80ml, Tier A).
+  - **Money:** card ≈ US$624 (TT$4,254), about US$24 over the US$600 ceiling, plus TT$600 cash for the Rayhaans.
   - **Women's side:** mostly designer decants (testers and the girlfriend's bottles), because Trini women prefer designers.
 - **Card:** statement closes on the 16th, due on the 5th. Launch orders go in on or after 17 Oct 2026 and are due 5 Dec 2026.
 - **No quizzes, no vouchers.** Trini customers don't use them.
 - **Local source:** any Rayhaan for TT$300 from the local dealer, cheaper than importing.
 - **Sourcing:** Jomashop/FragFlex → Websource Miami skybox → TT. Always declare full value. Jomashop orders over US$100 ship free.
 - **Brand assets:** domain `smellbess.com` (available on Namecheap, not yet bought) and the `smellbess` handle on IG, TikTok, Facebook and WhatsApp (available, not yet claimed). Both as of Oct 2026.
+
+## Current status (5 Oct 2026)
+- **Plan:** complete, with the checklist tracked in `business-plan.md` §11. Items 1–4 and 11 are done. Item 5 (launch order) is locked but not placed; order on or after 17 Oct.
+- **Repo:** github.com/kingjamestt/smellbess. `main` holds the plan files. The owner still needs to `git push` 2 local commits on `main` (pickup route + .gitignore).
+- **Website:** MVP is on branch **`website-mvp`**, in `web/`.
+  - Built with Next.js 16, TypeScript, Tailwind 4 and Vitest. 125 tests pass and the build is clean.
+  - Read `docs/website-plan.md` on that branch first.
+  - The data layer is JSON-file backed (`web/.data/store.json`), so Supabase must replace it before going live on serverless hosting.
+  - The MVP currently shows bank details from `web/.env.local` on the confirmation page. **Remove that** (owner decision, 5 Oct): no bank details on the site at all.
+- **Website: not done yet.** Admin screens and login, Supabase, CSV export, full-bottle pre-orders with deposit, schema/OG images, real photos. All scent copy is marked DRAFT.
+- **Answered 5 Oct 2026** (see `business-plan.md` §5 "Website decisions"):
+  - Hosting: Netlify free + Supabase free.
+  - Email alerts to both admins on new orders.
+  - Pickup stops are editable in admin.
+  - Scent copy: Claude drafts, the owners edit.
+  - Photos: brand product images (self-hosted) now, own shoots later.
+- **Still open:**
+  - **Handles:** @smellbess is not claimed yet.
+- **Decided 5 Oct:** no designer decants at launch (Arabians only). Launch on the free **smellbess.netlify.app** domain; smellbess.com comes later.
 
 ## Competitors
 - **KmG Scents** (take.app/kmgscents): Arabian decants at 5ml TT$60 / 10ml TT$100; only bundle is 5×10ml for TT$300.

@@ -14,7 +14,7 @@ These didn't block the plan, but each one changes the numbers:
 
 1. ☑ **Card cycle (confirmed):** the statement closes on the **16th** and payment is due on the **5th** of the following month (minimum payment 1/30 of the balance). Ordering on **Sat 17 Oct** puts every launch charge on the 16 Nov statement, **due Sat 5 Dec**: 49 days, or 7 weeks. Pay it in full; the 1/30 minimum just starts interest.
 2. **Your own collection:** you're willing to decant 2–4 of your own bottles for launch (e.g., a Sauvage/Eros/Le Male type). That gets you to 10–12 scents without extra spending.
-3. **Location:** you live in north/central Trinidad, and the Saturday pickup is somewhere central (e.g., a mall car park or your office area). You have your own vehicle. Tobago orders go by ODeliver or TTPost.
+3. ☑ **Location:** you have your own vehicle and run a **Saturday pickup route: Price Plaza Chaguanas 10am → MovieTowne Port of Spain 1pm → East Gates Mall 5pm**. Tobago orders go by ODeliver or TTPost.
 4. ☑ **Websource flies perfume (confirmed):** you've flown several perfumes with them, and you know local fragrance sellers who use them.
 
 ---
@@ -91,7 +91,7 @@ Use **glass, screw-top or crimp-free atomizers with good pumps** (not plastic). 
 
 **Decision: match the market price, don't undercut it.** Charging TT$55/95 instead of TT$60/100 wouldn't win you customers. It would only cost you about 8% of your margin and invite a price war. Win on the things they don't offer:
 - **Curated sets** that solve "what should I try?"
-- **A free 5ml with 3+ decants of 10ml or larger.**
+- **A surprise free 5ml with 3+ decants of 10ml or larger.**
 - **A 15ml size** at FF's price. KmG only offers 5ml and 10ml.
 - **Reliable stock.**
 - **Better guidance** on what to buy.
@@ -99,7 +99,7 @@ Use **glass, screw-top or crimp-free atomizers with good pumps** (not plastic). 
 | Tier | Cost/ml | 5ml (events, trial) | 10ml (main) | 15ml (regulars) | Full bottle |
 |---|---|---|---|---|---|
 | **A. Arabian/clone** (Lattafa, Armaf, Afnan, Rasasi, Alhambra, French Avenue) | TT$3–5.5 | **TT$60** | **TT$100** | **TT$150** | Pre-order only, at landed + 20–25%, *only if ≤ local market* |
-| **A+. Premium Arabian** (Jomashop **over US$40**, e.g., Supremacy CE, 9PM Night Out, Yara Elixir, Atheeri, Amber Oud Gold) | TT$5–7 | **TT$70** | **TT$120** | **TT$175** | Pre-order only. **Not in the 5×10ml bundle or the free 5ml** |
+| **A+. Premium Arabian** (Jomashop **over US$40**, e.g., Supremacy CE, 9PM Night Out, Yara Elixir, Atheeri, Amber Oud Gold) | TT$5–7 | **TT$70** | **TT$120** | **TT$175** | Pre-order only. **Not in the 5×10ml bundle and never given as the free 5ml** (A+ 10ml decants do count toward qualifying for it) |
 | **D1. Mainstream designer** (Eros, Dylan Blue, Sauvage EDT, Bleu de Chanel EDT) | TT$7–8 | **TT$75** | **TT$125** | **TT$185** | Pre-order only |
 | **D2. Premium designer / flankers** (Born in Roma Intense, Le Male Elixir, Stronger With You Intense) | TT$9–13 | **TT$120** | **TT$200** | **TT$275** (FF's price) | Pre-order only |
 | **N. Niche** (Jo Milano etc.; KmG charges 5ml TT$100 / 10ml TT$180) | TT$15+ | cost/ml × 2 + supplies, rounded up | | | Pre-order only |
@@ -120,7 +120,9 @@ Use **glass, screw-top or crimp-free atomizers with good pumps** (not plastic). 
 
 **If you run out of 15ml atomizers,** tell the customer and send **a 10ml + a 5ml** at the same TT$150. It's the same 15ml of juice, and most people will be fine with it. It costs you ~TT$6 more in supplies (margin drops ~4 points), so treat it as a fallback and reorder 15ml atomizers when you're down to ~5.
 
-### 2.3b Offers (Tier A only, one offer per order)
+### 2.3b Offers (one offer per order)
+
+*Bundle and sets: Tier A only. Free 5ml: any tier's 10ml+ decants qualify, but the free 5ml itself is always a Tier A scent that we choose.*
 
 KmG dropped its 3×5ml and 5×5ml bundles. **Its only bundle is now any 5 Arabian 10ml decants for TT$300**, which works out to TT$60 per 10ml. Your cost on the launch lineup is TT$41–52 per 10ml (TT$47 on average):
 
@@ -128,7 +130,7 @@ KmG dropped its 3×5ml and 5×5ml bundles. **Its only bundle is now any 5 Arabia
 |---|---|---|---|---|
 | 5×10ml at **TT$300** (matching KmG) | 300 | ~237 | ~63 | **21%** (17% if they pick the 5 dearest) |
 | **5×10ml at TT$350 (recommended)** | 350 | ~237 | **~113** | **32%** (29% worst case) |
-| **3×10ml + free 5ml** (any in-stock Arabian) | 300 | ~169 | **~131** | **44%** |
+| **3×10ml + free 5ml** (our pick, Tier A) | 300 | ~169 | **~131** | **44%** |
 | 3×15ml + free 5ml | 450 | ~232 | ~218 | 48% |
 | 3×10ml, no offer (for comparison) | 300 | ~142 | ~158 | 53% |
 | **Curated set: 3×5ml in a gift box** | **150** | ~90 | ~60 | 40% |
@@ -136,12 +138,27 @@ KmG dropped its 3×5ml and 5×5ml bundles. **Its only bundle is now any 5 Arabia
 
 **Recommendations:**
 - **5×10ml for TT$350: yes.** Matching TT$300 would leave you ~TT$13 per decant. That's a price war KmG can afford (his costs are probably lower than yours) and you can't. At TT$350 you're still TT$150 cheaper than buying the five separately, which is a strong deal. Sell it on stock and curation ("5 that actually perform in TT heat"), not on price. Some bargain hunters will still choose KmG, and that's fine.
-- **Free 5ml with 3+ decants of 10ml or larger: yes.** It costs you ~TT$27 and keeps ~44–48% margin. It also gets customers trying a scent they'll come back for.
+- **5×10ml bundle, more than once:** each full group of 5 Tier A 10ml decants gets TT$350, so 10×10ml is TT$700. It still counts as the order's one offer.
+- **Free 5ml with 3+ decants of 10ml or larger: yes, as a surprise (owner's call, 5 Oct 2026).**
+  - Any tier counts toward the 3 (Tier A, A+, D1 and D2 singles).
+  - **The customer doesn't choose the scent.** The site shows a "You qualify for a free 5ml surprise" card, and **we pick a Tier A 5ml when packing**. Use it to move slow sellers and seed the next sale.
+  - It costs you ~TT$27 and keeps ~44–48% margin on a Tier A order (more on A+ and designer orders).
 - **The offers don't stack.** Five 10ml decants means the TT$350 bundle *or* five singles with the free 5ml, not both. The bundle is the better deal, so most people will pick it.
 - **No free delivery at this stage.** The customer always pays delivery, at cost (§7.4), so offers are the only discount you give.
 - **Curated sets** are the guided way to buy, for example a "Fete Pack", "Office Safe Pack", "Date Night Pack" or "Her Gourmand Pack". Each set comes in two sizes, both with a gift box and scent cards:
   - **3×5ml for TT$150** (TT$180 bought separately, ~17% off). A trial or a few events.
   - **3×10ml for TT$280** (TT$300 bought separately, ~7% off). For people who already like the style.
+
+  **Launch sets (owner's picks, 5 Oct 2026):**
+
+  | Set | Scents | Price 3×5ml / 3×10ml | Copy |
+  |---|---|---|---|
+  | **Fete Pack** (men) | Hawas Ice, Rayhaan Elixir, Amber Oud Gold Edition (A+) | **TT$175 / TT$300** (higher because of the A+ scent) | "If you want to be the star of the show, turn heads when you pass, and get stopped randomly, this selection here is for you." |
+  | **Date Night** (men) | Liquid Brun, Khamrah Qahwa, Asad Bourbon | TT$150 / TT$280 | "Warning! Now listen fellas, ladies will want to be all up in your space with this pack here. You will smell better than the dessert menu." |
+  | **Office/School Days** (men) | Rayhaan Aquatica, Hawas Ice, Khamrah | TT$150 / TT$280 | "Smell the bess at the office or school, make a statement without saying a word. Go light on sprays: 2–4 max." |
+  | **For Her** (women) | Hawas Diva, Angham, Yara (pink) | TT$150 / TT$280 | "These are some of the best smelling scents around. Guaranteed she will love AT LEAST one." |
+
+  Sets are Tier A only, **except the Fete Pack**, which includes one A+ scent and is priced up to match.
 
   A 10ml costs TT$100 on its own, ~TT$93 in a set and TT$70 in the 5×10ml bundle. Sets don't also get the free 5ml (one offer per order). Someone buying three 10ml decants who just wants the most perfume will take three singles plus the free 5ml (TT$300). The TT$280 set is for people who want you to choose for them, or want a gift box. No vouchers for now: printed vouchers rarely get used in TT, so they'd waste printing time. Keep the idea for later, as a digital code on your own website in Phase 2.
 
@@ -168,41 +185,41 @@ KmG dropped its 3×5ml and 5×5ml bundles. **Its only bundle is now any 5 Arabia
 
 - **Per bottle:** a TT$358 bottle (Khamrah) is paid back after **~4 × 10ml or ~7 × 5ml sales (~40% of the bottle)**. Everything after that is profit.
 - **Per month:** fixed costs in Phase 1 are ~TT$300–550 (ads, data, misc; Take App is free). At an average order of ~TT$130 with ~TT$65 contribution, that's **5–9 orders/month**.
-- **Launch capital:** you need ~TT$4,500 of sales to cover the full launch outlay (card TT$3,901 + local Rayhaan TT$600), which is **~27–30 orders** at TT$130 average (and is why the timeline in §2.7 matters).
+- **Launch capital:** you need ~TT$4,850 of sales to cover the full launch outlay (card TT$4,254 + local Rayhaan TT$600), which is **~37 orders** at TT$130 average (and is why the timeline in §2.7 matters).
 
-### 2.6 Capital split (launch outlay ≈ TT$4,500: US$572 on the card + TT$600 local)
+### 2.6 Capital split (launch outlay ≈ TT$4,850: US$624 on the card + TT$600 local)
 
 | Bucket | USD | TTD | Notes |
 |---|---|---|---|
-| 8 bottles at Jomashop (items US$262 + 7% tax, free shipping) | $280 | 1,912 | Liquid Brun, Hawas Ice, Hawas Diva, Angham, Khamrah, Khamrah Qahwa, Yara, Supremacy CE |
-| Websource fees for those bottles (duty, OPT, VAT, freight; ~10 lb) | $210 | 1,429 | Paid at pickup |
+| 9 bottles at Jomashop (items US$290 + 7% tax, free shipping) | $310 | 2,116 | Liquid Brun, Hawas Ice, Hawas Diva, Angham, Khamrah, Khamrah Qahwa, Yara, Supremacy CE, **Asad Bourbon** (added 5 Oct for the Date Night set) |
+| Websource fees for those bottles (duty, OPT, VAT, freight; ~11 lb) | $231 | 1,579 | Paid at pickup |
 | Decant supplies, landed | $82 | 560 | ~45×10ml, 35×15ml, 30×5ml, gift boxes for curated sets, labels, bags, pipettes/syringes, funnel |
-| **Total charged to card** | **$572** | **3,901** | **Only ~US$28 under the US$600 ceiling.** Code EXTRA10 on Supremacy (if live) saves ~TT$100 |
+| **Total charged to card** | **$624** | **4,254** | ⚠️ **~US$24 over the US$600 ceiling.** To get under it, pay the Websource fees (~US$231, due at pickup in week 3) by debit or cash instead of the card, or use code EXTRA10 on Supremacy (if live), which saves ~US$15 |
 | 2 Rayhaans from the local dealer (Aquatica, Elixir) | — | 600 | Buy in week 3, right before launch |
-| **Total launch outlay** | | **4,501** | |
+| **Total launch outlay** | | **4,854** | |
 | Business registration | (from sales) | 245 | Pay in week 4 from revenue |
 
 ### 2.7 Week-by-week cash flow, first 7 weeks (TTD)
 
-Week 1 starts **Sat 17 Oct**, the day after the statement closes. **Payment is due Sat 5 Dec, at the end of week 7.** Card charges: 8 Jomashop bottles + supplies. The 2 local Rayhaans (TT$600) are paid in week 3, outside the card.
+Week 1 starts **Sat 17 Oct**, the day after the statement closes. **Payment is due Sat 5 Dec, at the end of week 7.** Card charges: 9 Jomashop bottles + supplies. The 2 local Rayhaans (TT$600) are paid in week 3, outside the card.
 
 | Week | What happens | Card charges | Expected sales in | Expected ops out | Expected cumulative net | Conservative cumulative | Optimistic cumulative |
 |---|---|---|---|---|---|---|---|
-| 1 | Order 8 bottles (one Jomashop order over US$100) and supplies (Amazon). Set up IG, WhatsApp Business and Take App. Teaser posts. Start a pre-order list with coworkers and friends | 2,219 | 0 | 0 | 0 | 0 | 0 |
+| 1 | Order 9 bottles (one Jomashop order over US$100) and supplies (Amazon). Set up IG, WhatsApp Business and Take App. Teaser posts. Start a pre-order list with coworkers and friends | 2,423 | 0 | 0 | 0 | 0 | 0 |
 | 2 | Goods reach Miami and fly. Post "what's coming" content. Collect pre-orders (paid on delivery) | 0 | 0 | 0 | 0 | 0 | 300 |
-| 3 | **Pick up from Websource and pay fees. Buy 2 Rayhaans locally (TT$600).** Decanting session. Soft launch: fill pre-orders, first Saturday pickup | 1,682 | 600 | 600 | 0 | −250 | 600 |
+| 3 | **Pick up from Websource and pay fees. Buy 2 Rayhaans locally (TT$600).** Decanting session. Soft launch: fill pre-orders, first Saturday pickup | 1,831 | 600 | 600 | 0 | −250 | 600 |
 | 4 | Public launch. Register business name. First small boosted post | 0 | 700 | 395 | 305 | −95 | 1,205 |
 | 5 | Curated-set and 5×10ml bundle push, referral code live | 0 | 650 | 0 | 955 | 255 | 2,205 |
 | 6 | DNA-comparison content. Boost the best post | 0 | 750 | 150 | 1,555 | 505 | 3,155 |
-| 7 | Restock supplies (small). **Pay the card in full by 5 Dec (TT$3,901).** | 0 | 700 | 100 | **2,155 → −1,746 after paying card** | **805 → −3,096** | **4,155 → +254** |
+| 7 | Restock supplies (small). **Pay the card in full by 5 Dec (TT$4,254).** | 0 | 700 | 100 | **2,155 → −2,099 after paying card** | **805 → −3,449** | **4,155 → −99** |
 | 8+ | Christmas rush. Repay any salary top-up first, then reorder bestsellers | | 800+ | | | | |
 
 *Ops out in week 4 = TT$245 registration + TT$150 ads. In the conservative case, the week 4 ad is skipped. Optimistic sales (weeks 2–7): 300 / 900 / 1,000 / 1,000 / 1,100 / 1,100; conservative sales (weeks 3–7): 350 / 400 / 350 / 400 / 400. Delivery fees are passed straight through to customers and are excluded.*
 
 **Reading it honestly:**
-- **Expected:** at the 5 Dec due date you're **~TT$1,750 short**, counting the TT$600 of local Rayhaans paid in cash. That's the price of launching with 10 scents, including an A+ bottle. The sales assumptions haven't been raised for the bigger lineup or for A+ prices, so this is on the cautious side. Plan to top up from salary and repay yourself from Christmas sales.
-- **Conservative:** you're ~TT$3,100 short at the due date and cover it from salary. You'd still hold ~TT$4,500 of unsold decant retail value, so the money isn't lost, just tied up. **Decide now that you'll pay the card in full regardless.** Treat any shortfall as a loan to the business, repaid first from week 8+ sales.
-- **Cash rule:** every sale goes into a separate "card" savings account until TT$3,901 (the card) is covered. No restocks before that, except supplies needed to fill orders.
+- **Expected:** at the 5 Dec due date you're **~TT$2,100 short**, counting the TT$600 of local Rayhaans paid in cash. That's the price of launching with 13 scents (11 bought, 2 from your shelf), including A+ bottles. The sales assumptions haven't been raised for the bigger lineup or for A+ prices, so this is on the cautious side. Plan to top up from salary and repay yourself from Christmas sales.
+- **Conservative:** you're ~TT$3,450 short at the due date and cover it from salary. You'd still hold ~TT$4,500 of unsold decant retail value, so the money isn't lost, just tied up. **Decide now that you'll pay the card in full regardless.** Treat any shortfall as a loan to the business, repaid first from week 8+ sales.
+- **Cash rule:** every sale goes into a separate "card" savings account until TT$4,254 (the card) is covered. No restocks before that, except supplies needed to fill orders.
 
 ---
 
@@ -210,7 +227,7 @@ Week 1 starts **Sat 17 Oct**, the day after the statement closes. **Payment is d
 
 ### 3.1 Launch buy (locked, 5 Oct 2026)
 
-**10 scents. Order the Jomashop bottles on or after Sat 17 Oct in one order over US$100. Buy the Rayhaans locally in week 3.**
+**11 bought scents plus 2 from your shelf (§3.2). Order the 9 Jomashop bottles on or after Sat 17 Oct in one order over US$100. Buy the Rayhaans locally in week 3.**
 
 | # | Scent | For | Source | Price | Tier |
 |---|---|---|---|---|---|
@@ -224,12 +241,20 @@ Week 1 starts **Sat 17 Oct**, the day after the statement closes. **Payment is d
 | 8 | Rayhaan Aquatica | Men / unisex | **Local Rayhaan dealer** | TT$300 | A |
 | 9 | Rayhaan Elixir | Unisex | **Local Rayhaan dealer** | TT$300 | A |
 | 10 | **Afnan Supremacy Collector's Edition** | Men | Jomashop | $54.99 (try code EXTRA10) | **A+** (70 / 120 / 175) |
+| 11 | **Lattafa Asad Bourbon** (added 5 Oct for the Date Night set) | Men | Jomashop | ~$27.95 ⚠️ (check the price on the day) | A |
 
-**Gender split:** 5 men's or men-leaning, 3 unisex, and 2 women's Arabians (Hawas Diva, Yara). Angham leans feminine. Women's designers come from the girlfriend's own bottles at launch.
+**Gender split:** 6 men's or men-leaning, 3 unisex, and 2 women's Arabians (Hawas Diva, Yara). Angham leans feminine. Women's designers come from the girlfriend's own bottles at launch.
 
 ⚠️ **Yara's US$23.50 is a limited Fall Sale.** If it's gone by 17 Oct, rebuy at the new price if it's ≤ US$40 (Tier A). Otherwise swap in another Rayhaan from the local dealer at TT$300.
 
 ### 3.2 Decant from your own shelf (2–4 scents, no new spend)
+
+**Confirmed (5 Oct 2026), no purchase needed:**
+- **Al Haramain Amber Oud Gold Edition**, ~50ml, Tier A+. In the Fete Pack.
+- **Arabiyat Prestige Marwa**, ~80ml, Tier A. Sold as single decants.
+
+Cost basis is replacement cost (Amber Oud Gold ≈ TT$550 per 120ml, Marwa ≈ TT$441 per 100ml). **No designer decants at launch (owner, 5 Oct 2026): Arabians only.** Add designers later from admin.
+
 
 Pick 2–3 designers you own and are willing to drain, e.g., **Versace Eros, Dior Sauvage, JPG Le Male Elixir**, plus a women's designer you or your girlfriend own (e.g., an Ariana Grande, YSL Libre, or Born in Roma Donna). Price at Tier D. Set the cost basis at **replacement cost** (e.g., Eros landed ≈ TT$707 → TT$7.44/ml), not zero, or you'll underprice.
 
@@ -355,6 +380,18 @@ Pick 2–3 designers you own and are willing to drain, e.g., **Versace Eros, Dio
 
 **Payments (TT):** online bank transfer (Republic, RBC, Scotia, FCB) for free · cash at pickup/COD · **WiPay** for card and online payments ⚠️ (check fees, likely ~3–4%) · **Endcash** (Republic mobile wallet) ⚠️. PayPal is unreliable for receiving payments in TT ⚠️. Require **payment before dispatch for delivery orders**. Allow cash only for pickup.
 
+**Website decisions (owner, 5 Oct 2026):**
+- **Hosting:** Netlify free plus Supabase free (database and admin login). **No custom domain yet:** launch on the free **smellbess.netlify.app** address (claim that site name when the Netlify site is created). smellbess.com can come later.
+- **Bank details are never on the website.** The order goes to WhatsApp, and you reply there with the bank details. Personal accounts for now; switch to a business account once the name is registered.
+- **Order alerts:** both admins get an email when an order is saved, as well as the customer's WhatsApp message.
+- **Pickup stops and times** can be changed from admin (change a time, pause a stop, skip a Saturday).
+- **Free 5ml:** the cart shows a "you qualify" card with a small animation. The customer doesn't pick a scent; we choose it (§2.3b).
+- **Workplace hand-off** stays off the public site. **Tobago** is shown at TT$90 (ODeliver TT$60 + TT$30 inter-island). **No own-drop-off option** (§7.4).
+- **Scent copy:** Claude drafts it, and the two of you edit it in admin.
+- **Photos:** start with the brand's own product images, downloaded and hosted on our site rather than linked from theirs. Move to your own bottle shoots once you have a light setup and backdrop.
+- **Designer decants:** none at launch, Arabians only. Add them later in admin.
+- **Curated sets:** the owner picked the 4 launch sets and wrote their copy (§2.3b).
+
 ---
 
 ## 6. Marketing: 90-day launch plan
@@ -380,7 +417,7 @@ The brand is **you**: the enthusiast who'll tell people what actually works in T
 **Referral and loyalty:**
 - **Give TT$20, get TT$20** (credit on the next order over TT$100).
 - **Stamp card:** buy 5 decants, get a 5ml free. Track by phone number in your sheet.
-- **Free 5ml (any in-stock Arabian) with 3+ decants of 10ml or larger.** This replaces a freebie on every order. It costs ~TT$27, so only bigger orders get it, and it seeds the next sale.
+- **Surprise free 5ml (our pick, Tier A) with 3+ decants of 10ml or larger, any tier.** This replaces a freebie on every order. It costs ~TT$27, so only bigger orders get it. It seeds the next sale and moves slow sellers.
 
 ---
 
@@ -393,8 +430,8 @@ The brand is **you**: the enthusiast who'll tell people what actually works in T
 | Daily | DMs, WhatsApp orders, confirm payments | 15–20 min |
 | Wed evening | Optional Wednesday pickup *(add only once Saturday volume justifies it)* | 1 hr |
 | Thu evening | **Decanting session**: fill the week's orders plus a small buffer | 1.5–2 hrs |
-| Fri | Book ODeliver for orders outside your route, plan the week's own-vehicle drop-offs, post "new drop" | 30 min |
-| Sat | **Pickup window** (e.g., 10am–1pm, one central location) | 2–3 hrs |
+| Fri | Book ODeliver for delivery orders (or keep any you can drop yourself on Saturday), post "new drop" | 30 min |
+| Sat | **Pickup route:** Price Plaza Chaguanas 10am → MovieTowne POS 1pm → East Gates Mall 5pm. Use ~30-minute windows at each stop; customers confirm their stop by Friday night | ~8 hrs including travel (it's a full day, so batch orders by stop and send a Friday reminder) |
 | Sun | Batch-film content, update inventory sheet, place weekly consolidated order | 2 hrs |
 
 ### 7.2 Decanting process and hygiene
@@ -411,10 +448,10 @@ The brand is **you**: the enthusiast who'll tell people what actually works in T
 ### 7.3 Order flow
 
 ```
-DM / Take App order → confirm stock + total + delivery method
-→ payment (bank transfer / WiPay) for delivery orders; cash OK for pickup
-→ add to Thursday batch → decant, label, pack (+ free 5ml if 3+ decants of 10ml+, thank-you card)
-→ Saturday pickup / workplace hand-off / your own drop-off run / ODeliver → send tracking + "how to wear it" tip
+Website / DM order → WhatsApp message → confirm stock + total + delivery method
+→ reply on WhatsApp with bank details (never on the website); transfer before dispatch; cash OK for pickup and workplace
+→ add to Thursday batch → decant, label, pack (+ our-pick free 5ml if 3+ decants of 10ml+, thank-you card)
+→ Saturday pickup / workplace hand-off / ODeliver (or your own drop if you're passing) → send tracking + "how to wear it" tip
 → Day 7 follow-up: "How's it performing?" → review request + referral code
 ```
 
@@ -428,7 +465,7 @@ DM / Take App order → confirm stock + total + delivery method
 | Corporate account | 35 | 45 | 55 | 65 | 65 |
 
 - **Instant delivery** (by distance): TT$25 (0–2 km), TT$35 (2–5 km), TT$40 (5–8 km), TT$50 (8–12 km), TT$55 (12–16 km), TT$65 (16–20 km), then up to TT$300 at 100 km. There's also a 5% service fee ✅.
-- **Additional fees:** extra small package +TT$20 · COD handling **3% of the amount collected** (Standard) · card/Paylink collection 6.5% (Standard) · insurance ~3%, min TT$15 · Tobago inter-island **+TT$30** ✅. ⚠️ Ask whether the TT$60 Tobago rate already includes the TT$30 inter-island fee.
+- **Additional fees:** extra small package +TT$20 · COD handling **3% of the amount collected** (Standard) · card/Paylink collection 6.5% (Standard) · insurance ~3%, min TT$15 · Tobago inter-island **+TT$30** ✅, so Tobago is **TT$90 all-in** (owner confirmed, 5 Oct 2026).
 - **Stay on a Standard account and skip the bundles.** Corporate rates are TT$5 *higher* per delivery. Bundles are corporate-only, cost TT$33–37 per delivery (more than the TT$30 Standard urban rate), require TT$925+ up front and expire in 45 days. Corporate only pays off with lots of COD or card collection (0% vs 3%), and you're avoiding both.
 - **Take payment before dispatch** (bank transfer). That avoids the 3% COD fee and failed deliveries where the customer refuses to pay.
 - **Insurance:** skip it on decant orders (the TT$15 minimum is too high for a TT$100 parcel). Consider it for full-bottle pre-orders above ~TT$500.
@@ -437,16 +474,17 @@ DM / Take App order → confirm stock + total + delivery method
 
 | Option | Customer pays | Notes |
 |---|---|---|
-| **Saturday pickup** (and Wednesday later) | **TT$0** | This is collection, not delivery. Push it: it costs you nothing, and you can upsell in person |
-| **Workplace hand-off** (your office, coworkers) | **TT$0** | Your easiest early customers |
-| **Your own drop-off** (route-based, e.g., one evening a week along your commute or a fixed loop) | **TT$30 flat** | Same price as ODeliver urban, but you keep the fee. Only along routes you already drive; don't detour. Faster and more personal than a courier |
-| **ODeliver (Trinidad)** | **ODeliver's rate at cost: TT$30 urban / 40 rural / 50 extended / 60 remote** | Pass the rate straight through, rounded up. Show it at checkout (Take App lets you set delivery fees per area) |
+| **Saturday pickup** at Price Plaza Chaguanas (10am), MovieTowne POS (1pm) or East Gates Mall (5pm) | **TT$0** | This is collection, not delivery. Push it: it costs you nothing, and you can upsell in person. Add a Wednesday stop later if volume justifies it |
+| **Workplace hand-off** (your office, coworkers) | **TT$0** | Your easiest early customers. **Not shown on the website:** coworkers order on WhatsApp and you mark the order as workplace in admin. Cash is fine |
+| **ODeliver (Trinidad)** | **ODeliver's rate at cost: TT$30 urban / 40 rural / 50 extended / 60 remote** | Pass the rate straight through, rounded up. Shown at checkout by area |
 | **ODeliver Instant** (same day) | Distance rate + 5%, rounded up | Only on request |
-| **Tobago** | **TT$90** via ODeliver (60 + 30 inter-island ⚠️) or TTPost at cost | Prepaid only |
+| **Tobago** | **TT$90** via ODeliver (60 + 30 inter-island) or TTPost at cost | Prepaid only |
 
-**Your own vehicle:**
-- **Price your own runs like ODeliver** so customers never see a reason to pick one over the other. Do runs only when you have 3+ drop-offs on one route; otherwise book ODeliver.
-- **Time and fuel are real costs.** A 45-minute loop with 3 drops earns TT$90, which is worth doing only if it's on your way home.
+**Your own vehicle (owner's call, 5 Oct 2026): no separate drop-off option.**
+- Customers always pay the **ODeliver rate** for their area.
+- If you're already passing, you deliver it yourself and keep the fee. Example: after the Saturday-morning Chaguanas drop (before 8am) on the way back to San Juan, you can wait and hand off at M6 Plaza around 11am.
+- **Public spots and businesses only, never home addresses.** Otherwise, book ODeliver.
+- **Time and fuel are real costs.** Only do it when it's on your way.
 - ⚠️ **Check your car insurance.** Many private policies exclude "carriage of goods for hire or reward", so a crash during a paid delivery could be uninsured. Ask your insurer; a small business-use endorsement is usually cheap.
 
 ## 8. Legal and admin in T&T
@@ -525,7 +563,7 @@ Real-world caveat: these are planning assumptions, not forecasts. Within 6 weeks
 4. ☑ **Name chosen: Smell Bess.** smellbess.com is available on Namecheap, and @smellbess is free on IG, TikTok, Facebook and WhatsApp.
     - ☐ **Buy smellbess.com now and claim @smellbess everywhere today**, before someone else does. Set up **WhatsApp Business** (catalog, quick replies, away message).
     - ☐ Start the website build (`website-brief.md`). The MVP should be live for the week 4 public launch.
-5. ◐ **Launch buy locked** (§3.1: 8 Jomashop bottles + 2 local Rayhaans). Order on or after 17 Oct in **one Jomashop order over US$100** (free shipping), while the Hawas and Yara sales are on. Buy the 2 Rayhaans locally in week 3. **Upload invoices to Websource.**
+5. ◐ **Launch buy locked** (§3.1: 9 Jomashop bottles, Asad Bourbon included, + 2 local Rayhaans). Order on or after 17 Oct in **one Jomashop order over US$100** (free shipping), while the Hawas and Yara sales are on. Buy the 2 Rayhaans locally in week 3. **Upload invoices to Websource.**
 6. ☐ Order decant supplies (glass atomizers 10ml/15ml/5ml, gift boxes for curated sets, syringes/pipettes, funnel, labels, zip bags, thank-you cards).
 7. ☐ Choose 2–4 bottles from your own collection to decant (designer crowd-pleasers plus one women's).
 8. ☐ Build the inventory/orders Google Sheet (bottles, ml left, orders, customers, referral credits).
@@ -533,7 +571,7 @@ Real-world caveat: these are planning assumptions, not forecasts. Within 6 weeks
 **Week 2**
 9. ☐ Design labels and the scent card template (performance, occasion, compliments, "smells like").
 10. ☐ Post 6–9 pre-launch posts. Start the WhatsApp broadcast list. Take pre-orders from coworkers and friends.
-11. ☐ Choose the Saturday pickup location and time window.
+11. ☑ **Saturday pickup route set:** Price Plaza Chaguanas 10am, MovieTowne POS 1pm, East Gates Mall 5pm. No own-drop-off option: customers pay ODeliver rates, and you deliver yourself when you're passing (§7.4).
 12. ☐ Open a separate bank account (or sub-account) for the business and the "card repayment" fund.
 
 **Week 3**

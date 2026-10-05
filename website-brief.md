@@ -26,22 +26,25 @@ Before writing code, read `CLAUDE.md` and `business-plan.md` (especially §2.3 p
 3. **Stock from real millilitres.** Each bottle has ml remaining.
    - A size is available only while there's enough juice left. Show honest low-stock badges ("2 left in 10ml").
    - When the 15ml atomizer stock flag is off, the 15ml still sells but shows "ships as 10ml + 5ml".
-4. **Offers engine.** Exactly **one offer per order**. Tier A only.
-   - **5×10ml bundle for TT$350.**
+4. **Offers engine.** Exactly **one offer per order**.
+   - **5×10ml bundle for TT$350** (Tier A only). Each full group of 5 gets the bundle price, so 10×10ml is TT$700.
    - **Curated sets** (e.g., Fete Pack, Office Safe, Date Night, Her Gourmand): 3×5ml TT$150 or 3×10ml TT$280.
-   - **Free 5ml** of any in-stock Arabian with 3+ single decants of 10ml or larger. The customer picks which one.
-   - The cart applies the best offer automatically and explains it in plain words ("You've got 3×10ml, pick your free 5ml").
+   - **Surprise free 5ml** with 3+ single decants of 10ml or larger, of any tier.
+     - The customer does **not** pick it. The cart shows a "You qualify for a free 5ml surprise" card with a small animation that respects reduced motion.
+     - We choose a Tier A 5ml when packing, usually a slow seller.
+   - The cart applies the best offer automatically and explains it in plain words ("You've got 3×10ml, so a free 5ml surprise is going in your bag").
    - **No vouchers, no free delivery.**
 5. **Checkout without online card payments (v1).**
    - Customer gives name, phone, delivery method and area.
    - The order is saved with an order number.
-   - A confirmation screen shows **bank transfer details** and a **"Send order on WhatsApp"** button that opens a pre-filled message to our number.
+   - A confirmation screen shows a **"Send order on WhatsApp"** button that opens a pre-filled message to our number. **No bank details anywhere on the site.** We reply on WhatsApp with them.
+   - Both admins get an email alert when an order is saved.
    - Pickup orders can pay cash.
    - Delivery orders are paid before dispatch.
 6. **Delivery options with prices (customer always pays):**
-   - Saturday pickup (free; show the location and time window).
-   - Our own drop-off, TT$30, in listed areas.
-   - ODeliver by zone: Urban 30, Rural 40, Extended 50, Remote 60, Tobago 90.
+   - Saturday pickup (free; show the location and time window). Stops and times can be edited in admin.
+   - ODeliver by zone: Urban 30, Rural 40, Extended 50, Remote 60, Tobago 90 (60 + 30 inter-island).
+   - **No own-drop-off option and no workplace hand-off on the public site.** The owner sometimes delivers in person but charges the ODeliver rate. Workplace orders come in on WhatsApp and are marked in admin.
    - Same-day delivery on request.
    - Area → zone mapping should be editable in admin.
 7. **Admin (login for 2 people):**
@@ -65,7 +68,7 @@ Before writing code, read `CLAUDE.md` and `business-plan.md` (especially §2.3 p
 ## Design direction
 - **Mobile-first and very fast.** Target LCP under 2s on 4G and Lighthouse 95+. Most traffic is phones on data.
 - **Confident and a bit playful, with local voice** ("this one is a fete weapon"). It shouldn't look like a generic luxury template or AI-generated design. Don't use the cream-and-serif "luxury" look.
-- **Product photos are our own,** shot on a consistent backdrop. Use placeholders until we supply them. **Never use brand logos or press images** as our branding.
+- **Product photos:** start with each brand's official product image, downloaded and hosted on our site (never hotlinked). Use them only to show the product, never as our branding or logo. Replace them with our own bottle shoots on a consistent backdrop once we have lighting.
 - Meet WCAG AA. Dark mode is optional. Support reduced motion.
 
 ## Legal and copy rules
