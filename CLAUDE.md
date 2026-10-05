@@ -50,6 +50,27 @@ When a decision changes, update `business-plan.md` first, run `python tools/buil
 - **Sourcing:** Jomashop/FragFlex → Websource Miami skybox → TT. Always declare full value. Jomashop orders over US$100 ship free.
 - **Brand assets:** domain `smellbess.com` (available on Namecheap, not yet bought) and the `smellbess` handle on IG, TikTok, Facebook and WhatsApp (available, not yet claimed). Both as of Oct 2026.
 
+## Current status (5 Oct 2026)
+- **Plan:** complete, with the checklist tracked in `business-plan.md` §11. Items 1–4 and 11 are done. Item 5 (launch order) is locked but not placed; order on or after 17 Oct.
+- **Repo:** github.com/kingjamestt/smellbess. `main` holds the plan files. The owner still needs to `git push` 2 local commits on `main` (pickup route + .gitignore).
+- **Website:** MVP is on branch **`website-mvp`**, in `web/`.
+  - Built with Next.js 16, TypeScript, Tailwind 4 and Vitest. 125 tests pass and the build is clean.
+  - Read `docs/website-plan.md` on that branch first.
+  - The data layer is JSON-file backed (`web/.data/store.json`), so Supabase must replace it before going live on serverless hosting.
+  - Bank details live only in `web/.env.local`, which is not in git. Copy it from `.claude/worktrees/agent-a2d0f1038de1cc5b7/web/.env.local`, or recreate it from `.env.example`.
+- **Website: not done yet.** Admin screens and login, Supabase, CSV export, full-bottle pre-orders with deposit, schema/OG images, real photos. All scent copy is marked DRAFT.
+- **Open questions for the owner:**
+  - **Hosting.** Recommended: Netlify free + Supabase free.
+  - **Own-drop-off areas** (still placeholders).
+  - **Workplace hand-off.** Recommended: keep it off the public site.
+  - **10×10ml orders.** Recommended: allow two bundles.
+  - **Free 5ml.** Recommended: Tier A only.
+  - **Order email alerts.** Recommended: yes.
+  - **Curated set picks.**
+  - **2–4 designer decants** from the owner's shelf.
+  - **ODeliver Tobago rate.** Is it TT$90 including the inter-island fee?
+  - **Domain and handles.** smellbess.com and @smellbess are still not bought or claimed.
+
 ## Competitors
 - **KmG Scents** (take.app/kmgscents): Arabian decants at 5ml TT$60 / 10ml TT$100; only bundle is 5×10ml for TT$300.
 - **Fragrance Fanatics** (fragrancefanaticstt.com): 10ml / 15ml / 30ml at TT$100 / 150 / 250; free delivery.
