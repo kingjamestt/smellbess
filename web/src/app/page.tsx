@@ -24,15 +24,15 @@ export default async function Home() {
 
   return (
     <div>
-      <section className="bg-ink text-paper">
+      <section className="hero">
         <div className="container-page py-10 sm:py-16">
-          <p className="mb-3 inline-block rounded-full bg-sun px-3 py-1 text-sm font-bold text-ink">
+          <p className="hero-sticker mb-3 inline-block rounded-full bg-sun px-3 py-1 text-sm font-bold text-on-sun">
             Decants made in T&amp;T
           </p>
           <h1 className="max-w-2xl text-4xl font-extrabold leading-[1.05] sm:text-6xl">
-            Only the <span className="text-sun">bess</span> scents. No duds.
+            Only the <span className="text-[var(--hero-accent)]">bess</span> scents. No duds.
           </h1>
-          <p className="mt-4 max-w-xl text-lg text-paper/85">
+          <p className="mt-4 max-w-xl text-lg opacity-85">
             Strong performers and proven compliment-getters, tested in TT heat. Decanted by hand from authentic
             bottles in 5ml, 10ml and 15ml.
           </p>
@@ -40,11 +40,11 @@ export default async function Home() {
             <Link href="/scents" className="btn-primary">
               Shop scents
             </Link>
-            <Link href="/sets" className="btn border-2 border-paper text-paper hover:bg-paper/10">
+            <Link href="/sets" className="btn border-2 border-current hover:bg-white/10">
               Curated sets
             </Link>
           </div>
-          <p className="mt-6 text-sm text-paper/70">
+          <p className="mt-6 text-sm opacity-75">
             From TT$60 a 5ml · Free {delivery.pickupDay} pickup · Delivery anywhere in T&amp;T from TT$30
           </p>
         </div>
@@ -93,7 +93,7 @@ export default async function Home() {
         <ol className="grid gap-3 sm:grid-cols-4">
           {STEPS.map((s) => (
             <li key={s.n} className="card p-4">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-sun font-bold">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-sun font-bold text-on-sun">
                 {s.n}
               </span>
               <p className="mt-2 font-bold">{s.title}</p>

@@ -34,7 +34,7 @@ export default async function DeliveryPage() {
           {delivery.pickupPoints.map((p) => (
             <li key={p.id} className="card flex items-center justify-between p-3">
               <span className="font-semibold">{p.name}</span>
-              <span className="rounded-full bg-sun px-3 py-1 text-sm font-bold">{p.time}</span>
+              <span className="rounded-full bg-sun px-3 py-1 text-sm font-bold text-on-sun">{p.time}</span>
             </li>
           ))}
         </ol>

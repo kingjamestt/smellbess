@@ -32,7 +32,7 @@ export function FreeSurpriseCard({ value }: { value: number }) {
   return (
     <section
       aria-live="polite"
-      className="animate-surprise-pop relative overflow-hidden rounded-2xl bg-hibiscus p-4 text-white"
+      className="animate-surprise-pop relative overflow-hidden rounded-2xl bg-hibiscus p-4 text-on-hibiscus"
     >
       <span aria-hidden className="animate-sparkle absolute top-1.5 left-2 text-sm text-sun">
         ✦

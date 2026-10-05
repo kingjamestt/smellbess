@@ -12,9 +12,9 @@ export function DraftBadge({ className = "" }: { className?: string }) {
 }
 
 const STOCK_STYLES: Record<StockState, string> = {
-  in_stock: "bg-sea text-white",
-  sold_out: "bg-ink text-paper",
-  arriving: "bg-sun text-ink",
+  in_stock: "bg-sea text-on-sea",
+  sold_out: "bg-inverse text-on-inverse",
+  arriving: "bg-sun text-on-sun",
   coming_soon: "bg-mist text-ink border border-line",
   retired: "bg-mist text-muted",
 };
@@ -29,6 +29,6 @@ export function StockBadge({ state }: { state: StockState }) {
 
 export function LowStockBadge({ text }: { text: string }) {
   return (
-    <span className="inline-flex rounded-full bg-sun px-2.5 py-0.5 text-xs font-bold text-ink">{text}</span>
+    <span className="inline-flex rounded-full bg-sun px-2.5 py-0.5 text-xs font-bold text-on-sun">{text}</span>
   );
 }

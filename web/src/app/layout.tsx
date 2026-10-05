@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
+import { LOOK_BOOT_SCRIPT, LookSwitcher } from "@/components/look-switcher";
 import { Footer, Header } from "@/components/site-chrome";
 import "./globals.css";
 
@@ -22,13 +23,20 @@ export const viewport: Viewport = {
   themeColor: "#c4145a",
 };
 
+/** DESIGN PREVIEW: the look switcher shows in dev, or when NEXT_PUBLIC_DESIGN_PREVIEW=1. */
+const showLookSwitcher = process.env.NODE_ENV !== "production" || process.env.NEXT_PUBLIC_DESIGN_PREVIEW === "1";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-TT" className={bricolage.variable}>
+    // The boot script may change data-look before React hydrates.
+    <html lang="en-TT" className={bricolage.variable} data-look="carnival" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: LOOK_BOOT_SCRIPT }} />
+      </head>
       <body className="flex min-h-dvh flex-col antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded focus:bg-ink focus:px-3 focus:py-2 focus:text-paper"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded focus:bg-inverse focus:px-3 focus:py-2 focus:text-on-inverse"
         >
           Skip to content
         </a>
@@ -37,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
+        {showLookSwitcher && <LookSwitcher />}
       </body>
     </html>
   );

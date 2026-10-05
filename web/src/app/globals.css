@@ -17,6 +17,132 @@
   --sun: #ffc83d; /* ink text on this */
   --sea: #0b6f6a; /* white text on this: 6.2:1 */
   --danger: #b42318;
+
+  /* Text on coloured surfaces, so each look can flip them. */
+  --on-hibiscus: #ffffff;
+  --on-sun: #17131f;
+  --on-sea: #ffffff;
+  --inverse: #17131f;
+  --on-inverse: #ffffff;
+
+  /* Hero and placeholder art. */
+  --hero-bg: var(--ink);
+  --hero-fg: #ffffff;
+  --hero-accent: var(--sun);
+  --art-bg-l: 92%;
+  --art-glass-l: 98%;
+  --art-stroke: #17131f;
+}
+
+/*
+ * DESIGN PREVIEW: two looks the owners are choosing between. Switch with the
+ * floating "Look" control, or ?look=carnival / ?look=luxe. Delete the losing
+ * block (and the switcher) once one is picked.
+ */
+
+/* 1. Carnival bold: colour blocks, thick outlines, hard shadows, stickers. */
+[data-look="carnival"] {
+  --paper: #fffaf0;
+  --mist: #fff1cc;
+  --line: #17131f;
+  --hero-bg: var(--hibiscus);
+  --hero-fg: #ffffff;
+  --hero-accent: var(--sun);
+}
+[data-look="carnival"] .card,
+[data-look="carnival"] .chip {
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+[data-look="carnival"] .btn {
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 120ms, box-shadow 120ms;
+}
+[data-look="carnival"] .btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+[data-look="carnival"] .hero {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 22px,
+    rgb(255 255 255 / 0.07) 22px 44px
+  );
+  border-bottom: 3px solid var(--ink);
+}
+[data-look="carnival"] .hero .btn-primary {
+  background: var(--sun);
+  color: var(--on-sun);
+}
+[data-look="carnival"] .hero .btn:not(.btn-primary) {
+  background: var(--paper);
+  color: var(--ink);
+}
+[data-look="carnival"] .hero-sticker {
+  transform: rotate(-4deg);
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+[data-look="carnival"] header {
+  border-bottom: 3px solid var(--ink);
+}
+[data-look="carnival"] footer {
+  background: var(--sun);
+  border-top: 3px solid var(--ink);
+}
+
+/* 2. Night-out luxe: black and gold, lighter headings, quiet lines, glow. */
+[data-look="luxe"] {
+  color-scheme: dark;
+  --ink: #f3ead8;
+  --muted: #b3a892;
+  --paper: #0d0c0a;
+  --mist: #1a1814;
+  --line: #2f2b24;
+  --hibiscus: #d9b46c; /* gold accent; dark text on it */
+  --hibiscus-dark: #c29d55;
+  --sun: #e9d3a0;
+  --sea: #8cc9b7;
+  --danger: #ff9a8a;
+  --on-hibiscus: #14110c;
+  --on-sun: #14110c;
+  --on-sea: #0d0c0a;
+  --inverse: #d9b46c;
+  --on-inverse: #14110c;
+  --hero-bg: #050504;
+  --hero-fg: #f3ead8;
+  --hero-accent: #d9b46c;
+  --art-bg-l: 14%;
+  --art-glass-l: 22%;
+  --art-stroke: #d9b46c;
+}
+[data-look="luxe"] h1,
+[data-look="luxe"] h2,
+[data-look="luxe"] .font-display {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+[data-look="luxe"] .hero {
+  background-image: radial-gradient(60% 80% at 85% 10%, rgb(217 180 108 / 0.22), transparent 70%);
+  border-bottom: 1px solid var(--line);
+}
+[data-look="luxe"] .hero-sticker {
+  background: transparent;
+  color: var(--hibiscus);
+  border: 1px solid var(--hibiscus);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+[data-look="luxe"] .card {
+  background: linear-gradient(180deg, #16140f, #100f0c);
+}
+[data-look="luxe"] .btn {
+  letter-spacing: 0.04em;
+}
+[data-look="luxe"] .btn-primary {
+  background: linear-gradient(180deg, #e7c682, #c99d4f);
 }
 
 @theme inline {
@@ -30,6 +156,11 @@
   --color-sun: var(--sun);
   --color-sea: var(--sea);
   --color-danger: var(--danger);
+  --color-on-hibiscus: var(--on-hibiscus);
+  --color-on-sun: var(--on-sun);
+  --color-on-sea: var(--on-sea);
+  --color-inverse: var(--inverse);
+  --color-on-inverse: var(--on-inverse);
   --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
@@ -73,19 +204,19 @@ h3,
   @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-base font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
 }
 @utility btn-primary {
-  @apply btn bg-hibiscus text-white hover:bg-hibiscus-dark;
+  @apply btn bg-hibiscus text-on-hibiscus hover:bg-hibiscus-dark;
 }
 @utility btn-secondary {
   @apply btn border-2 border-ink bg-paper text-ink hover:bg-mist;
 }
 @utility btn-whatsapp {
-  @apply btn bg-sea text-white hover:brightness-110;
+  @apply btn bg-sea text-on-sea hover:brightness-110;
 }
 @utility chip {
   @apply inline-flex min-h-9 items-center rounded-full border border-line bg-paper px-3 text-sm font-medium text-ink;
 }
 @utility chip-on {
-  @apply border-ink bg-ink text-paper;
+  @apply border-inverse bg-inverse text-on-inverse;
 }
 @utility card {
   @apply rounded-2xl border border-line bg-paper;
@@ -126,4 +257,10 @@ h3,
 }
 @utility animate-sparkle {
   animation: sparkle 1.6s ease-in-out infinite;
+}
+
+/* The hero: colours come from the active look. */
+@utility hero {
+  background-color: var(--hero-bg);
+  color: var(--hero-fg);
 }
