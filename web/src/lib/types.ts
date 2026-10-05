@@ -88,8 +88,13 @@ export interface CuratedSet {
   id: string;
   name: string;
   description: string;
-  /** Exactly three Tier A products. */
+  /** Three different scents. Tier A, unless the set has its own `price`. */
   productIds: [string, string, string];
+  /**
+   * Set price override, for a set that includes an A+ scent (Fete Pack:
+   * TT$175 / TT$300). Without it the standard TT$150 / TT$280 applies.
+   */
+  price?: Record<5 | 10, number>;
   draft: boolean;
 }
 
@@ -101,19 +106,13 @@ export interface Area {
   zone: Zone;
 }
 
-export type DeliveryMethod = "pickup" | "workplace" | "own_dropoff" | "odeliver";
-export type PaymentMethod = "bank_transfer" | "cash_on_pickup";
-
 /**
- * A bank account customers can pay into. Read ONLY from server-side env vars
- * (see .env.example). Never stored in seed data, the JSON store or the repo.
+ * `workplace` is for coworker orders that come in on WhatsApp. It's never
+ * offered at the public checkout; admin sets it. There is no own-drop-off
+ * option: when we deliver ourselves we charge the ODeliver rate.
  */
-export interface BankAccount {
-  bank: string;
-  accountName: string;
-  accountType: string;
-  accountNumber: string;
-}
+export type DeliveryMethod = "pickup" | "workplace" | "odeliver";
+export type PaymentMethod = "bank_transfer" | "cash_on_pickup";
 
 /** A Saturday pickup stop. Editable in src/config/site.ts. */
 export interface PickupPoint {
@@ -137,8 +136,6 @@ export type CartLine =
 
 export interface Cart {
   lines: CartLine[];
-  /** The customer's pick for the free 5ml, if that offer applies. */
-  freeSampleProductId?: string;
 }
 
 // ---------------------------------------------------------------- orders
@@ -176,8 +173,10 @@ export type OrderLine =
       items: { productId: string; label: string }[];
     }
   | {
+      /** The surprise free 5ml. We pick the scent when packing. */
       kind: "free";
-      productId: string;
+      /** Empty until an admin picks the scent (a Tier A, often a slow seller). */
+      productId?: string;
       label: string;
       size: 5;
       qty: 1;

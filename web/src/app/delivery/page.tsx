@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SITE } from "@/config/site";
-import { OWN_DROPOFF_FEE, ZONE_FEES, ZONE_LABELS } from "@/lib/delivery";
+import { ZONE_FEES, ZONE_LABELS } from "@/lib/delivery";
 import { formatTtd } from "@/lib/pricing";
 import { getCatalog } from "@/lib/server";
 import type { Zone } from "@/lib/types";
@@ -16,7 +16,6 @@ const ZONES: Zone[] = ["urban", "rural", "extended", "remote", "tobago"];
 
 export default async function DeliveryPage() {
   const { delivery } = await getCatalog();
-  const dropoff = delivery.areas.filter((a) => delivery.ownDropoffAreaIds.includes(a.id));
   return (
     <div className="container-page max-w-3xl space-y-8 py-6">
       <div>
@@ -41,27 +40,14 @@ export default async function DeliveryPage() {
         </ol>
       </section>
 
-      <section aria-labelledby="workplace" className="space-y-2">
-        <h2 id="workplace" className="text-2xl font-bold">
-          Workplace hand-off: free
-        </h2>
-        <p>{SITE.workplace.description}</p>
-      </section>
-
-      {dropoff.length > 0 && (
-        <section aria-labelledby="dropoff" className="space-y-2">
-          <h2 id="dropoff" className="text-2xl font-bold">
-            Our own drop-off: {formatTtd(OWN_DROPOFF_FEE)}
-          </h2>
-          <p>We bring it ourselves along our route in: {dropoff.map((a) => a.name).join(", ")}.</p>
-        </section>
-      )}
-
       <section aria-labelledby="courier" className="space-y-3">
         <h2 id="courier" className="text-2xl font-bold">
           ODeliver courier, anywhere in T&amp;T
         </h2>
-        <p>Priced by zone, at cost. Paid by bank transfer before we send it out.</p>
+        <p>
+          Priced by zone, at cost. Paid by bank transfer before we send it out. If we&apos;re passing your way,
+          we might bring it ourselves, at the same price.
+        </p>
         <table className="w-full text-left text-sm">
           <caption className="sr-only">ODeliver prices by zone</caption>
           <thead>

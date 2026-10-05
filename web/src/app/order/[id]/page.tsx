@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { SITE } from "@/config/site";
 import { PAYMENT_LABELS } from "@/lib/delivery";
 import { formatTtd } from "@/lib/pricing";
-import { getBankAccounts, getOrder } from "@/lib/server";
+import { getOrder } from "@/lib/server";
 import { orderMessage, whatsappLink } from "@/lib/whatsapp";
 
 export const dynamic = "force-dynamic";
@@ -20,7 +20,6 @@ export default async function OrderPage({ params }: Props) {
 
   const message = orderMessage(order, SITE.pickupDay);
   const waHref = whatsappLink(SITE.whatsappNumber, message);
-  const banks = order.payment === "bank_transfer" ? getBankAccounts() : [];
   const pickup = order.delivery.pickupPoint;
   const firstName = order.customer.name.split(" ")[0];
 
@@ -50,44 +49,12 @@ export default async function OrderPage({ params }: Props) {
           2. {order.payment === "bank_transfer" ? "Pay by bank transfer" : "Pay cash at pickup"}
         </h2>
         {order.payment === "bank_transfer" ? (
-          <>
-            <p className="text-sm">
-              Transfer <strong>{formatTtd(order.totals.total)}</strong> to either account below. Use{" "}
-              <strong>{order.number}</strong> as the reference, then send the receipt on WhatsApp.
-              {order.delivery.method !== "pickup" && order.delivery.method !== "workplace"
-                ? " We dispatch once payment is in."
-                : ""}
-            </p>
-            {banks.length > 0 ? (
-              <ul className="space-y-2">
-                {banks.map((b) => (
-                  <li key={`${b.bank}-${b.accountNumber}`} className="rounded-xl bg-mist p-3 text-sm">
-                    <p className="font-bold">{b.bank}</p>
-                    <dl className="grid grid-cols-[7rem_1fr] gap-y-0.5">
-                      {b.accountName && (
-                        <>
-                          <dt className="text-muted">Name</dt>
-                          <dd>{b.accountName}</dd>
-                        </>
-                      )}
-                      {b.accountType && (
-                        <>
-                          <dt className="text-muted">Account type</dt>
-                          <dd>{b.accountType}</dd>
-                        </>
-                      )}
-                      <dt className="text-muted">Account no.</dt>
-                      <dd className="font-mono font-semibold">{b.accountNumber}</dd>
-                    </dl>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="rounded-xl bg-sun/30 p-3 text-sm">
-                Bank details will be sent to you on WhatsApp.
-              </p>
-            )}
-          </>
+          <p className="text-sm">
+            Once you send your order, we reply on WhatsApp with our bank details. Transfer{" "}
+            <strong>{formatTtd(order.totals.total)}</strong> with <strong>{order.number}</strong> as the
+            reference, then send us the receipt there.
+            {order.delivery.method === "odeliver" ? " We dispatch once payment is in." : ""}
+          </p>
         ) : (
           <p className="text-sm">
             Bring <strong>{formatTtd(order.totals.total)}</strong> in cash to your pickup.
@@ -120,7 +87,7 @@ export default async function OrderPage({ params }: Props) {
             <li key={i} className="flex justify-between gap-2">
               <span>
                 {l.kind === "free"
-                  ? `Free 5ml: ${l.label}`
+                  ? `Free 5ml surprise${l.productId ? `: ${l.label}` : " (we pick)"}`
                   : l.kind === "set"
                     ? `${l.qty}× ${l.label} set (3×${l.size}ml)`
                     : `${l.qty}× ${l.label} ${l.size}ml${l.shipsAsSplit ? " (ships as 10ml + 5ml)" : ""}`}

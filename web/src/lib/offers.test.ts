@@ -19,7 +19,7 @@ const ctx: OfferContext = {
   sets: {
     fete: { name: "Fete Pack", productIds: ["A1", "A2", "A3"] },
     office: { name: "Office Safe", productIds: ["A4", "A5", "A6"] },
-    mixed: { name: "Mixed", productIds: ["A1", "A2", "P1"] },
+    mixed: { name: "Mixed", productIds: ["A1", "A2", "P1"], price: { 5: 175, 10: 300 } },
   },
   freeSampleOptions: ["A1", "A2", "A3"],
 };
@@ -31,7 +31,7 @@ const single = (productId: string, size: SizeMl, qty = 1): CartLine => ({
   qty,
 });
 const set = (setId: string, size: 5 | 10, qty = 1): CartLine => ({ kind: "set", setId, size, qty });
-const cart = (lines: CartLine[], freeSampleProductId?: string): Cart => ({ lines, freeSampleProductId });
+const cart = (lines: CartLine[]): Cart => ({ lines });
 
 describe("tier pricing", () => {
   it.each<[Tier, number, number, number]>([
@@ -74,7 +74,7 @@ describe("no offer", () => {
   it("two 10ml decants: nothing yet, hint toward the free 5ml", () => {
     const q = priceCart(cart([single("A1", 10, 2)]), ctx);
     expect(q.offer).toBeNull();
-    expect(q.hints).toContain("Add 1 more Arabian 10ml or 15ml and get a free 5ml.");
+    expect(q.hints).toContain("Add 1 more 10ml or 15ml decant and get a free 5ml surprise.");
   });
 
   it("three 5ml singles are not a curated set and don't earn a free 5ml", () => {
@@ -100,7 +100,7 @@ describe("5×10ml bundle (TT$350)", () => {
   it("needs five: four 10ml decants don't qualify, and get a nudge", () => {
     const q = priceCart(cart([single("A1", 10, 4)]), ctx);
     expect(q.candidates.map((c) => c.id)).not.toContain("bundle_5x10");
-    expect(q.hints).toContain("Add 1 more Arabian 10ml and get all 5 for TT$350.");
+    expect(q.hints).toContain("Add 1 more Arabian 10ml decant and get all 5 for TT$350.");
   });
 
   it("only counts 10ml: 5ml and 15ml don't fill a bundle", () => {
@@ -112,29 +112,40 @@ describe("5×10ml bundle (TT$350)", () => {
     const q = priceCart(cart([single("A1", 10, 4), single("P1", 10)]), ctx);
     expect(q.candidates.map((c) => c.id)).not.toContain("bundle_5x10");
     expect(q.messages.some((m) => m.includes("Premium 10ml") && m.includes("Tier A"))).toBe(true);
+    // ...but it does count toward the free 5ml, which wins here.
+    expect(q.offer?.id).toBe("free_5ml");
   });
 
-  it("five A+ 10ml decants get no offer at all", () => {
+  it("five A+ 10ml decants: no bundle, but they earn the free 5ml", () => {
     const q = priceCart(cart([single("P1", 10, 5)]), ctx);
-    expect(q.offer).toBeNull();
+    expect(q.candidates.map((c) => c.id)).toEqual(["free_5ml"]);
     expect(q.itemsTotal).toBe(600);
   });
 
-  it("designer and niche 10ml decants never count", () => {
+  it("designer and niche 10ml decants never fill a bundle", () => {
     const q = priceCart(cart([single("D1", 10, 3), single("N1", 10, 2)]), ctx);
-    expect(q.offer).toBeNull();
+    expect(q.candidates.map((c) => c.id)).not.toContain("bundle_5x10");
   });
 
-  it("applies once per order: six 10ml = bundle + 1 at full price", () => {
+  it("six 10ml = one bundle + 1 at full price", () => {
     const q = priceCart(cart([single("A1", 10, 6)]), ctx);
     expect(q.offer?.id).toBe("bundle_5x10");
     expect(q.itemsTotal).toBe(350 + 100);
   });
 
-  it("applies once per order even with ten 10ml", () => {
+  it("ten 10ml = two bundles (TT$700), still one offer", () => {
     const q = priceCart(cart([single("A1", 10, 10)]), ctx);
-    expect(q.discount).toBe(150);
-    expect(q.itemsTotal).toBe(850);
+    expect(q.offer?.id).toBe("bundle_5x10");
+    expect(q.offer?.label).toBe("2 × 5×10ml bundles, TT$350 each");
+    expect(q.discount).toBe(300);
+    expect(q.itemsTotal).toBe(700);
+    expect(q.messages[0]).toBe("10 Arabian 10ml decants as 2 bundles of 5, TT$350 each. You save TT$300.");
+  });
+
+  it("thirteen 10ml = two bundles + 3 at full price, with a nudge toward a third", () => {
+    const q = priceCart(cart([single("A1", 10, 13)]), ctx);
+    expect(q.itemsTotal).toBe(700 + 300);
+    expect(q.hints).toContain("Add 2 more Arabian 10ml decants and get another 5 for TT$350.");
   });
 
   it("A+ items alongside a bundle are charged at A+ prices", () => {
@@ -166,10 +177,9 @@ describe("curated sets (3×5ml TT$150, 3×10ml TT$280)", () => {
     expect(q.itemsTotal).toBe(150 * 2 + 280);
   });
 
-  it("a set containing a non-Tier-A scent gets no set price", () => {
-    const q = priceCart(cart([set("mixed", 5)]), ctx);
-    expect(q.offer).toBeNull();
-    expect(q.itemsTotal).toBe(60 + 60 + 70);
+  it("a set with an A+ scent uses its own price (Fete Pack: TT$175 / TT$300)", () => {
+    expect(priceCart(cart([set("mixed", 5)]), ctx)).toMatchObject({ subtotal: 190, itemsTotal: 175 });
+    expect(priceCart(cart([set("mixed", 10)]), ctx)).toMatchObject({ subtotal: 320, itemsTotal: 300 });
   });
 
   it("set contents never count toward the bundle", () => {
@@ -184,14 +194,17 @@ describe("curated sets (3×5ml TT$150, 3×10ml TT$280)", () => {
   });
 });
 
-describe("free 5ml with 3+ single decants of 10ml or larger", () => {
-  it("three 10ml decants: customer must pick", () => {
+describe("free 5ml surprise with 3+ single decants of 10ml or larger", () => {
+  it("three 10ml decants: a surprise 5ml, nothing to choose", () => {
     const q = priceCart(cart([single("A1", 10, 3)]), ctx);
     expect(q.offer?.id).toBe("free_5ml");
+    expect(q.offer?.label).toBe("Free 5ml surprise");
     expect(q.discount).toBe(0);
     expect(q.itemsTotal).toBe(300);
-    expect(q.freeSample).toEqual({ options: ["A1", "A2", "A3"], productId: null, needsChoice: true, value: 60 });
-    expect(q.messages[0]).toBe("You've got 3 Arabian decants of 10ml or bigger, so pick your free 5ml.");
+    expect(q.freeSample).toEqual({ value: 60 });
+    expect(q.messages[0]).toBe(
+      "You've got 3 decants of 10ml or bigger, so a free 5ml surprise is going in your bag. We pick it (worth TT$60).",
+    );
   });
 
   it("15ml decants count, and sizes can be mixed", () => {
@@ -204,36 +217,31 @@ describe("free 5ml with 3+ single decants of 10ml or larger", () => {
     expect(q.offer).toBeNull();
   });
 
-  it("A+ decants don't count toward the three", () => {
-    const q = priceCart(cart([single("A1", 10, 2), single("P1", 10)]), ctx);
-    expect(q.offer).toBeNull();
+  it("any tier counts toward the three: A+, designer and niche too", () => {
+    expect(priceCart(cart([single("A1", 10, 2), single("P1", 10)]), ctx).offer?.id).toBe("free_5ml");
+    expect(priceCart(cart([single("D1", 15), single("N1", 10), single("P1", 10)]), ctx).offer?.id).toBe(
+      "free_5ml",
+    );
   });
 
-  it("records a valid choice", () => {
-    const q = priceCart(cart([single("A1", 10, 3)], "A2"), ctx);
-    expect(q.freeSample).toMatchObject({ productId: "A2", needsChoice: false });
-    expect(q.messages[0]).toBe("Your free 5ml: Bravo. On us (worth TT$60).");
-  });
-
-  it("rejects a choice that isn't an in-stock Tier A option (e.g. A+)", () => {
-    expect(priceCart(cart([single("A1", 10, 3)], "P1"), ctx).freeSample?.needsChoice).toBe(true);
-    expect(priceCart(cart([single("A1", 10, 3)], "A6"), ctx).freeSample?.needsChoice).toBe(true);
-  });
-
-  it("isn't offered when no Tier A scent has 5ml in stock", () => {
+  it("isn't offered when no Tier A scent has 5ml to spare", () => {
     const q = priceCart(cart([single("A1", 10, 3)]), { ...ctx, freeSampleOptions: [] });
     expect(q.offer).toBeNull();
   });
 
-  it("never offers an A+ scent as the free 5ml, even if listed", () => {
-    const q = priceCart(cart([single("A1", 10, 3)]), { ...ctx, freeSampleOptions: ["P1", "A1"] });
-    expect(q.freeSample?.options).toEqual(["A1"]);
+  it("an A+ scent alone can't be packed as the free 5ml", () => {
+    const q = priceCart(cart([single("A1", 10, 3)]), { ...ctx, freeSampleOptions: ["P1"] });
+    expect(q.offer).toBeNull();
   });
 
   it("only one free 5ml, even with six qualifying decants", () => {
     const q = priceCart(cart([single("A1", 15, 6)]), ctx);
     expect(q.offer?.value).toBe(60);
-    expect(q.freeSample?.options.length).toBeGreaterThan(0);
+  });
+
+  it("nudges at two qualifying decants", () => {
+    const q = priceCart(cart([single("P1", 10, 2)]), ctx);
+    expect(q.hints).toContain("Add 1 more 10ml or 15ml decant and get a free 5ml surprise.");
   });
 });
 

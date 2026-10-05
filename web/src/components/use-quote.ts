@@ -13,9 +13,8 @@ export function useQuote(catalog: CatalogSnapshot, cart: Cart) {
     const offerCtx = buildOfferContext(catalog.products, catalog.sets, catalog.available, cart);
     const quote = priceCart(cart, offerCtx);
     const setMap = Object.fromEntries(catalog.sets.map((s) => [s.id, s]));
-    const freeId = quote.freeSample?.productId ?? null;
     const byId = new Map(catalog.products.map((p) => [p.id, p]));
-    const shortfalls = stockShortfalls(cartDemandMl(cart, setMap, freeId), catalog.available).map((s) => {
+    const shortfalls = stockShortfalls(cartDemandMl(cart, setMap), catalog.available).map((s) => {
       const p = byId.get(s.productId);
       return `Only ${s.availableMl}ml of ${p ? productLabel(p) : "a scent"} left. Lower the size or quantity.`;
     });
@@ -27,7 +26,6 @@ export function useQuote(catalog: CatalogSnapshot, cart: Cart) {
         .map((p) => `${productLabel(p!)} isn't available to order yet.`);
     });
     const blockers = [...quote.problems, ...unavailable, ...shortfalls];
-    if (quote.freeSample?.needsChoice) blockers.push("Pick your free 5ml.");
     return { quote, offerCtx, blockers, byId };
   }, [catalog, cart]);
 }

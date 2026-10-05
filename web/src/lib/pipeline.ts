@@ -44,10 +44,14 @@ export interface DecantRow {
   ml: number;
 }
 
+/** Decanting-list row id for free 5ml surprises nobody has picked a scent for yet. */
+export const SURPRISE_ID = "free-5ml-surprise";
+
 /**
  * Today's decanting list: decants for every paid order, plus new cash-at-pickup
  * orders (they pay on Saturday, so they're decanted before payment). Grouped
- * by scent and size. Set contents and free 5mls are included.
+ * by scent and size. Set contents and free 5mls are included; an unpicked
+ * surprise 5ml shows as its own row so it isn't forgotten.
  */
 export function decantingList(orders: readonly Order[]): DecantRow[] {
   const rows = new Map<string, DecantRow>();
@@ -64,7 +68,8 @@ export function decantingList(orders: readonly Order[]): DecantRow[] {
     if (!due) continue;
     for (const line of order.lines) {
       if (line.kind === "set") for (const i of line.items) add(i.productId, i.label, line.size, line.qty);
-      else add(line.productId, line.label, line.size, line.qty);
+      else if (line.productId) add(line.productId, line.label, line.size, line.qty);
+      else add(SURPRISE_ID, "Free 5ml surprise (your pick)", line.size, line.qty);
     }
   }
   return [...rows.values()].sort((a, b) => a.label.localeCompare(b.label) || a.size - b.size);

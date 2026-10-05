@@ -17,7 +17,7 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
   const cart = useCart();
   const hydrated = useHydrated();
   const router = useRouter();
-  const { quote, offerCtx, blockers } = useQuote(catalog, cart);
+  const { quote, blockers } = useQuote(catalog, cart);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -133,7 +133,7 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
           <p className="text-sm text-muted">
             {delivery.method === "pickup"
               ? "Pay by transfer before pickup, or bring cash."
-              : "Delivery orders are paid by bank transfer before we send them out. No card payments yet."}
+              : "Delivery orders are paid by bank transfer before we send them out. We send our bank details on WhatsApp. No card payments yet."}
           </p>
         </section>
 
@@ -150,7 +150,7 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
       </div>
 
       <aside className="space-y-4">
-        <OfferBox quote={quote} offerCtx={offerCtx} />
+        <OfferBox quote={quote} />
         <section aria-labelledby="summary" className="card space-y-2 p-4">
           <h2 id="summary" className="text-lg font-bold">
             Order summary
@@ -164,9 +164,9 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
                 <span>{formatTtd(l.total)}</span>
               </li>
             ))}
-            {quote.freeSample?.productId && (
+            {quote.freeSample && (
               <li className="flex justify-between gap-2 text-sea">
-                <span>Free 5ml: {offerCtx.products[quote.freeSample.productId]?.label}</span>
+                <span>Free 5ml surprise (we pick)</span>
                 <span>FREE</span>
               </li>
             )}
@@ -215,7 +215,8 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
         </button>
         {!dq.ok && <p className="text-sm text-muted">{dq.error}</p>}
         <p className="text-xs text-muted">
-          Next you&apos;ll get your order number, our bank details and a button to send the order to us on WhatsApp.
+          Next you&apos;ll get your order number and a button to send the order to us on WhatsApp. We reply there
+          to confirm, with payment details if you&apos;re paying by transfer.
         </p>
       </aside>
     </form>

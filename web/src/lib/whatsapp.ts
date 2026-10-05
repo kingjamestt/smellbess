@@ -15,7 +15,7 @@ export function orderMessage(order: Order, pickupDay = "Saturday"): string {
       out.push(`• ${line.qty}× ${line.label} set 3×${line.size}ml: ${formatTtd(line.unitPrice * line.qty)}`);
       out.push(`   (${line.items.map((i) => i.label).join(", ")})`);
     } else {
-      out.push(`• Free 5ml: ${line.label}`);
+      out.push(`• Free 5ml surprise (you pick)`);
     }
   }
   if (order.offer) out.push(`Offer: ${order.offer.label}`);

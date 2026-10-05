@@ -99,3 +99,31 @@ h3,
 @utility container-page {
   @apply mx-auto w-full max-w-5xl px-4;
 }
+
+/* Free 5ml surprise: the card pops in and the gift gives a little shake. */
+@keyframes surprise-pop {
+  0% { opacity: 0; transform: scale(0.85) translateY(8px); }
+  60% { opacity: 1; transform: scale(1.03) translateY(0); }
+  100% { transform: scale(1); }
+}
+@keyframes gift-shake {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(-12deg); }
+  40% { transform: rotate(10deg); }
+  60% { transform: rotate(-6deg); }
+  80% { transform: rotate(4deg); }
+}
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.4); }
+  50% { opacity: 1; transform: scale(1); }
+}
+@utility animate-surprise-pop {
+  animation: surprise-pop 450ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+@utility animate-gift-shake {
+  animation: gift-shake 900ms ease-in-out 450ms 2;
+  transform-origin: 50% 80%;
+}
+@utility animate-sparkle {
+  animation: sparkle 1.6s ease-in-out infinite;
+}

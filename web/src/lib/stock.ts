@@ -32,7 +32,8 @@ export function reservedMl(orders: readonly Order[]): Record<string, number> {
     for (const line of order.lines) {
       if (line.kind === "set") {
         for (const item of line.items) add(item.productId, line.size * line.qty);
-      } else {
+      } else if (line.productId) {
+        // An unpicked free 5ml surprise reserves nothing until we choose it.
         add(line.productId, line.size * line.qty);
       }
     }
@@ -94,11 +95,10 @@ export const STOCK_LABELS: Record<StockState, string> = {
   retired: "Retired",
 };
 
-/** ml of each product a cart needs, including set contents and the free 5ml. */
+/** ml of each product a cart needs, including set contents. */
 export function cartDemandMl(
   cart: Cart,
   sets: Record<string, Pick<CuratedSet, "productIds">>,
-  freeSampleProductId?: string | null,
 ): Record<string, number> {
   const out: Record<string, number> = {};
   const add = (id: string, ml: number) => (out[id] = (out[id] ?? 0) + ml);
@@ -106,7 +106,6 @@ export function cartDemandMl(
     if (line.kind === "single") add(line.productId, line.size * line.qty);
     else for (const id of sets[line.setId]?.productIds ?? []) add(id, line.size * line.qty);
   }
-  if (freeSampleProductId) add(freeSampleProductId, 5);
   return out;
 }
 

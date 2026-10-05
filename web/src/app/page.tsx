@@ -6,9 +6,9 @@ import { getCatalog } from "@/lib/server";
 export const dynamic = "force-dynamic";
 
 const OFFERS = [
-  { big: "5×10ml", small: "for TT$350", text: "Any five Arabian 10ml decants. Save TT$150." },
-  { big: "Free 5ml", small: "you pick", text: "Get 3 or more Arabian decants of 10ml or bigger." },
-  { big: "Sets", small: "from TT$150", text: "Three we picked for the fete, the office or date night." },
+  { big: "5×10ml", small: "for TT$350", text: "Any five Arabian 10ml decants. Save TT$150. Ten? Two bundles." },
+  { big: "Free 5ml", small: "surprise", text: "Get 3 or more decants of 10ml or bigger and we add a surprise 5ml." },
+  { big: "Sets", small: "from TT$150", text: "Three we picked for the fete, date night, the office, or for her." },
 ];
 
 const STEPS = [

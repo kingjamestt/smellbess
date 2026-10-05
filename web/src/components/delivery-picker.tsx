@@ -1,6 +1,6 @@
 "use client";
 
-import { METHOD_LABELS, OWN_DROPOFF_FEE, ZONE_FEES, ZONE_LABELS, type DeliveryConfig } from "@/lib/delivery";
+import { METHOD_LABELS, ZONE_FEES, ZONE_LABELS, type DeliveryConfig } from "@/lib/delivery";
 import { formatTtd } from "@/lib/pricing";
 import type { DeliveryMethod, Zone } from "@/lib/types";
 
@@ -25,13 +25,8 @@ export function DeliveryPicker({
 }) {
   const methods: { id: DeliveryMethod; price: string; blurb: string }[] = [
     { id: "pickup", price: "Free", blurb: `${pickupDay} pickup run. Cash or transfer.` },
-    { id: "workplace", price: "Free", blurb: "Hand-off at our workplace, arranged on WhatsApp." },
-    ...(config.ownDropoffAreaIds.length
-      ? [{ id: "own_dropoff" as const, price: formatTtd(OWN_DROPOFF_FEE), blurb: "We drop it off ourselves, in listed areas." }]
-      : []),
     { id: "odeliver", price: "TT$30–90", blurb: "Courier anywhere in T&T, priced by zone." },
   ];
-  const dropoffAreas = config.areas.filter((a) => config.ownDropoffAreaIds.includes(a.id));
 
   return (
     <div className="space-y-4">
@@ -83,25 +78,6 @@ export function DeliveryPicker({
             </label>
           ))}
         </fieldset>
-      )}
-
-      {value.method === "own_dropoff" && (
-        <label className="block">
-          <span className="label">Your area</span>
-          <select
-            className="field"
-            value={value.areaId ?? ""}
-            onChange={(e) => onChange({ ...value, areaId: e.target.value || undefined })}
-          >
-            <option value="">Choose your area…</option>
-            {dropoffAreas.map((a) => (
-              <option key={a.id} value={a.id}>
-                {a.name}
-              </option>
-            ))}
-          </select>
-          <span className="mt-1 block text-xs text-muted">Not listed? Choose the ODeliver courier instead.</span>
-        </label>
       )}
 
       {value.method === "odeliver" && (

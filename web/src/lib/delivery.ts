@@ -20,12 +20,9 @@ export const ZONE_LABELS: Readonly<Record<Zone, string>> = {
   tobago: "Tobago",
 };
 
-export const OWN_DROPOFF_FEE = 30;
-
 export const METHOD_LABELS: Readonly<Record<DeliveryMethod, string>> = {
   pickup: "Saturday pickup",
   workplace: "Workplace hand-off",
-  own_dropoff: "Our own drop-off",
   odeliver: "ODeliver courier",
 };
 
@@ -37,7 +34,6 @@ export const PAYMENT_LABELS: Readonly<Record<PaymentMethod, string>> = {
 export interface DeliveryConfig {
   areas: readonly Area[];
   pickupPoints: readonly PickupPoint[];
-  ownDropoffAreaIds: readonly string[];
 }
 
 export interface DeliveryChoice {
@@ -73,22 +69,6 @@ export function quoteDelivery(choice: DeliveryChoice, config: DeliveryConfig): D
     }
     case "workplace":
       return { ok: true, method: "workplace", label: METHOD_LABELS.workplace, fee: 0 };
-    case "own_dropoff": {
-      if (!area) return { ok: false, error: "Pick your area." };
-      if (!config.ownDropoffAreaIds.includes(area.id)) {
-        return {
-          ok: false,
-          error: `We don't do our own drop-off in ${area.name} yet. Choose ODeliver or Saturday pickup.`,
-        };
-      }
-      return {
-        ok: true,
-        method: "own_dropoff",
-        label: `${METHOD_LABELS.own_dropoff}: ${area.name}`,
-        fee: OWN_DROPOFF_FEE,
-        area,
-      };
-    }
     case "odeliver": {
       if (!area) return { ok: false, error: "Pick your area." };
       return {
@@ -104,7 +84,10 @@ export function quoteDelivery(choice: DeliveryChoice, config: DeliveryConfig): D
   }
 }
 
-/** Cash only at Saturday pickup. Everything else is paid by transfer before dispatch. */
+/**
+ * Cash only when we hand it over in person (Saturday pickup, workplace).
+ * Delivery is paid by transfer before dispatch.
+ */
 export function paymentOptionsFor(method: DeliveryMethod): PaymentMethod[] {
-  return method === "pickup" ? ["bank_transfer", "cash_on_pickup"] : ["bank_transfer"];
+  return method === "odeliver" ? ["bank_transfer"] : ["bank_transfer", "cash_on_pickup"];
 }

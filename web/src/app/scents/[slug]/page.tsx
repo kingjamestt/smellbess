@@ -117,13 +117,13 @@ export default async function ScentPage({ params }: Props) {
 
           {p.tier === "A" && p.stock === "in_stock" && (
             <p className="rounded-xl bg-mist px-3 py-2 text-sm">
-              Counts toward our offers: 5×10ml for TT$350, or a free 5ml with 3+ decants of 10ml or bigger. One offer
-              per order.
+              Counts toward our offers: 5×10ml for TT$350, or a free 5ml surprise with 3+ decants of 10ml or bigger.
+              One offer per order.
             </p>
           )}
-          {p.tier === "A+" && (
+          {p.tier !== "A" && p.stock === "in_stock" && (
             <p className="rounded-xl bg-mist px-3 py-2 text-sm">
-              Premium Arabian (Tier A+): not part of the bundle or free 5ml offers.
+              Its 10ml and 15ml decants count toward a free 5ml surprise (3+ decants). Not part of the 5×10ml bundle.
             </p>
           )}
 

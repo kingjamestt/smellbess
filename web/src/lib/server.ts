@@ -1,11 +1,9 @@
 import "server-only";
 import { SITE } from "@/config/site";
-import { parseBankAccounts } from "./bank";
 import { buildCatalogSnapshot, type CatalogSnapshot } from "./catalog";
 import { buildOrder, type CheckoutInput } from "./checkout";
 import { getRepository } from "./data";
 import { availableMl, reservedMl } from "./stock";
-import type { BankAccount } from "./types";
 
 /** Storefront data: catalog, live stock, delivery config. */
 export async function getCatalog(): Promise<CatalogSnapshot> {
@@ -24,17 +22,8 @@ export async function getCatalog(): Promise<CatalogSnapshot> {
     bottles,
     orders,
     settings,
-    delivery: {
-      areas,
-      pickupPoints: SITE.pickupPoints,
-      ownDropoffAreaIds: SITE.ownDropoffAreaIds,
-    },
+    delivery: { areas, pickupPoints: SITE.pickupPoints },
   });
-}
-
-/** Bank accounts for transfers. Server-only: read from env, never stored. */
-export function getBankAccounts(): BankAccount[] {
-  return parseBankAccounts(process.env);
 }
 
 /**
@@ -59,7 +48,7 @@ export async function placeOrder(
       sets,
       available: availableMl(bottles, reservedMl(orders)),
       settings,
-      delivery: { areas, pickupPoints: SITE.pickupPoints, ownDropoffAreaIds: SITE.ownDropoffAreaIds },
+      delivery: { areas, pickupPoints: SITE.pickupPoints },
     });
     if (!result.ok) return result;
     const order = await repo.createOrder(result.order);

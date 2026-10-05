@@ -11,7 +11,7 @@ import { useQuote } from "./use-quote";
 export function CartView({ catalog }: { catalog: CatalogSnapshot }) {
   const cart = useCart();
   const hydrated = useHydrated();
-  const { quote, offerCtx, blockers, byId } = useQuote(catalog, cart);
+  const { quote, blockers, byId } = useQuote(catalog, cart);
 
   if (!hydrated) return <p className="text-muted">Loading your cart…</p>;
   if (cart.lines.length === 0) {
@@ -93,16 +93,16 @@ export function CartView({ catalog }: { catalog: CatalogSnapshot }) {
             </li>
           );
         })}
-        {quote.freeSample?.productId && (
+        {quote.freeSample && (
           <li className="card flex items-center justify-between gap-3 border-dashed p-3">
-            <span className="font-semibold">Free 5ml: {offerCtx.products[quote.freeSample.productId]?.label}</span>
+            <span className="font-semibold">Free 5ml surprise (we pick)</span>
             <span className="font-semibold text-sea">FREE</span>
           </li>
         )}
       </ul>
 
       <aside className="space-y-4">
-        <OfferBox quote={quote} offerCtx={offerCtx} />
+        <OfferBox quote={quote} />
         <dl className="card space-y-1 p-4">
           <div className="flex justify-between">
             <dt>Subtotal</dt>

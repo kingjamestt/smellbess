@@ -43,7 +43,6 @@ const ctx: CheckoutContext = {
   delivery: {
     areas: [{ id: "pos", name: "Port of Spain", zone: "urban" }],
     pickupPoints: [{ id: "pp", name: "Price Plaza, Chaguanas", time: "10:00am" }],
-    ownDropoffAreaIds: [],
   },
 };
 
@@ -56,7 +55,7 @@ const base: CheckoutInput = {
 
 describe("sanitizeCheckoutInput", () => {
   it("passes a well-formed payload through", () => {
-    expect(sanitizeCheckoutInput(base)).toEqual({ ...base, cart: { ...base.cart, freeSampleProductId: undefined }, customer: { ...base.customer, note: undefined }, delivery: { ...base.delivery, areaId: undefined }, utm: undefined });
+    expect(sanitizeCheckoutInput(base)).toEqual({ ...base, customer: { ...base.customer, note: undefined }, delivery: { ...base.delivery, areaId: undefined }, utm: undefined });
   });
 
   it.each([
@@ -124,28 +123,38 @@ describe("buildOrder", () => {
     if (!r.ok) expect(r.errors[0]).toMatch(/Cash is only for Saturday pickup/);
   });
 
-  it("requires the free 5ml pick, then adds it as a free line", () => {
+  it("adds the free 5ml as a surprise line with no scent picked", () => {
     const cart = { lines: [{ kind: "single" as const, productId: "a1", size: 10 as const, qty: 3 }] };
-    const missing = buildOrder({ ...base, cart }, ctx);
-    expect(missing.ok).toBe(false);
-    if (!missing.ok) expect(missing.errors).toContain("Pick your free 5ml.");
-
-    const r = buildOrder({ ...base, cart: { ...cart, freeSampleProductId: "a2" } }, ctx);
+    const r = buildOrder({ ...base, cart }, ctx);
     expect(r.ok).toBe(true);
     if (!r.ok) return;
-    expect(r.order.lines.at(-1)).toMatchObject({ kind: "free", productId: "a2", size: 5, unitPrice: 0 });
+    expect(r.order.lines.at(-1)).toEqual({
+      kind: "free",
+      label: "Free 5ml surprise",
+      size: 5,
+      qty: 1,
+      unitPrice: 0,
+    });
+    expect(r.order.offer?.id).toBe("free_5ml");
     expect(r.order.totals.total).toBe(300);
   });
 
-  it("won't give a free 5ml from a scent without 5ml left", () => {
-    const r = buildOrder(
-      {
-        ...base,
-        cart: { lines: [{ kind: "single", productId: "a1", size: 10, qty: 3 }], freeSampleProductId: "a3" },
-      },
-      ctx,
-    );
-    expect(r.ok).toBe(false);
+  it("A+ 10ml decants count toward the free 5ml", () => {
+    const cart = { lines: [{ kind: "single" as const, productId: "plus", size: 10 as const, qty: 3 }] };
+    const r = buildOrder({ ...base, cart }, ctx);
+    expect(r.ok && r.order.lines.at(-1)?.kind).toBe("free");
+  });
+
+  it("no free 5ml when no Tier A scent has 5ml to spare", () => {
+    const cart = { lines: [{ kind: "single" as const, productId: "plus", size: 10 as const, qty: 3 }] };
+    const r = buildOrder({ ...base, cart }, { ...ctx, available: { ...ctx.available, a1: 4, a2: 4 } });
+    expect(r.ok).toBe(true);
+    if (r.ok) expect(r.order.lines.some((l) => l.kind === "free")).toBe(false);
+  });
+
+  it("the public checkout only offers pickup and ODeliver", () => {
+    expect(sanitizeCheckoutInput({ ...base, delivery: { method: "workplace" } })).toBeNull();
+    expect(sanitizeCheckoutInput({ ...base, delivery: { method: "own_dropoff", areaId: "pos" } })).toBeNull();
   });
 
   it("checks stock including set contents", () => {

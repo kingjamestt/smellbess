@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { parseBankAccounts } from "./bank";
 import { canTransition, decantingList, nextStatuses } from "./pipeline";
 import type { Order } from "./types";
 import { orderMessage, whatsappLink } from "./whatsapp";
@@ -25,9 +24,9 @@ const order: Order = {
         { productId: "yara", label: "Lattafa Yara" },
       ],
     },
-    { kind: "free", productId: "yara", label: "Lattafa Yara", size: 5, qty: 1, unitPrice: 0 },
+    { kind: "free", label: "Free 5ml surprise", size: 5, qty: 1, unitPrice: 0 },
   ],
-  offer: { id: "free_5ml", label: "Free 5ml", savings: 60, explanation: "" },
+  offer: { id: "free_5ml", label: "Free 5ml surprise", savings: 60, explanation: "" },
   delivery: {
     method: "pickup",
     label: "Saturday pickup: Price Plaza, Chaguanas, 10:00am",
@@ -44,7 +43,7 @@ describe("WhatsApp message", () => {
     expect(msg).toContain("*SB-1001*");
     expect(msg).toContain("1× Lattafa Khamrah 15ml (ships as 10ml + 5ml): TT$150");
     expect(msg).toContain("Fete Pack set 3×5ml: TT$150");
-    expect(msg).toContain("Free 5ml: Lattafa Yara");
+    expect(msg).toContain("Free 5ml surprise (you pick)");
     expect(msg).toContain("Pickup: Saturday, Price Plaza, Chaguanas at 10:00am");
     expect(msg).toContain("Total: TT$300");
     expect(msg).toContain("Payment: Cash at pickup");
@@ -63,31 +62,6 @@ describe("WhatsApp message", () => {
       payment: "bank_transfer",
     });
     expect(m).toContain("Delivery: ODeliver courier: Arima (Urban) (TT$30)");
-  });
-});
-
-describe("bank accounts from env", () => {
-  it("reads a numbered list of accounts", () => {
-    const accounts = parseBankAccounts({
-      SMELLBESS_BANK_1_BANK: "Test Bank",
-      SMELLBESS_BANK_1_ACCOUNT_NAME: "Test Name",
-      SMELLBESS_BANK_1_ACCOUNT_TYPE: "Savings",
-      SMELLBESS_BANK_1_ACCOUNT_NUMBER: "0000001",
-      SMELLBESS_BANK_2_BANK: "Other Bank",
-      SMELLBESS_BANK_2_ACCOUNT_NUMBER: "0000002",
-    });
-    expect(accounts).toEqual([
-      { bank: "Test Bank", accountName: "Test Name", accountType: "Savings", accountNumber: "0000001" },
-      { bank: "Other Bank", accountName: "", accountType: "", accountNumber: "0000002" },
-    ]);
-  });
-
-  it("is empty when nothing is configured", () => {
-    expect(parseBankAccounts({})).toEqual([]);
-  });
-
-  it("skips incomplete accounts", () => {
-    expect(parseBankAccounts({ SMELLBESS_BANK_1_BANK: "Only a bank" })).toEqual([]);
   });
 });
 
@@ -119,10 +93,20 @@ describe("decanting list", () => {
       { ...order, status: "done" },
     ]);
     expect(rows.map((r) => [r.label, r.size, r.count, r.ml])).toEqual([
+      ["Free 5ml surprise (your pick)", 5, 2, 10],
       ["Lattafa Khamrah", 5, 2, 10],
       ["Lattafa Khamrah", 15, 2, 30],
-      ["Lattafa Yara", 5, 4, 20],
+      ["Lattafa Yara", 5, 2, 10],
       ["Rasasi Hawas Ice", 5, 2, 10],
     ]);
+  });
+
+  it("a free 5ml with a picked scent is decanted as that scent", () => {
+    const picked: Order = {
+      ...order,
+      status: "paid",
+      lines: [{ kind: "free", productId: "yara", label: "Lattafa Yara", size: 5, qty: 1, unitPrice: 0 }],
+    };
+    expect(decantingList([picked]).map((r) => [r.productId, r.count])).toEqual([["yara", 1]]);
   });
 });

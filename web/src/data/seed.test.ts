@@ -10,7 +10,7 @@ describe("seed catalog (from scent-lists.md)", () => {
     expect(byId.size).toBe(23);
   });
 
-  it("launches with exactly the 10 locked scents", () => {
+  it("launches with the 11 bought scents plus 2 from the owner's shelf", () => {
     const live = PRODUCTS.filter((p) => p.status === "live").map((p) => p.name);
     expect(live.sort()).toEqual(
       [
@@ -24,23 +24,30 @@ describe("seed catalog (from scent-lists.md)", () => {
         "Aquatica",
         "Elixir",
         "Supremacy Collector's Edition",
+        "Asad Bourbon",
+        "Amber Oud Gold Edition",
+        "Marwa",
       ].sort(),
     );
   });
 
-  it("Supremacy CE is the only A+ at launch; the other nine are Tier A", () => {
+  it("Arabians only at launch: 2 A+ (Supremacy, Amber Oud Gold), the other 11 Tier A", () => {
     const live = PRODUCTS.filter((p) => p.status === "live");
-    expect(live.filter((p) => p.tier === "A+").map((p) => p.id)).toEqual(["supremacy-collectors-edition"]);
-    expect(live.filter((p) => p.tier === "A")).toHaveLength(9);
+    expect(live.filter((p) => p.tier === "A+").map((p) => p.id).sort()).toEqual([
+      "amber-oud-gold",
+      "supremacy-collectors-edition",
+    ]);
+    expect(live.filter((p) => p.tier === "A")).toHaveLength(11);
+    expect(live.every((p) => p.tier === "A" || p.tier === "A+")).toBe(true);
   });
 
   it("the rest of the Bess List is coming soon", () => {
-    expect(PRODUCTS.filter((p) => p.status === "coming_soon")).toHaveLength(13);
+    expect(PRODUCTS.filter((p) => p.status === "coming_soon")).toHaveLength(10);
   });
 
-  it("every product is marked DRAFT until rewritten", () => {
+  it("every product is marked DRAFT until rewritten; the set copy is the owner's", () => {
     expect(PRODUCTS.every((p) => p.draft)).toBe(true);
-    expect(SETS.every((s) => s.draft)).toBe(true);
+    expect(SETS.every((s) => !s.draft)).toBe(true);
   });
 
   it("ratings stay on a 1–5 scale", () => {
@@ -49,22 +56,30 @@ describe("seed catalog (from scent-lists.md)", () => {
     expect(values.every((v) => Number.isInteger(v) && v >= 1 && v <= 5)).toBe(true);
   });
 
-  it("curated sets hold three different live Tier A scents", () => {
+  it("the four launch sets", () => {
+    expect(SETS.map((s) => s.name)).toEqual(["Fete Pack", "Date Night", "Office/School Days", "For Her"]);
+  });
+
+  it("curated sets hold three different live scents; any non-Tier-A scent needs a set price", () => {
     for (const s of SETS) {
       expect(new Set(s.productIds).size).toBe(3);
-      for (const id of s.productIds) {
-        expect(byId.get(id)).toMatchObject({ status: "live", tier: "A" });
-      }
+      for (const id of s.productIds) expect(byId.get(id)?.status).toBe("live");
+      const allTierA = s.productIds.every((id) => byId.get(id)?.tier === "A");
+      if (!allTierA) expect(s.price).toBeDefined();
     }
+  });
+
+  it("the Fete Pack is TT$175 / TT$300 because it has an A+ scent", () => {
+    expect(SETS.find((s) => s.id === "fete-pack")?.price).toEqual({ 5: 175, 10: 300 });
   });
 
   it("demo bottles only belong to live scents", () => {
     for (const b of DEMO_BOTTLES) expect(byId.get(b.productId)?.status).toBe("live");
   });
 
-  it("areas are unique and own drop-off areas exist", () => {
+  it("areas are unique, and Tobago is on the list", () => {
     expect(new Set(AREAS.map((a) => a.id)).size).toBe(AREAS.length);
-    for (const id of SITE.ownDropoffAreaIds) expect(AREAS.some((a) => a.id === id)).toBe(true);
+    expect(AREAS.find((a) => a.zone === "tobago")).toBeDefined();
   });
 
   it("three Saturday pickup stops", () => {

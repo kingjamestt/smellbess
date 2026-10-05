@@ -13,7 +13,7 @@ import type {
 
 export const productLabel = (p: Pick<Product, "house" | "name">) => `${p.house} ${p.name}`;
 
-/** Products that can be the free 5ml right now: live, Tier A, 5ml left after this cart. */
+/** Products we could pack as the free 5ml right now: live, Tier A, 5ml left after this cart. */
 export function freeSampleOptions(
   products: readonly Product[],
   available: Record<string, number>,
@@ -43,7 +43,7 @@ export function buildOfferContext(
       products.map((p) => [p.id, { tier: p.tier, label: productLabel(p) }]),
     ),
     sets: Object.fromEntries(
-      sets.map((s) => [s.id, { name: s.name, productIds: s.productIds }]),
+      sets.map((s) => [s.id, { name: s.name, productIds: s.productIds, price: s.price }]),
     ),
     freeSampleOptions: freeSampleOptions(products, available, cart, setMap),
   };
@@ -66,7 +66,8 @@ export interface CheckoutInput {
   utm?: { source?: string; medium?: string; campaign?: string };
 }
 
-const METHODS = ["pickup", "workplace", "own_dropoff", "odeliver"] as const;
+/** What the public checkout offers. Workplace hand-off is admin-only (WhatsApp orders). */
+const METHODS = ["pickup", "odeliver"] as const;
 const PAYMENTS = ["bank_transfer", "cash_on_pickup"] as const;
 const MAX_LINES = 30;
 const MAX_QTY = 20;
@@ -107,7 +108,7 @@ export function sanitizeCheckoutInput(raw: unknown): CheckoutInput | null {
   const utm = r.utm as Record<string, unknown> | undefined;
 
   return {
-    cart: { lines, freeSampleProductId: str(cart.freeSampleProductId, 100) },
+    cart: { lines },
     customer: { name: str(customer.name) ?? "", phone: str(customer.phone, 40) ?? "", note: str(customer.note, 500) },
     delivery: { method, areaId: str(delivery.areaId, 100), pickupPointId: str(delivery.pickupPointId, 100) },
     payment,
@@ -146,10 +147,7 @@ export function buildOrder(input: CheckoutInput, ctx: CheckoutContext): Checkout
   if (!phone) errors.push("Enter a TT phone number we can WhatsApp (e.g. 868-555-1234).");
   const note = clean(input.customer.note, 500) || undefined;
 
-  const cart: Cart = {
-    lines: input.cart.lines,
-    freeSampleProductId: input.cart.freeSampleProductId,
-  };
+  const cart: Cart = { lines: input.cart.lines };
   if (cart.lines.length === 0) errors.push("Your cart is empty.");
 
   // Only live scents can be bought.
@@ -167,11 +165,10 @@ export function buildOrder(input: CheckoutInput, ctx: CheckoutContext): Checkout
   const quote = priceCart(cart, offerCtx);
   errors.push(...quote.problems);
 
-  const freeId = quote.freeSample?.productId ?? null;
-  if (quote.offer?.id === "free_5ml" && !freeId) errors.push("Pick your free 5ml.");
-
+  // The free 5ml is a surprise: no scent is reserved now. The offer is only
+  // given while a Tier A scent has 5ml to spare after this cart.
   const setMap = Object.fromEntries(ctx.sets.map((s) => [s.id, s]));
-  for (const s of stockShortfalls(cartDemandMl(cart, setMap, freeId), ctx.available)) {
+  for (const s of stockShortfalls(cartDemandMl(cart, setMap), ctx.available)) {
     const p = products.get(s.productId);
     errors.push(
       `Not enough ${p ? productLabel(p) : "stock"} left for this order (${s.availableMl}ml available). Lower the size or quantity.`,
@@ -211,15 +208,8 @@ export function buildOrder(input: CheckoutInput, ctx: CheckoutContext): Checkout
       items: set.productIds.map((id) => ({ productId: id, label: productLabel(products.get(id)!) })),
     };
   });
-  if (freeId) {
-    lines.push({
-      kind: "free",
-      productId: freeId,
-      label: productLabel(products.get(freeId)!),
-      size: 5,
-      qty: 1,
-      unitPrice: 0,
-    });
+  if (quote.freeSample) {
+    lines.push({ kind: "free", label: "Free 5ml surprise", size: 5, qty: 1, unitPrice: 0 });
   }
 
   const order: NewOrder = {

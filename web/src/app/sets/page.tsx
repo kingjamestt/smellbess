@@ -3,13 +3,14 @@ import Link from "next/link";
 import { DraftBadge } from "@/components/badges";
 import { ScentArt } from "@/components/scent-art";
 import { SetButtons } from "@/components/set-buttons";
+import { setPrice } from "@/lib/offers";
 import { getCatalog } from "@/lib/server";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Curated sets",
-  description: "Three scents we picked for the occasion, in a gift box: 3×5ml for TT$150 or 3×10ml for TT$280.",
+  description: "Three scents we picked for the occasion, in a gift box: 3×5ml from TT$150 or 3×10ml from TT$280.",
 };
 
 export default async function SetsPage() {
@@ -21,8 +22,9 @@ export default async function SetsPage() {
       <h1 className="text-3xl font-extrabold sm:text-4xl">Curated sets</h1>
       <p className="mb-6 mt-1 max-w-prose text-muted">
         Not sure where to start? We picked three for the occasion. Gift box and scent cards included.{" "}
-        <strong className="text-ink">3×5ml TT$150</strong> (instead of TT$180) or{" "}
-        <strong className="text-ink">3×10ml TT$280</strong> (instead of TT$300). One offer per order.
+        <strong className="text-ink">3×5ml from TT$150</strong> or{" "}
+        <strong className="text-ink">3×10ml from TT$280</strong>, less than buying them separately. One offer
+        per order.
       </p>
       <ul className="grid gap-4 sm:grid-cols-2">
         {sets.map((set) => (
@@ -51,7 +53,11 @@ export default async function SetsPage() {
               })}
             </ul>
             {set.sizes[5] || set.sizes[10] ? (
-              <SetButtons setId={set.id} sizes={set.sizes} />
+              <SetButtons
+                setId={set.id}
+                sizes={set.sizes}
+                prices={{ 5: setPrice(set, 5), 10: setPrice(set, 10) }}
+              />
             ) : (
               <p className="text-sm font-semibold text-muted">Not available right now: one of these scents is low.</p>
             )}

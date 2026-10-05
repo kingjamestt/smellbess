@@ -68,8 +68,13 @@ describe("reservedMl", () => {
     { kind: "free", productId: "b", label: "B", size: 5, qty: 1, unitPrice: 0 },
   ];
 
-  it("counts singles, set contents and the free 5ml of open orders", () => {
+  it("counts singles, set contents and a picked free 5ml of open orders", () => {
     expect(reservedMl([order("new", lines)])).toEqual({ a: 25, b: 10, c: 5 });
+  });
+
+  it("an unpicked free 5ml surprise reserves nothing yet", () => {
+    const surprise: Order["lines"] = [{ kind: "free", label: "Free 5ml surprise", size: 5, qty: 1, unitPrice: 0 }];
+    expect(reservedMl([order("new", surprise)])).toEqual({});
   });
 
   it("only new and paid orders reserve juice", () => {
@@ -131,7 +136,7 @@ describe("stockState", () => {
 
 describe("cart demand and shortfalls", () => {
   const sets = { s: { productIds: ["a", "b", "c"] as [string, string, string] } };
-  it("adds up singles, sets and the free 5ml", () => {
+  it("adds up singles and set contents", () => {
     const demand = cartDemandMl(
       {
         lines: [
@@ -140,9 +145,8 @@ describe("cart demand and shortfalls", () => {
         ],
       },
       sets,
-      "c",
     );
-    expect(demand).toEqual({ a: 40, b: 10, c: 15 });
+    expect(demand).toEqual({ a: 40, b: 10, c: 10 });
   });
 
   it("reports products where demand exceeds stock", () => {

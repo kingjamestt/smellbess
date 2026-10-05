@@ -21,7 +21,8 @@ function load() {
     const raw = window.localStorage.getItem(KEY);
     if (raw) {
       const parsed = JSON.parse(raw) as Cart;
-      if (Array.isArray(parsed?.lines)) state = parsed;
+      // Only lines: older carts may carry a free 5ml pick, which no longer exists.
+      if (Array.isArray(parsed?.lines)) state = { lines: parsed.lines };
     }
   } catch {
     // Private mode or bad data: start empty.
@@ -103,10 +104,6 @@ export const cartActions = {
         ? state.lines.filter((_, i) => i !== index)
         : state.lines.map((l, i) => (i === index ? { ...l, qty: Math.min(20, qty) } : l));
     emit({ ...state, lines });
-  },
-  setFreeSample(productId: string | undefined) {
-    load();
-    emit({ ...state, freeSampleProductId: productId });
   },
   clear() {
     emit(EMPTY);

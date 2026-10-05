@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { OWN_DROPOFF_FEE, ZONE_FEES, paymentOptionsFor, quoteDelivery, type DeliveryConfig } from "./delivery";
+import { ZONE_FEES, paymentOptionsFor, quoteDelivery, type DeliveryConfig } from "./delivery";
 import type { Zone } from "./types";
 
 const config: DeliveryConfig = {
@@ -14,7 +14,6 @@ const config: DeliveryConfig = {
     { id: "pp", name: "Price Plaza, Chaguanas", time: "10:00am" },
     { id: "mt", name: "MovieTowne, Port of Spain", time: "1:00pm" },
   ],
-  ownDropoffAreaIds: ["pos"],
 };
 
 describe("delivery fees (customer always pays)", () => {
@@ -49,27 +48,16 @@ describe("delivery fees (customer always pays)", () => {
     expect(quoteDelivery({ method: "workplace" }, config)).toMatchObject({ ok: true, fee: 0 });
   });
 
-  it("own drop-off is TT$30 in listed areas only", () => {
-    expect(quoteDelivery({ method: "own_dropoff", areaId: "pos" }, config)).toMatchObject({
-      ok: true,
-      fee: OWN_DROPOFF_FEE,
-    });
-    expect(OWN_DROPOFF_FEE).toBe(30);
-    const out = quoteDelivery({ method: "own_dropoff", areaId: "sg" }, config);
-    expect(out.ok).toBe(false);
-  });
-
-  it("courier and drop-off need a known area", () => {
+  it("courier needs a known area", () => {
     expect(quoteDelivery({ method: "odeliver" }, config).ok).toBe(false);
     expect(quoteDelivery({ method: "odeliver", areaId: "atlantis" }, config).ok).toBe(false);
   });
 });
 
 describe("payment options", () => {
-  it("cash is only for Saturday pickup", () => {
+  it("cash only when we hand it over in person (pickup, workplace)", () => {
     expect(paymentOptionsFor("pickup")).toEqual(["bank_transfer", "cash_on_pickup"]);
-    expect(paymentOptionsFor("workplace")).toEqual(["bank_transfer"]);
-    expect(paymentOptionsFor("own_dropoff")).toEqual(["bank_transfer"]);
+    expect(paymentOptionsFor("workplace")).toEqual(["bank_transfer", "cash_on_pickup"]);
     expect(paymentOptionsFor("odeliver")).toEqual(["bank_transfer"]);
   });
 });

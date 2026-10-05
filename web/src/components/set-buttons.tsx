@@ -3,10 +3,17 @@
 import Link from "next/link";
 import { useState } from "react";
 import { cartActions } from "@/lib/cart-store";
-import { OFFER_RULES } from "@/lib/offers";
 import { formatTtd } from "@/lib/pricing";
 
-export function SetButtons({ setId, sizes }: { setId: string; sizes: Record<5 | 10, boolean> }) {
+export function SetButtons({
+  setId,
+  sizes,
+  prices,
+}: {
+  setId: string;
+  sizes: Record<5 | 10, boolean>;
+  prices: Record<5 | 10, number>;
+}) {
   const [added, setAdded] = useState<string | null>(null);
   return (
     <div className="space-y-2">
@@ -22,7 +29,7 @@ export function SetButtons({ setId, sizes }: { setId: string; sizes: Record<5 | 
               setAdded(`3×${size}ml set added.`);
             }}
           >
-            3×{size}ml · {formatTtd(OFFER_RULES.sets[size])}
+            3×{size}ml · {formatTtd(prices[size])}
           </button>
         ))}
       </div>
