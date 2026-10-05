@@ -66,6 +66,55 @@ export interface CheckoutInput {
   utm?: { source?: string; medium?: string; campaign?: string };
 }
 
+const METHODS = ["pickup", "workplace", "own_dropoff", "odeliver"] as const;
+const PAYMENTS = ["bank_transfer", "cash_on_pickup"] as const;
+const MAX_LINES = 30;
+const MAX_QTY = 20;
+
+const str = (v: unknown, max = 200): string | undefined =>
+  typeof v === "string" ? v.slice(0, max) : undefined;
+const oneOf = <T extends string>(v: unknown, options: readonly T[]): T | undefined =>
+  options.includes(v as T) ? (v as T) : undefined;
+
+/**
+ * Shape-check the untrusted payload from the browser. Returns null if it isn't
+ * a checkout at all. Business rules are checked later by buildOrder.
+ */
+export function sanitizeCheckoutInput(raw: unknown): CheckoutInput | null {
+  if (!raw || typeof raw !== "object") return null;
+  const r = raw as Record<string, unknown>;
+  const cart = r.cart as Record<string, unknown> | undefined;
+  const customer = r.customer as Record<string, unknown> | undefined;
+  const delivery = r.delivery as Record<string, unknown> | undefined;
+  if (!cart || !Array.isArray(cart.lines) || !customer || !delivery) return null;
+  if (cart.lines.length > MAX_LINES) return null;
+
+  const lines: Cart["lines"] = [];
+  for (const l of cart.lines as Record<string, unknown>[]) {
+    const qty = Number(l?.qty);
+    if (!Number.isInteger(qty) || qty < 1 || qty > MAX_QTY) return null;
+    if (l.kind === "single" && typeof l.productId === "string" && [5, 10, 15].includes(l.size as number)) {
+      lines.push({ kind: "single", productId: l.productId, size: l.size as 5 | 10 | 15, qty });
+    } else if (l.kind === "set" && typeof l.setId === "string" && [5, 10].includes(l.size as number)) {
+      lines.push({ kind: "set", setId: l.setId, size: l.size as 5 | 10, qty });
+    } else {
+      return null;
+    }
+  }
+  const method = oneOf(delivery.method, METHODS);
+  const payment = oneOf(r.payment, PAYMENTS);
+  if (!method || !payment) return null;
+  const utm = r.utm as Record<string, unknown> | undefined;
+
+  return {
+    cart: { lines, freeSampleProductId: str(cart.freeSampleProductId, 100) },
+    customer: { name: str(customer.name) ?? "", phone: str(customer.phone, 40) ?? "", note: str(customer.note, 500) },
+    delivery: { method, areaId: str(delivery.areaId, 100), pickupPointId: str(delivery.pickupPointId, 100) },
+    payment,
+    utm: utm ? { source: str(utm.source, 60), medium: str(utm.medium, 60), campaign: str(utm.campaign, 60) } : undefined,
+  };
+}
+
 export interface CheckoutContext {
   products: readonly Product[];
   sets: readonly CuratedSet[];

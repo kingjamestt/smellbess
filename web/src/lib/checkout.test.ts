@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { buildOrder, normalizeTtPhone, type CheckoutContext, type CheckoutInput } from "./checkout";
+import {
+  buildOrder,
+  normalizeTtPhone,
+  sanitizeCheckoutInput,
+  type CheckoutContext,
+  type CheckoutInput,
+} from "./checkout";
 import type { CuratedSet, Product } from "./types";
 
 const product = (id: string, tier: Product["tier"], status: Product["status"] = "live"): Product => ({
@@ -47,6 +53,29 @@ const base: CheckoutInput = {
   delivery: { method: "pickup", pickupPointId: "pp" },
   payment: "cash_on_pickup",
 };
+
+describe("sanitizeCheckoutInput", () => {
+  it("passes a well-formed payload through", () => {
+    expect(sanitizeCheckoutInput(base)).toEqual({ ...base, cart: { ...base.cart, freeSampleProductId: undefined }, customer: { ...base.customer, note: undefined }, delivery: { ...base.delivery, areaId: undefined }, utm: undefined });
+  });
+
+  it.each([
+    null,
+    "x",
+    { ...base, cart: { lines: "no" } },
+    { ...base, payment: "card" },
+    { ...base, delivery: { method: "drone" } },
+    { ...base, cart: { lines: [{ kind: "single", productId: "a1", size: 30, qty: 1 }] } },
+    { ...base, cart: { lines: [{ kind: "single", productId: "a1", size: 10, qty: 0 }] } },
+    { ...base, cart: { lines: [{ kind: "single", productId: "a1", size: 10, qty: 999 }] } },
+    { ...base, cart: { lines: [{ kind: "set", setId: "fete", size: 15, qty: 1 }] } },
+  ])("rejects malformed input %#", (raw) => expect(sanitizeCheckoutInput(raw)).toBeNull());
+
+  it("ignores any prices the browser sends", () => {
+    const raw = { ...base, cart: { lines: [{ kind: "single", productId: "a1", size: 10, qty: 1, unitPrice: 1 }] } };
+    expect(sanitizeCheckoutInput(raw)?.cart.lines[0]).toEqual({ kind: "single", productId: "a1", size: 10, qty: 1 });
+  });
+});
 
 describe("normalizeTtPhone", () => {
   it.each([
