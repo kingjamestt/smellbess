@@ -14,7 +14,7 @@ These didn't block the plan, but each one changes the numbers:
 
 1. ☑ **Card cycle (confirmed):** the statement closes on the **16th** and payment is due on the **5th** of the following month (minimum payment 1/30 of the balance). Ordering on **Sat 17 Oct** puts every launch charge on the 16 Nov statement, **due Sat 5 Dec**: 49 days, or 7 weeks. Pay it in full; the 1/30 minimum just starts interest.
 2. **Your own collection:** you're willing to decant 2–4 of your own bottles for launch (e.g., a Sauvage/Eros/Le Male type). That gets you to 10–12 scents without extra spending.
-3. **Location:** you live in north/central Trinidad, and the Saturday pickup is somewhere central (e.g., a mall car park or your office area). You have your own vehicle. Tobago orders go by ODeliver or TTPost.
+3. ☑ **Location:** you have your own vehicle and run a **Saturday pickup route: Price Plaza Chaguanas 10am → MovieTowne Port of Spain 1pm → East Gates Mall 5pm**. Tobago orders go by ODeliver or TTPost.
 4. ☑ **Websource flies perfume (confirmed):** you've flown several perfumes with them, and you know local fragrance sellers who use them.
 
 ---
@@ -394,7 +394,7 @@ The brand is **you**: the enthusiast who'll tell people what actually works in T
 | Wed evening | Optional Wednesday pickup *(add only once Saturday volume justifies it)* | 1 hr |
 | Thu evening | **Decanting session**: fill the week's orders plus a small buffer | 1.5–2 hrs |
 | Fri | Book ODeliver for orders outside your route, plan the week's own-vehicle drop-offs, post "new drop" | 30 min |
-| Sat | **Pickup window** (e.g., 10am–1pm, one central location) | 2–3 hrs |
+| Sat | **Pickup route:** Price Plaza Chaguanas 10am → MovieTowne POS 1pm → East Gates Mall 5pm. Use ~30-minute windows at each stop; customers confirm their stop by Friday night | ~8 hrs including travel (it's a full day, so batch orders by stop and send a Friday reminder) |
 | Sun | Batch-film content, update inventory sheet, place weekly consolidated order | 2 hrs |
 
 ### 7.2 Decanting process and hygiene
@@ -437,7 +437,7 @@ DM / Take App order → confirm stock + total + delivery method
 
 | Option | Customer pays | Notes |
 |---|---|---|
-| **Saturday pickup** (and Wednesday later) | **TT$0** | This is collection, not delivery. Push it: it costs you nothing, and you can upsell in person |
+| **Saturday pickup** at Price Plaza Chaguanas (10am), MovieTowne POS (1pm) or East Gates Mall (5pm) | **TT$0** | This is collection, not delivery. Push it: it costs you nothing, and you can upsell in person. Add a Wednesday stop later if volume justifies it |
 | **Workplace hand-off** (your office, coworkers) | **TT$0** | Your easiest early customers |
 | **Your own drop-off** (route-based, e.g., one evening a week along your commute or a fixed loop) | **TT$30 flat** | Same price as ODeliver urban, but you keep the fee. Only along routes you already drive; don't detour. Faster and more personal than a courier |
 | **ODeliver (Trinidad)** | **ODeliver's rate at cost: TT$30 urban / 40 rural / 50 extended / 60 remote** | Pass the rate straight through, rounded up. Show it at checkout (Take App lets you set delivery fees per area) |
@@ -533,7 +533,7 @@ Real-world caveat: these are planning assumptions, not forecasts. Within 6 weeks
 **Week 2**
 9. ☐ Design labels and the scent card template (performance, occasion, compliments, "smells like").
 10. ☐ Post 6–9 pre-launch posts. Start the WhatsApp broadcast list. Take pre-orders from coworkers and friends.
-11. ☐ Choose the Saturday pickup location and time window.
+11. ☑ **Saturday pickup route set:** Price Plaza Chaguanas 10am, MovieTowne POS 1pm, East Gates Mall 5pm. Own-drop-off areas still to confirm.
 12. ☐ Open a separate bank account (or sub-account) for the business and the "card repayment" fund.
 
 **Week 3**

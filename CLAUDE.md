@@ -33,7 +33,8 @@ When a decision changes, update `business-plan.md` first, run `python tools/buil
   - Free 5ml (any in-stock Arabian) with 3+ single decants of 10ml or larger.
   - **No vouchers. No free delivery.**
 - **Delivery (customer pays):**
-  - Free: Saturday pickup and workplace hand-off.
+  - Free: Saturday pickup route (Price Plaza Chaguanas 10am, MovieTowne POS 1pm, East Gates Mall 5pm) and workplace hand-off.
+  - WhatsApp orders go to +1 868-305-0506. Bank transfer details live only in the site's `.env.local`; never commit them.
   - Own-vehicle drop-off along a route: TT$30.
   - ODeliver at cost: Urban 30 / Rural 40 / Extended 50 / Remote 60, Tobago 90.
   - Payment before dispatch by bank transfer; cash is fine at pickup.
