@@ -67,7 +67,8 @@ export interface CheckoutInput {
 }
 
 /** What the public checkout offers. Workplace hand-off is admin-only (WhatsApp orders). */
-const METHODS = ["pickup", "odeliver"] as const;
+const PUBLIC_METHODS = ["pickup", "odeliver"] as const;
+const ADMIN_METHODS = ["pickup", "odeliver", "workplace"] as const;
 const PAYMENTS = ["bank_transfer", "cash_on_pickup"] as const;
 const MAX_LINES = 30;
 const MAX_QTY = 20;
@@ -81,7 +82,10 @@ const oneOf = <T extends string>(v: unknown, options: readonly T[]): T | undefin
  * Shape-check the untrusted payload from the browser. Returns null if it isn't
  * a checkout at all. Business rules are checked later by buildOrder.
  */
-export function sanitizeCheckoutInput(raw: unknown): CheckoutInput | null {
+export function sanitizeCheckoutInput(
+  raw: unknown,
+  { allowWorkplace = false }: { allowWorkplace?: boolean } = {},
+): CheckoutInput | null {
   if (!raw || typeof raw !== "object") return null;
   const r = raw as Record<string, unknown>;
   const cart = r.cart as Record<string, unknown> | undefined;
@@ -102,7 +106,7 @@ export function sanitizeCheckoutInput(raw: unknown): CheckoutInput | null {
       return null;
     }
   }
-  const method = oneOf(delivery.method, METHODS);
+  const method = oneOf(delivery.method, allowWorkplace ? ADMIN_METHODS : PUBLIC_METHODS);
   const payment = oneOf(r.payment, PAYMENTS);
   if (!method || !payment) return null;
   const utm = r.utm as Record<string, unknown> | undefined;

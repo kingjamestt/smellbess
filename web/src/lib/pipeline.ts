@@ -44,6 +44,11 @@ export interface DecantRow {
   ml: number;
 }
 
+/** Orders placed in the last `days` days, cancelled ones left out. */
+export function recentOrders(orders: readonly Order[], days: number, now = Date.now()): Order[] {
+  return orders.filter((o) => o.status !== "cancelled" && now - Date.parse(o.createdAt) < days * 24 * 3600 * 1000);
+}
+
 /** Decanting-list row id for free 5ml surprises nobody has picked a scent for yet. */
 export const SURPRISE_ID = "free-5ml-surprise";
 

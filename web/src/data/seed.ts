@@ -348,7 +348,7 @@ export const SETS: CuratedSet[] = [
  * real bottle IDs and ml once they're in hand. Costs are landed TT$ from
  * scent-lists.md.
  */
-export const DEMO_BOTTLES: Bottle[] = [
+const DEMO_ONLY: Bottle[] = [
   { id: "LB-01", productId: "liquid-brun", sizeMl: 100, mlRemaining: 95, costTtd: 389, source: "Jomashop" },
   { id: "HI-01", productId: "hawas-ice", sizeMl: 100, mlRemaining: 22, costTtd: 389, source: "Jomashop" },
   { id: "HD-01", productId: "hawas-diva", sizeMl: 100, mlRemaining: 95, costTtd: 441, source: "Jomashop" },
@@ -360,14 +360,31 @@ export const DEMO_BOTTLES: Bottle[] = [
   { id: "RE-01", productId: "rayhaan-elixir", sizeMl: 100, mlRemaining: 12, costTtd: 300, source: "Local Rayhaan dealer" },
   { id: "SC-01", productId: "supremacy-collectors-edition", sizeMl: 100, mlRemaining: 95, costTtd: 650, source: "Jomashop" },
   { id: "AB-01", productId: "asad-bourbon", sizeMl: 100, mlRemaining: 95, costTtd: 368, source: "Jomashop" },
-  // From the owner's shelf (real ml, as of 5 Oct 2026). Cost = replacement cost.
+];
+
+/**
+ * REAL bottles from the owner's shelf (ml as of 5 Oct 2026). Cost is
+ * replacement cost. These are the only bottles seeded into Supabase; the
+ * launch bottles are added in admin when they arrive.
+ */
+export const OWNER_SHELF_BOTTLES: Bottle[] = [
   { id: "AG-01", productId: "amber-oud-gold", sizeMl: 120, mlRemaining: 50, costTtd: 550, source: "Owner's shelf" },
   { id: "MW-01", productId: "marwa", sizeMl: 100, mlRemaining: 80, costTtd: 441, source: "Owner's shelf" },
 ];
 
+/** Local JSON store only: demo stock for every launch scent + the real shelf bottles. */
+export const DEMO_BOTTLES: Bottle[] = [...DEMO_ONLY, ...OWNER_SHELF_BOTTLES];
+
+/** Starting settings. After seeding, the owners change these in admin. */
 export const DEFAULT_SETTINGS: Settings = {
   atomizers: { 5: true, 10: true, 15: true },
   lowStockThreshold: 3,
+  pickupDay: "Saturday",
+  pickupPoints: [
+    { id: "price-plaza", name: "Price Plaza, Chaguanas", time: "10:00am" },
+    { id: "movietowne-pos", name: "MovieTowne, Port of Spain", time: "1:00pm" },
+    { id: "east-gates", name: "East Gates Mall", time: "5:00pm" },
+  ],
 };
 
 /**

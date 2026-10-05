@@ -42,6 +42,7 @@ const ctx: CheckoutContext = {
   settings: { atomizers: { 5: true, 10: true, 15: true }, lowStockThreshold: 3 },
   delivery: {
     areas: [{ id: "pos", name: "Port of Spain", zone: "urban" }],
+    pickupDay: "Saturday",
     pickupPoints: [{ id: "pp", name: "Price Plaza, Chaguanas", time: "10:00am" }],
   },
 };

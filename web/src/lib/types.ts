@@ -114,7 +114,7 @@ export interface Area {
 export type DeliveryMethod = "pickup" | "workplace" | "odeliver";
 export type PaymentMethod = "bank_transfer" | "cash_on_pickup";
 
-/** A Saturday pickup stop. Editable in src/config/site.ts. */
+/** A Saturday pickup stop. Edited in admin (settings). */
 export interface PickupPoint {
   id: string;
   name: string;
@@ -126,6 +126,10 @@ export interface Settings {
   /** Atomizer stock flags. If 15 is off, 15ml ships as 10ml + 5ml. */
   atomizers: Record<SizeMl, boolean>;
   lowStockThreshold: number;
+  /** The pickup run, e.g. "Saturday". */
+  pickupDay: string;
+  /** Pickup stops in route order. An empty list turns pickup off. */
+  pickupPoints: PickupPoint[];
 }
 
 // ---------------------------------------------------------------- cart

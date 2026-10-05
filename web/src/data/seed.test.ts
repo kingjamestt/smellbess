@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { SITE } from "@/config/site";
-import { AREAS, DEMO_BOTTLES, PRODUCTS, SETS } from "./seed";
+import { AREAS, DEFAULT_SETTINGS, DEMO_BOTTLES, OWNER_SHELF_BOTTLES, PRODUCTS, SETS } from "./seed";
 
 const byId = new Map(PRODUCTS.map((p) => [p.id, p]));
 
@@ -73,6 +72,13 @@ describe("seed catalog (from scent-lists.md)", () => {
     expect(SETS.find((s) => s.id === "fete-pack")?.price).toEqual({ 5: 175, 10: 300 });
   });
 
+  it("the owner's shelf bottles are real: Amber Oud Gold 50ml, Marwa 80ml", () => {
+    expect(OWNER_SHELF_BOTTLES.map((b) => [b.productId, b.mlRemaining])).toEqual([
+      ["amber-oud-gold", 50],
+      ["marwa", 80],
+    ]);
+  });
+
   it("demo bottles only belong to live scents", () => {
     for (const b of DEMO_BOTTLES) expect(byId.get(b.productId)?.status).toBe("live");
   });
@@ -83,6 +89,6 @@ describe("seed catalog (from scent-lists.md)", () => {
   });
 
   it("three Saturday pickup stops", () => {
-    expect(SITE.pickupPoints.map((p) => p.time)).toEqual(["10:00am", "1:00pm", "5:00pm"]);
+    expect(DEFAULT_SETTINGS.pickupPoints.map((p) => p.time)).toEqual(["10:00am", "1:00pm", "5:00pm"]);
   });
 });

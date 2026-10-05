@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ScentTile } from "@/components/scent-tile";
-import { SITE } from "@/config/site";
 import { getCatalog } from "@/lib/server";
 
 export const dynamic = "force-dynamic";
@@ -11,15 +10,16 @@ const OFFERS = [
   { big: "Sets", small: "from TT$150", text: "Three we picked for the fete, date night, the office, or for her." },
 ];
 
-const STEPS = [
+const steps = (pickupDay: string) => [
   { n: "1", title: "Pick your scents", text: "5ml to try, 10ml to wear, 15ml for regulars." },
   { n: "2", title: "Place the order", text: "See the full price, delivery included, before you commit." },
   { n: "3", title: "Send it on WhatsApp", text: "One tap. We confirm stock and reply." },
-  { n: "4", title: "Pay and collect", text: `Bank transfer, or cash at ${SITE.pickupDay} pickup.` },
+  { n: "4", title: "Pay and collect", text: `Bank transfer, or cash at ${pickupDay} pickup.` },
 ];
 
 export default async function Home() {
-  const { products } = await getCatalog();
+  const { products, delivery } = await getCatalog();
+  const STEPS = steps(delivery.pickupDay);
   const featured = products.filter((p) => p.stock === "in_stock").slice(0, 4);
 
   return (
@@ -45,7 +45,7 @@ export default async function Home() {
             </Link>
           </div>
           <p className="mt-6 text-sm text-paper/70">
-            From TT$60 a 5ml · Free {SITE.pickupDay} pickup · Delivery anywhere in T&amp;T from TT$30
+            From TT$60 a 5ml · Free {delivery.pickupDay} pickup · Delivery anywhere in T&amp;T from TT$30
           </p>
         </div>
       </section>

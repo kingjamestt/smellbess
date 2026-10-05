@@ -27,11 +27,11 @@ export default async function DeliveryPage() {
 
       <section aria-labelledby="pickup" className="space-y-3">
         <h2 id="pickup" className="text-2xl font-bold">
-          {SITE.pickupDay} pickup: free
+          {delivery.pickupDay} pickup: free
         </h2>
         <p>Pick your stop at checkout. Pay by transfer before, or bring cash.</p>
         <ol className="space-y-2">
-          {SITE.pickupPoints.map((p) => (
+          {delivery.pickupPoints.map((p) => (
             <li key={p.id} className="card flex items-center justify-between p-3">
               <span className="font-semibold">{p.name}</span>
               <span className="rounded-full bg-sun px-3 py-1 text-sm font-bold">{p.time}</span>

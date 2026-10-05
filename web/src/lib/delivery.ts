@@ -33,6 +33,7 @@ export const PAYMENT_LABELS: Readonly<Record<PaymentMethod, string>> = {
 
 export interface DeliveryConfig {
   areas: readonly Area[];
+  pickupDay: string;
   pickupPoints: readonly PickupPoint[];
 }
 
@@ -58,11 +59,11 @@ export function quoteDelivery(choice: DeliveryChoice, config: DeliveryConfig): D
   switch (choice.method) {
     case "pickup": {
       const point = config.pickupPoints.find((p) => p.id === choice.pickupPointId);
-      if (!point) return { ok: false, error: "Pick a Saturday pickup spot." };
+      if (!point) return { ok: false, error: `Pick a ${config.pickupDay} pickup spot.` };
       return {
         ok: true,
         method: "pickup",
-        label: `${METHOD_LABELS.pickup}: ${point.name}, ${point.time}`,
+        label: `${config.pickupDay} pickup: ${point.name}, ${point.time}`,
         fee: 0,
         pickupPoint: point,
       };

@@ -10,7 +10,8 @@ const config: DeliveryConfig = {
     { id: "may", name: "Mayaro", zone: "remote" },
     { id: "tob", name: "Tobago", zone: "tobago" },
   ],
-  pickupPoints: [
+  pickupDay: "Saturday",
+    pickupPoints: [
     { id: "pp", name: "Price Plaza, Chaguanas", time: "10:00am" },
     { id: "mt", name: "MovieTowne, Port of Spain", time: "1:00pm" },
   ],

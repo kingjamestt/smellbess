@@ -1,4 +1,4 @@
-import type { Bottle, Cart, CuratedSet, Order, OrderStatus, Product, Settings, SizeMl } from "./types";
+import type { Bottle, Cart, CuratedSet, Order, OrderLine, OrderStatus, Product, Settings, SizeMl } from "./types";
 import { SIZES } from "./types";
 
 /**
@@ -23,22 +23,58 @@ export interface SizeAvailability {
   badge: string | null;
 }
 
-/** ml of each product claimed by orders that haven't been decanted yet. */
-export function reservedMl(orders: readonly Order[]): Record<string, number> {
+/**
+ * ml of each product an order's lines need: singles, set contents, and the
+ * free 5ml once a scent is picked (an unpicked surprise needs nothing yet).
+ */
+export function orderDemandMl(lines: readonly OrderLine[]): Record<string, number> {
   const out: Record<string, number> = {};
   const add = (id: string, ml: number) => (out[id] = (out[id] ?? 0) + ml);
-  for (const order of orders) {
-    if (!RESERVING_STATUSES.includes(order.status)) continue;
-    for (const line of order.lines) {
-      if (line.kind === "set") {
-        for (const item of line.items) add(item.productId, line.size * line.qty);
-      } else if (line.productId) {
-        // An unpicked free 5ml surprise reserves nothing until we choose it.
-        add(line.productId, line.size * line.qty);
-      }
+  for (const line of lines) {
+    if (line.kind === "set") {
+      for (const item of line.items) add(item.productId, line.size * line.qty);
+    } else if (line.productId) {
+      add(line.productId, line.size * line.qty);
     }
   }
   return out;
+}
+
+/** ml of each product claimed by orders that haven't been decanted yet. */
+export function reservedMl(orders: readonly Order[]): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const order of orders) {
+    if (!RESERVING_STATUSES.includes(order.status)) continue;
+    for (const [id, ml] of Object.entries(orderDemandMl(order.lines))) out[id] = (out[id] ?? 0) + ml;
+  }
+  return out;
+}
+
+/**
+ * Which bottles to take an order's juice from when it's decanted: the
+ * emptiest open bottle of each scent first, so bottles get finished. Lists
+ * any product the bottles can't cover.
+ */
+export function planDeductions(
+  demand: Record<string, number>,
+  bottles: readonly Bottle[],
+): { deductions: { bottleId: string; ml: number }[]; missing: { productId: string; ml: number }[] } {
+  const deductions: { bottleId: string; ml: number }[] = [];
+  const missing: { productId: string; ml: number }[] = [];
+  for (const [productId, need] of Object.entries(demand)) {
+    let left = need;
+    const candidates = bottles
+      .filter((b) => b.productId === productId && b.mlRemaining > 0)
+      .sort((a, b) => a.mlRemaining - b.mlRemaining || a.id.localeCompare(b.id));
+    for (const b of candidates) {
+      if (left <= 0) break;
+      const take = Math.min(left, b.mlRemaining);
+      deductions.push({ bottleId: b.id, ml: take });
+      left -= take;
+    }
+    if (left > 0) missing.push({ productId, ml: left });
+  }
+  return { deductions, missing };
 }
 
 /** Usable ml per product: Σ mlRemaining − reserved. Never negative. */

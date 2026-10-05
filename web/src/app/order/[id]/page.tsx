@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { SITE } from "@/config/site";
 import { PAYMENT_LABELS } from "@/lib/delivery";
 import { formatTtd } from "@/lib/pricing";
-import { getOrder } from "@/lib/server";
+import { getOrder, getSettings } from "@/lib/server";
 import { orderMessage, whatsappLink } from "@/lib/whatsapp";
 
 export const dynamic = "force-dynamic";
@@ -18,7 +18,8 @@ export default async function OrderPage({ params }: Props) {
   const order = await getOrder(id);
   if (!order) notFound();
 
-  const message = orderMessage(order, SITE.pickupDay);
+  const { pickupDay } = await getSettings();
+  const message = orderMessage(order, pickupDay);
   const waHref = whatsappLink(SITE.whatsappNumber, message);
   const pickup = order.delivery.pickupPoint;
   const firstName = order.customer.name.split(" ")[0];
@@ -69,7 +70,7 @@ export default async function OrderPage({ params }: Props) {
         {pickup ? (
           <p className="text-lg">
             <strong>
-              {SITE.pickupDay}, {pickup.time}
+              {pickupDay}, {pickup.time}
             </strong>{" "}
             at <strong>{pickup.name}</strong>
           </p>

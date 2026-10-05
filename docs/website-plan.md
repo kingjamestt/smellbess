@@ -173,7 +173,7 @@ There is **no own-drop-off option** (owner, 5 Oct 2026).
 |---|---|---|
 | **M0** | This plan, scaffold, seed data, pricing/offers/stock/delivery engines with tests | This session |
 | **M1** | Storefront: catalog, scent cards, sets, cart, checkout, confirmation with WhatsApp, delivery picker, legal footer, placeholder images | Done. Updated 5 Oct 2026 for the owner's decisions |
-| **M2** | Admin: Supabase project, auth for 2 admins, orders pipeline, stock and bottles, atomizer flags, decanting list (with free 5ml picks), zones editor, **pickup stops editor**, **workplace orders**, **email alerts to both admins on new orders**, CSV export | Next. Routes and model stubbed now |
+| **M2** | Admin: Supabase project, magic-link login for the 2 admins, orders pipeline (decanting deducts bottles), free 5ml picks, stock and bottles, atomizer flags, decanting list, zones editor, pickup stops editor, workplace/WhatsApp orders, email alerts (Resend), CSV export | **Done 5 Oct 2026.** Needs the owner's secret key, admin emails and (optionally) a Resend key in env vars |
 | **M3** | Launch polish: brand product images (self-hosted, never hotlinked), Claude-drafted copy edited by the owners, OG images, schema.org `Product`/`Offer` in TTD, analytics with UTM, Lighthouse 95+ pass, Netlify deploy on smellbess.netlify.app | Before public launch |
 | **M4** | Flex: "smells like" search, programmatic SEO pages, layering suggestions, reviews from the Day-7 message, authenticity page, full-bottle pre-orders with 50% deposit | After launch |
 
