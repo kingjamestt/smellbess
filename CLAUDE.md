@@ -56,25 +56,32 @@ When a decision changes, update `business-plan.md` first, run `python tools/buil
 ## Current status (5 Oct 2026)
 - **Plan:** complete, with the checklist tracked in `business-plan.md` §11. Items 1–4 and 11 are done. Item 5 (launch order) is locked but not placed; order on or after 17 Oct.
 - **Repo:** github.com/kingjamestt/smellbess. `main` holds the plan files and is pushed.
-- **Website:** MVP is on branch **`website-mvp`** (pushed), in `web/`.
-  - Built with Next.js 16, TypeScript, Tailwind 4 and Vitest. 127 tests pass; lint and build are clean.
+- **Website:** on branch **`website-mvp`** (pushed), in `web/`. M0, M1 and M2 are done.
+  - Built with Next.js 16, TypeScript, Tailwind 4 and Vitest. 142 tests pass; lint and build are clean.
   - Use Node 24 (`web/.nvmrc`). The shell defaults to Node 20.8, which breaks Vitest, so prefix with `PATH=~/.nvm/versions/node/v24.19.0/bin:$PATH`.
-  - Read `docs/website-plan.md` on that branch first.
-  - The storefront already follows every 5 Oct decision: no bank details, the surprise free 5ml, repeating bundles, the 4 owner sets, Fete Pack TT$175 / TT$300, pickup + ODeliver only, and Tobago at TT$90.
-  - The data layer is JSON-file backed (`web/.data/store.json`), so Supabase must replace it before going live on serverless hosting.
-- **Next build step: M2 admin.** It needs:
-  - Supabase and login for the 2 admins.
-  - The orders pipeline, and picking the scent for each free 5ml surprise.
-  - Stock/bottles and the decanting list.
-  - Editors for zones and pickup stops.
-  - Workplace orders (WhatsApp, admin-only).
-  - Email alerts to both admins on new orders.
-  - CSV export.
-- **Then M3:** deploy to Netlify on **smellbess.netlify.app**, add self-hosted brand product images, and have the owners edit the Claude-drafted copy (still marked DRAFT).
+  - Read `docs/website-plan.md` and `web/README.md` on that branch first.
+  - **Supabase:** project `smellbess`, ref `kdchdpgxgflysuzqodzu`, in org "BS Web" (us-east-1, free plan).
+    - Seeded with the catalog, 4 sets, areas, settings and the 2 shelf bottles. No orders, no auth users.
+    - RLS is on with no policies, so only the server touches data, using the secret key.
+    - Migrations are in `web/supabase/migrations`. Seed with `web/scripts/seed-sql.mts`.
+  - **Admin (`/admin`):** magic-link login for the emails in `SMELLBESS_ADMIN_EMAILS`.
+    - Orders pipeline (marking decanted deducts bottle ml), free 5ml picker, new WhatsApp/workplace orders.
+    - Decanting list, stock, pickup editor, zone editor, CSV export.
+    - Resend email alerts.
+  - **Owner to-dos before admin works for real:**
+    - Paste the Supabase secret key into `web/.env.local`.
+    - Set `SMELLBESS_ADMIN_EMAILS` (both admins' emails).
+    - Optionally add a Resend API key.
+- **Next: M3 launch.**
+  - Deploy to Netlify on smellbess.netlify.app and set its env vars.
+  - Add `https://smellbess.netlify.app/**` to Supabase Auth → URL configuration (redirect URLs), and set the Site URL.
+  - Add self-hosted brand product images.
+  - Owners edit the drafted copy.
+  - Add launch bottles in admin when they arrive (week 3).
 - **Decisions from 5 Oct 2026** are in `business-plan.md` §5 "Website decisions".
 - **Still open:**
   - @smellbess handles are not claimed yet.
-  - The `smellbess` Netlify site name: claim it when the Netlify site is created.
+  - The `smellbess` Netlify site name: the owner claims it when they create the Netlify site.
   - ODeliver's official area list (the seeded area → zone map is a guess).
 
 ## Competitors
