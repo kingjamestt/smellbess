@@ -93,15 +93,16 @@ A product never stores a decant price. Its price is always `TIER_PRICES[product.
 
 **Availability** (pure function, `lib/stock.ts`): `available = Σ mlRemaining − ml reserved by orders not yet decanted (new, paid)`. A size can be sold while `available ≥ size`. Units left per size = `floor(available / size)`. A low-stock badge shows when units left ≤ 3 ("2 left in 10ml"). Nothing is faked.
 
-### Settings
+### Settings and config
 
-| Field | Notes |
-|---|---|
-| `atomizers` | `{ 5: true, 10: true, 15: true }`. If 15 is off, 15ml still sells, labelled "ships as 10ml + 5ml" |
-| `lowStockThreshold` | 3 |
-| `whatsappNumber`, `bank` (bank, account name, account number, branch) | Placeholders until the owner supplies them |
-| `pickup` | location + Saturday time window |
-| `ownDropoffAreas` | list of areas, editable |
+| Where | Field | Notes |
+|---|---|---|
+| Store (`Settings`) | `atomizers` | `{ 5: true, 10: true, 15: true }`. If 15 is off, 15ml still sells, labelled "ships as 10ml + 5ml" |
+| Store (`Settings`) | `lowStockThreshold` | 3 |
+| `web/src/config/site.ts` | `whatsappNumber` | +1 868-305-0506 (wa.me format `18683050506`) |
+| `web/src/config/site.ts` | `pickupPoints` | Saturday run, customer picks one: Price Plaza, Chaguanas 10:00am · MovieTowne, Port of Spain 1:00pm · East Gates Mall 5:00pm |
+| `web/src/config/site.ts` | `ownDropoffAreaIds` | **Placeholders** until the owner confirms the route |
+| `web/.env.local` only | Bank accounts | A numbered list (`SMELLBESS_BANK_<n>_BANK / _ACCOUNT_NAME / _ACCOUNT_TYPE / _ACCOUNT_NUMBER`), read on the server at runtime. Never committed, never in seed data. `web/.env.example` has placeholders. On a host, set them as environment variables |
 
 ### Curated sets
 
@@ -135,7 +136,7 @@ A product never stores a decant price. Its price is always `TIER_PRICES[product.
 
 | Method | Fee | Notes |
 |---|---|---|
-| `pickup` (Saturday) | 0 | Location + time window from settings. Cash allowed |
+| `pickup` (Saturday) | 0 | Customer picks one of the pickup stops (location + time). Cash allowed |
 | `workplace` | 0 | Owner's workplace hand-off |
 | `own_dropoff` | 30 | Only in `ownDropoffAreas` |
 | `odeliver` | by zone | Urban 30 / Rural 40 / Extended 50 / Remote 60 / Tobago 90 |
@@ -180,11 +181,13 @@ A product never stores a decant price. Its price is always `TIER_PRICES[product.
 
 ## 6. Open questions for the owner
 
+*Answered (Oct 2026): WhatsApp number, bank accounts (kept in `.env.local` only), and the three Saturday pickup stops. The site asks customers to use the order number as the transfer reference.*
+
 1. **Hosting:** Vercel Pro (US$20/mo) or a free commercial tier (Cloudflare or Netlify)? See §2.
-2. **WhatsApp number** for the "Send order on WhatsApp" button (WhatsApp Business, `smellbess` not yet claimed).
-3. **Bank transfer details:** bank, account name, account number, branch. Should the reference be the order number?
-4. **Saturday pickup:** exact location (or a general area shown publicly, exact spot sent on WhatsApp?) and the time window (the plan suggests 10am–1pm).
-5. **Own drop-off areas:** which areas or route do you cover at TT$30, and which evening?
+2. **Bank accounts:** both are personal accounts today. Swap in a business account once the business name is registered? (Just edit the env vars.)
+3. **Pickup stops:** are the Saturday times fixed every week, or do they change? They're edited in `web/src/config/site.ts`.
+4. **Hosting the env vars:** whichever host is chosen, the bank details go in its environment-variable settings, not the repo.
+5. **Own drop-off areas:** which areas or route do you cover at TT$30, and which evening? The current list (Port of Spain, Chaguanas, Arima) is a placeholder.
 6. **Workplace hand-off:** show it publicly at all, or only to coworkers? Can workplace orders pay cash like pickup?
 7. **Area → ODeliver zone list:** the seeded mapping is a DRAFT guess. Can you get ODeliver's official area list? And is Tobago TT$60 + TT$30 inter-island (we use TT$90)?
 8. **Bundle more than once?** We apply the 5×10ml TT$350 bundle once per order ("exactly one offer"). Should 10×10ml get two bundles (TT$700)?
