@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+
+# Node / web
+node_modules/
+.next/
+dist/
+.vercel/
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db

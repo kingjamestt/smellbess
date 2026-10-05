@@ -1,0 +1,126 @@
+<title>Smell Bess Business Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: a working plan. Amber "juice" accent from the bottles, cool glass-grey neutrals, sticky contents rail on wide screens, tables scroll in their own frames. */
+:root {
+  --bg: #f6f7f8;
+  --surface: #ffffff;
+  --fg: #1b2026;
+  --muted: #5b6470;
+  --line: #dde1e6;
+  --accent: #a3540f;       /* amber, like Khamrah juice */
+  --accent-soft: #fbeedd;
+  --ok: #23704a;
+  --ok-soft: #e1f2e8;
+  --warn: #9a6300;
+  --warn-soft: #fdf1d6;
+  --row: #f1f3f5;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151a; --surface: #191d23; --fg: #e6e9ed; --muted: #9aa3ae; --line: #2c323b;
+    --accent: #f0a65a; --accent-soft: #3a2a19; --ok: #6fcf9a; --ok-soft: #173326;
+    --warn: #f2c25c; --warn-soft: #3a3016; --row: #1e232a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151a; --surface: #191d23; --fg: #e6e9ed; --muted: #9aa3ae; --line: #2c323b;
+  --accent: #f0a65a; --accent-soft: #3a2a19; --ok: #6fcf9a; --ok-soft: #173326;
+  --warn: #f2c25c; --warn-soft: #3a3016; --row: #1e232a; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15.5px; line-height: 1.6; }
+.page { max-width: 1240px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 64px; }
+
+header.top { display: grid; gap: 18px; padding-block: 12px 28px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(30px, 5vw, 48px); line-height: 1.05; margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 64ch; margin: 0; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.stat { background: var(--surface); padding: 14px 16px; display: grid; gap: 2px; align-content: start; }
+.stat b { font-family: var(--font-display); font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--fg); }
+.stat span { font-size: 13px; color: var(--muted); line-height: 1.35; }
+.stat .k { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+
+.layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; margin-top: 28px; }
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); align-self: start; font-size: 13.5px; }
+nav.toc p { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 0 0 8px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+nav.toc a { display: block; padding: 5px 10px; border-radius: 6px; color: var(--fg); text-decoration: none; border-left: 2px solid transparent; }
+nav.toc a:hover, nav.toc a:focus-visible { background: var(--accent-soft); border-left-color: var(--accent); outline: none; }
+@media (max-width: 900px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  nav.toc { position: static; }
+  nav.toc ol { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+}
+
+main { min-width: 0; }
+.intro { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 4px 20px 8px; margin-bottom: 8px; }
+section { padding-block: 26px 10px; border-bottom: 1px solid var(--line); scroll-margin-top: 16px; }
+section:last-child { border-bottom: 0; }
+h2 { font-family: var(--font-display); font-size: 27px; line-height: 1.15; margin: 0 0 14px; text-wrap: balance; scroll-margin-top: 16px; }
+h3 { font-family: var(--font-display); font-size: 19px; margin: 26px 0 10px; text-wrap: balance; scroll-margin-top: 16px; }
+p, li { max-width: 74ch; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 1.3em; }
+li { margin: 4px 0; }
+strong { font-weight: 700; }
+em { color: var(--muted); }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+code { font-family: var(--font-mono); font-size: .88em; background: var(--row); padding: 1px 5px; border-radius: 4px; }
+pre { background: var(--row); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+pre code { background: none; padding: 0; }
+
+.table-wrap { overflow-x: auto; margin: 14px 0 18px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+th { font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); background: var(--row); font-weight: 700; white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover td { background: var(--row); }
+td strong { color: var(--fg); }
+
+.tag { display: inline-grid; place-items: center; width: 17px; height: 17px; border-radius: 50%; font-size: 11px; font-weight: 700; vertical-align: 1px; margin-inline: 1px; cursor: help; }
+.tag.ok { background: var(--ok-soft); color: var(--ok); }
+.tag.warn { background: var(--warn-soft); color: var(--warn); }
+.box { display: inline-grid; place-items: center; width: 14px; height: 14px; border: 1.5px solid var(--muted); border-radius: 3px; vertical-align: -2px; margin-right: 5px; font-size: 10px; font-weight: 700; line-height: 1; }
+.box.done { background: var(--ok); border-color: var(--ok); color: var(--surface); }
+.box.half { background: linear-gradient(90deg, var(--warn) 50%, transparent 50%); border-color: var(--warn); }
+
+footer { margin-top: 32px; color: var(--muted); font-size: 13px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="page">
+  <header class="top">
+    <div class="eyebrow">Smell Bess · smellbess.com · Trinidad &amp; Tobago · Oct 2026</div>
+    <h1>Smell Bess: only the bess scents, from a US$500 card to a real side business</h1>
+    <p class="lede">A numbers-first plan for selling Arabian, clone and designer fragrances in T&amp;T. Start with decants, take full-bottle pre-orders, and grow on curation and service rather than price.</p>
+    <div class="stats">
+      <div class="stat"><span class="k">Launch model</span><b>Decants first</b><span>Full bottles by pre-order with a 50% deposit</span></div>
+      <div class="stat"><span class="k">On the card</span><b>US$572</b><span>card for 8 bottles + supplies, due 5 Dec; 2 Rayhaans bought locally</span></div>
+      <div class="stat"><span class="k">Market price</span><b>TT$60 / 100</b><span>Arabian 5ml / 10ml list price, plus 5×10ml for TT$350</span></div>
+      <div class="stat"><span class="k">Decant margin</span><b>48–61%</b><span>on 5ml and 10ml at list price, vs ~20% selling the same bottle whole</span></div>
+      <div class="stat"><span class="k">Year 1, expected</span><b>TT$60k</b><span>revenue · ~TT$20k profit before tax</span></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Contents">
+      <p>Contents</p>
+      <ol>
+{{TOC}}
+      </ol>
+    </nav>
+    <main>
+{{BODY}}
+      <footer><span class="tag ok">✓</span> verified online or from competitor screenshots &nbsp;·&nbsp; <span class="tag warn">!</span> estimate or unverified, so confirm before relying on it. Prices are as of Oct 2026.</footer>
+    </main>
+  </div>
+</div>
