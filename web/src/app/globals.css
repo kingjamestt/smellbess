@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
+/*
+ * Smell Bess look: bright, confident, a bit playful. Ink on white with a
+ * hibiscus pink, a sunshine yellow and a sea teal. Not cream-and-serif.
+ * All text/background pairs below meet WCAG AA.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --ink: #17131f;
+  --muted: #5a5468;
+  --paper: #ffffff;
+  --mist: #f4f2f9;
+  --line: #e2deec;
+  --hibiscus: #c4145a; /* white text on this: 5.9:1 */
+  --hibiscus-dark: #9c0f47;
+  --sun: #ffc83d; /* ink text on this */
+  --sea: #0b6f6a; /* white text on this: 6.2:1 */
+  --danger: #b42318;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-paper: var(--paper);
+  --color-mist: var(--mist);
+  --color-line: var(--line);
+  --color-hibiscus: var(--hibiscus);
+  --color-hibiscus-dark: var(--hibiscus-dark);
+  --color-sun: var(--sun);
+  --color-sea: var(--sea);
+  --color-danger: var(--danger);
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--hibiscus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@utility btn {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-base font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-hibiscus text-white hover:bg-hibiscus-dark;
+}
+@utility btn-secondary {
+  @apply btn border-2 border-ink bg-paper text-ink hover:bg-mist;
+}
+@utility btn-whatsapp {
+  @apply btn bg-sea text-white hover:brightness-110;
+}
+@utility chip {
+  @apply inline-flex min-h-9 items-center rounded-full border border-line bg-paper px-3 text-sm font-medium text-ink;
+}
+@utility chip-on {
+  @apply border-ink bg-ink text-paper;
+}
+@utility card {
+  @apply rounded-2xl border border-line bg-paper;
+}
+@utility field {
+  @apply block min-h-11 w-full rounded-xl border border-line bg-paper px-3 py-2 text-base text-ink;
+}
+@utility label {
+  @apply mb-1 block text-sm font-semibold text-ink;
+}
+@utility container-page {
+  @apply mx-auto w-full max-w-5xl px-4;
 }

@@ -1,69 +1,107 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ScentTile } from "@/components/scent-tile";
+import { SITE } from "@/config/site";
+import { getCatalog } from "@/lib/server";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+const OFFERS = [
+  { big: "5×10ml", small: "for TT$350", text: "Any five Arabian 10ml decants. Save TT$150." },
+  { big: "Free 5ml", small: "you pick", text: "Get 3 or more Arabian decants of 10ml or bigger." },
+  { big: "Sets", small: "from TT$150", text: "Three we picked for the fete, the office or date night." },
+];
+
+const STEPS = [
+  { n: "1", title: "Pick your scents", text: "5ml to try, 10ml to wear, 15ml for regulars." },
+  { n: "2", title: "Place the order", text: "See the full price, delivery included, before you commit." },
+  { n: "3", title: "Send it on WhatsApp", text: "One tap. We confirm stock and reply." },
+  { n: "4", title: "Pay and collect", text: `Bank transfer, or cash at ${SITE.pickupDay} pickup.` },
+];
+
+export default async function Home() {
+  const { products } = await getCatalog();
+  const featured = products.filter((p) => p.stock === "in_stock").slice(0, 4);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <div>
+      <section className="bg-ink text-paper">
+        <div className="container-page py-10 sm:py-16">
+          <p className="mb-3 inline-block rounded-full bg-sun px-3 py-1 text-sm font-bold text-ink">
+            Decants made in T&amp;T
+          </p>
+          <h1 className="max-w-2xl text-4xl font-extrabold leading-[1.05] sm:text-6xl">
+            Only the <span className="text-sun">bess</span> scents. No duds.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-4 max-w-xl text-lg text-paper/85">
+            Strong performers and proven compliment-getters, tested in TT heat. Decanted by hand from authentic
+            bottles in 5ml, 10ml and 15ml.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/scents" className="btn-primary">
+              Shop scents
+            </Link>
+            <Link href="/sets" className="btn border-2 border-paper text-paper hover:bg-paper/10">
+              Curated sets
+            </Link>
+          </div>
+          <p className="mt-6 text-sm text-paper/70">
+            From TT$60 a 5ml · Free {SITE.pickupDay} pickup · Delivery anywhere in T&amp;T from TT$30
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
+
+      <section aria-labelledby="offers" className="container-page py-10">
+        <h2 id="offers" className="text-2xl font-extrabold sm:text-3xl">
+          Deals that make sense
+        </h2>
+        <p className="mb-4 text-muted">One offer per order. We pick the best one for you automatically.</p>
+        <ul className="grid gap-3 sm:grid-cols-3">
+          {OFFERS.map((o) => (
+            <li key={o.big} className="card p-4">
+              <p className="font-display text-3xl font-extrabold text-hibiscus">{o.big}</p>
+              <p className="font-semibold">{o.small}</p>
+              <p className="mt-1 text-sm text-muted">{o.text}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {featured.length > 0 && (
+        <section aria-labelledby="featured" className="container-page py-4">
+          <div className="mb-4 flex items-end justify-between gap-2">
+            <h2 id="featured" className="text-2xl font-extrabold sm:text-3xl">
+              In stock now
+            </h2>
+            <Link href="/scents" className="font-semibold text-hibiscus underline">
+              See all
+            </Link>
+          </div>
+          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {featured.map((p) => (
+              <li key={p.id} className="flex">
+                <ScentTile product={p} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section aria-labelledby="how" className="container-page py-10">
+        <h2 id="how" className="mb-4 text-2xl font-extrabold sm:text-3xl">
+          How it works
+        </h2>
+        <ol className="grid gap-3 sm:grid-cols-4">
+          {STEPS.map((s) => (
+            <li key={s.n} className="card p-4">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-sun font-bold">
+                {s.n}
+              </span>
+              <p className="mt-2 font-bold">{s.title}</p>
+              <p className="text-sm text-muted">{s.text}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
   );
 }
