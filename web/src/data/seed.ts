@@ -359,7 +359,7 @@ export const PRODUCTS: Product[] = [
     tier: "A",
     gender: "him",
     status: "live",
-    smellsLike: [],
+    smellsLike: ["Louis Vuitton Imagination"],
     // Fragrantica #107084
     notes: {
       top: ["bergamot", "lemon", "orange"],
