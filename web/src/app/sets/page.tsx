@@ -10,8 +10,11 @@ import { getCatalog } from "@/lib/server";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Curated sets",
-  description: "Three scents we picked for the occasion, in a gift box: 3×5ml from TT$150 or 3×10ml from TT$280.",
+  title: "Perfume Gift Sets",
+  description:
+    "Can't decide? We did the picking. Perfume gift sets in Trinidad: 3 scents for the fete, date night or the office, from TT$150. Gift box and card included.",
+  alternates: { canonical: "/sets" },
+  openGraph: { url: "/sets" },
 };
 
 export default async function SetsPage() {

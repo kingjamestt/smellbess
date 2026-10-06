@@ -19,3 +19,6 @@ export const SITE = {
   legal:
     "Decanted by hand from authentic bottles. Smell Bess is not affiliated with any brand. 'Smells like' comparisons are our opinion.",
 } as const;
+
+/** Absolute site address for link previews, canonical URLs and the sitemap. */
+export const SITE_URL = (process.env.SMELLBESS_SITE_URL || `https://${SITE.domain}`).replace(/\/$/, "");

@@ -21,9 +21,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = products.find((x) => x.id === slug);
   if (!p) return { title: "Scent not found" };
   const decants = `5ml ${formatTtd(priceFor(p.tier, 5))}, 10ml ${formatTtd(priceFor(p.tier, 10))}, 15ml ${formatTtd(priceFor(p.tier, 15))}`;
+  const title = p.sealed ? `${p.house} ${p.name} Decants & Bottle in Trinidad` : `${p.house} ${p.name} Decant in Trinidad`;
+  const description = `${p.house} ${p.name}: ${p.blurb} Decants ${decants}${p.sealed ? `, sealed bottle ${formatTtd(p.sealed.price)}` : ""}.`;
   return {
-    title: p.sealed ? `${p.house} ${p.name}: bottle and decants` : `${p.house} ${p.name} decant`,
-    description: `${p.house} ${p.name} in Trinidad: decants ${decants}${p.sealed ? `, sealed bottle ${formatTtd(p.sealed.price)}` : ""}.`,
+    title,
+    description,
+    alternates: { canonical: `/scents/${p.id}` },
+    openGraph: { url: `/scents/${p.id}`, title: `${title} | Smell Bess`, description },
   };
 }
 

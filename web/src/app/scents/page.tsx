@@ -8,9 +8,11 @@ export const dynamic = "force-dynamic";
 const COMING_SOON_SHOWN = 6;
 
 export const metadata: Metadata = {
-  title: "All scents",
+  title: "Shop Perfume Decants",
   description:
-    "Every scent we carry, as decants (5ml, 10ml, 15ml) and sealed bottles while they last. Filter by daytime or nighttime, weather, who's wearing it, and which deal it counts toward.",
+    "Shop 5ml, 10ml and 15ml perfume decants in Trinidad from TT$60. No fillers: every scent is a 10/10 or close. Filter by day or night, weather, him or her.",
+  alternates: { canonical: "/scents" },
+  openGraph: { url: "/scents" },
 };
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };

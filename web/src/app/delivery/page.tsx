@@ -9,7 +9,10 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Delivery & pickup",
-  description: "Free Saturday pickup in Chaguanas, Port of Spain and East Gates, or delivery anywhere in T&T from TT$30.",
+  description:
+    "Free Saturday pickup in Chaguanas, Port of Spain and East Gates, or delivery anywhere in Trinidad & Tobago from TT$30. Order on WhatsApp.",
+  alternates: { canonical: "/delivery" },
+  openGraph: { url: "/delivery" },
 };
 
 const ZONES: Zone[] = ["urban", "rural", "extended", "remote", "tobago"];
