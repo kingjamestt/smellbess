@@ -242,6 +242,57 @@ export function ShelfFilters({
   );
 }
 
+/**
+ * Phones: every filter as one swipeable row of chips, so the scents start
+ * near the top of the screen. Tap a chip to filter, tap it again to clear.
+ * Desktop keeps the labelled trays above.
+ */
+function FilterChips({ filter, onChange, full }: { filter: ShelfFilter; onChange: (f: ShelfFilter) => void; full: boolean }) {
+  type Chip = { key: string; label: string; icon?: React.ReactNode; on: boolean; toggle: () => void };
+  const chip = <K extends keyof ShelfFilter>(field: K, value: NonNullable<ShelfFilter[K]>, label: string, icon?: React.ReactNode): Chip => ({
+    key: `${field}-${value}`,
+    label,
+    icon,
+    on: filter[field] === value,
+    toggle: () => onChange({ ...filter, [field]: filter[field] === value ? undefined : value }),
+  });
+  const groups: Chip[][] = [
+    GENDERS.map((g) => chip("gender", g.id, g.label)),
+    WEAR_TIMES.map((t) => chip("time", t.id, t.short, TIME_ICONS[t.id])),
+    WEATHERS.map((w) => chip("weather", w.id, w.id === "warm" ? "Warm" : "Cold", WEATHER_ICONS[w.id])),
+    ...(full ? [(Object.keys(DEALS) as DealFilter[]).map((d) => chip("deal", d, DEAL_SHORT[d], DEAL_ICONS[d]))] : []),
+  ];
+  const active = Object.entries(filter).some(([k, v]) => v && k !== "query");
+  return (
+    <div role="group" aria-label="Filter scents" className="no-scrollbar -mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-1">
+      {groups.map((g, gi) => (
+        <div key={gi} className="flex shrink-0 items-center gap-2">
+          {gi > 0 && <span aria-hidden className="mx-1 h-5 w-px bg-line" />}
+          {g.map((c) => (
+            <button
+              key={c.key}
+              type="button"
+              aria-pressed={c.on}
+              onClick={c.toggle}
+              className={`flex h-9 shrink-0 items-center gap-1.5 rounded-full border px-3.5 transition-colors duration-300 [&_svg]:h-4 [&_svg]:w-4 ${
+                c.on ? "border-inverse bg-inverse text-on-inverse" : "border-line text-muted hover:border-ink hover:text-ink"
+              }`}
+            >
+              {c.icon}
+              <span className="label-caps text-[0.625rem] tracking-[0.14em]">{c.label}</span>
+            </button>
+          ))}
+        </div>
+      ))}
+      {active && (
+        <button type="button" onClick={() => onChange({ query: filter.query })} className="ml-1 h-9 shrink-0 px-2 text-sm text-muted underline underline-offset-4">
+          Clear
+        </button>
+      )}
+    </div>
+  );
+}
+
 // ------------------------------------------------------------------ phone row
 
 export function ScentRow({ product: p, priority = false }: { product: ProductView; priority?: boolean }) {
@@ -405,13 +456,14 @@ export function Shelf({
   emptyHint?: string;
   /**
    * Homepage layout: on desktop the filters sit in the left column between
-   * the intro and the deals; on phones the deals come first, then filters.
+   * the intro and the deals; on phones the chip row sits above the scents.
    */
   intro?: React.ReactNode;
   deals?: React.ReactNode;
 }) {
   const [filter, setFilter] = useState<ShelfFilter>(initial);
   const filters = <ShelfFilters filter={filter} onChange={setFilter} full={full} />;
+  const chips = <FilterChips filter={filter} onChange={setFilter} full={full} />;
   if (intro || deals) {
     return (
       <div className="grid gap-8 md:grid-cols-[19rem_minmax(0,1fr)] md:gap-10 lg:grid-cols-[22rem_minmax(0,1fr)] lg:gap-14">
@@ -421,7 +473,7 @@ export function Shelf({
           {deals}
         </aside>
         <section aria-label="The scents" className="min-w-0 space-y-6">
-          <div className="md:hidden">{filters}</div>
+          <div className="md:hidden">{chips}</div>
           <ShelfResults products={products} filter={filter} emptyHint={emptyHint} />
         </section>
       </div>
@@ -429,7 +481,22 @@ export function Shelf({
   }
   return (
     <div className="space-y-6">
-      {filters}
+      <div className="hidden md:block">{filters}</div>
+      <div className="space-y-3 md:hidden">
+        {full && (
+          <label className="block">
+            <span className="sr-only">Search scents</span>
+            <input
+              type="search"
+              value={filter.query ?? ""}
+              onChange={(e) => setFilter({ ...filter, query: e.target.value || undefined })}
+              placeholder="Search a name, a note, or a vibe"
+              className="field"
+            />
+          </label>
+        )}
+        {chips}
+      </div>
       <ShelfResults products={products} filter={filter} emptyHint={emptyHint} />
     </div>
   );
