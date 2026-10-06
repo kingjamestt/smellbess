@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | Smell Bess",
   },
   description:
-    "Only the best: strong performers and proven compliment-getters, as sealed bottles and decants poured by hand from authentic stock. 5ml, 10ml and 15ml in TTD. Saturday pickup or delivery across T&T.",
+    "Only the best: we only carry scents that are a 10/10 or close, as sealed bottles and decants poured by hand from authentic stock. 5ml, 10ml and 15ml in TTD. Saturday pickup or delivery across T&T.",
   // A design-preview deploy (demo data) stays out of search engines.
   ...(process.env.NEXT_PUBLIC_DESIGN_PREVIEW === "1" ? { robots: { index: false, follow: false } } : {}),
 };

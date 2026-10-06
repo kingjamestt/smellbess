@@ -26,13 +26,17 @@ export default async function Home() {
             </h1>
             <span aria-hidden className="block h-0.5 w-14 bg-hibiscus" />
             <p className="max-w-md text-[0.9375rem] leading-relaxed text-muted md:text-base">
-              {live.length} scents that earned their place in Trinidad heat. Decants from {formatTtd(60)}
-              {bottles > 0 ? ", sealed bottles while they last." : "."}
+              We only carry scents that are a 10/10, or real close. Fragrance is like food, everybody has their own
+              taste, but these are the best smelling affordable frags around. Decants from {formatTtd(60)}
+              {bottles > 0 ? ", sealed bottles while they last." : "."} Designer decants coming soon.
             </p>
           </div>
         }
-        deals={<Deals products={live} setCount={sets.length} setFrom={setsFrom(sets)} />}
       />
+
+      <div className="mt-12">
+        <Deals products={live} setCount={sets.length} setFrom={setsFrom(sets)} layout="row" />
+      </div>
 
       <section aria-labelledby="sets-title" className="mt-16 border-t border-line pt-10">
         <div className="flex items-baseline justify-between gap-4">
@@ -44,7 +48,7 @@ export default async function Home() {
             See the sets
           </Link>
         </div>
-        <p className="mt-3 max-w-xl text-muted">Three scents we picked for the occasion, in a gift box with a card for each.</p>
+        <p className="mt-3 max-w-xl text-muted">Can&apos;t decide? We did the picking for you. Three scents for the occasion, in a gift box with a card for each.</p>
         <ul className="mt-6 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {sets.map((s) => (
             <li key={s.id} className="bg-paper">
@@ -80,9 +84,9 @@ export default async function Home() {
         </div>
         <ol className="grid gap-x-10 gap-y-6 sm:grid-cols-2">
           {[
-            ["Choose", "A 5ml to try, 10ml to wear, 15ml for regulars, or the sealed bottle."],
-            ["See the full price", "Delivery added and the best offer applied, so you see the total before you commit."],
-            ["Send it on WhatsApp", "One tap sends your order to us. We confirm stock and reply there."],
+            ["Choose", "A 5ml to try it out, a 10ml to wear it, a 15ml if you can't stop. Or grab the sealed bottle."],
+            ["See the full price", "Delivery added and the best deal applied for you. No surprises."],
+            ["Send it on WhatsApp", "One tap sends your order to us. We check stock and reply right there."],
             ["Pay, then collect", `Bank transfer, or cash at ${delivery.pickupDay} pickup.`],
           ].map(([title, text], i) => (
             <li key={title} className="flex gap-4">

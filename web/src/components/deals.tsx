@@ -5,8 +5,7 @@ import { formatTtd } from "@/lib/pricing";
 import { countsToward } from "@/lib/shelf";
 
 /**
- * The offers, shown before any product so nobody has to scroll past the shelf
- * to find them. Each one links to the scents that count toward it.
+ * The offers, shown under the shelf on the homepage. Each one links to the scents that count toward it.
  */
 export function Deals({
   products,
@@ -30,7 +29,7 @@ export function Deals({
     },
     {
       figure: "+5ml",
-      text: "Three decants of 10ml or more, and we add a 5ml of our choosing.",
+      text: "Grab three decants of 10ml or more and we throw in a 5ml of our choosing.",
       href: "/scents?deal=free-5ml",
       link: `The ${free} that count`,
     },

@@ -5,6 +5,8 @@ import { DEALS, filterFromParams } from "@/lib/shelf";
 
 export const dynamic = "force-dynamic";
 
+const COMING_SOON_SHOWN = 6;
+
 export const metadata: Metadata = {
   title: "All scents",
   description:
@@ -17,7 +19,8 @@ export default async function ScentsPage({ searchParams }: Props) {
   const { products } = await getCatalog();
   const initial = filterFromParams(await searchParams);
   const live = products.filter((p) => p.status === "live");
-  const soon = products.filter((p) => p.status === "coming_soon");
+  // Only the next few we can actually buy, so the list stays honest.
+  const soon = products.filter((p) => p.status === "coming_soon").slice(0, COMING_SOON_SHOWN);
 
   return (
     <div className="container-page pb-6 pt-8 md:pt-12">
@@ -27,7 +30,7 @@ export default async function ScentsPage({ searchParams }: Props) {
         <p className="text-muted">
           {initial.deal
             ? `Showing the scents that count toward: ${DEALS[initial.deal].label.toLowerCase()}.`
-            : "Every scent here is a strong performer we'd wear ourselves. Decant prices are set by tier, in TTD."}
+            : "No fillers. If it's on this shelf, it's a 10/10 or real close, and we wear it ourselves. Prices in TTD."}
         </p>
       </div>
 
@@ -40,7 +43,7 @@ export default async function ScentsPage({ searchParams }: Props) {
           <h2 id="soon-title" className="wordmark text-xl lg:text-2xl">
             Coming soon
           </h2>
-          <p className="mt-3 max-w-xl text-muted">On the Bess List and on their way in a future drop.</p>
+          <p className="mt-3 max-w-xl text-muted">Already passed the smell test. These land in the next drop.</p>
           <ul className="mt-4 grid divide-y divide-mist sm:grid-cols-2 sm:gap-x-10 sm:divide-y-0 lg:grid-cols-3">
             {soon.map((p) => (
               <li key={p.id} className="sm:border-b sm:border-mist">

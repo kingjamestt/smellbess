@@ -24,7 +24,7 @@ export default async function SetsPage() {
         <h1 className="wordmark text-[1.75rem] leading-tight lg:text-[2.25rem]">The sets</h1>
         <span aria-hidden className="block h-0.5 w-14 bg-hibiscus" />
         <p className="text-muted">
-          Three scents we picked for the occasion, in a gift box with a card for each. 3×5ml from{" "}
+          Can&apos;t decide? We did the picking for you. Three scents for the occasion, in a gift box with a card for each. 3×5ml from{" "}
           {formatTtd(OFFER_RULES.sets[5])} or 3×10ml from {formatTtd(OFFER_RULES.sets[10])}, less than buying them
           one by one. A set is the order&apos;s one offer.
         </p>
