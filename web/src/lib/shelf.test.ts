@@ -56,6 +56,16 @@ describe("shelf filters", () => {
   it("searches names and notes", () => {
     expect(matchesShelf(view("Hawas Ice"), { query: "hawas" })).toBe(true);
     expect(matchesShelf(view("Hawas Ice"), { query: "vanilla" })).toBe(false);
+    const nebras = view("Pride Nebras", { notes: { top: ["red berries"], heart: ["vanilla", "cacao"], base: ["musk"] }, blurb: "A sweet gourmand." });
+    expect(matchesShelf(nebras, { query: "Vanilla" })).toBe(true);
+    expect(matchesShelf(nebras, { query: "sweet cacao" })).toBe(true);
+    expect(matchesShelf(nebras, { query: "sweet coffee" })).toBe(false);
+  });
+
+  it("finds every launch scent with vanilla in its Fragrantica notes", async () => {
+    const { PRODUCTS } = await import("@/data/seed");
+    const hits = PRODUCTS.filter((p) => p.status === "live" && matchesShelf({ ...view(p.id), ...p } as ProductView, { query: "vanilla" }));
+    expect(hits.map((p) => p.id)).toContain("pride-nebras");
   });
 
   it("groups Daytime, Nighttime, Anytime, dropping empty groups", () => {

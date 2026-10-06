@@ -7,7 +7,8 @@
  *   Amber Oud Gold and Marwa from the owner's shelf (decants only). Arabians
  *   only at launch. The rest of the Bess List is `coming_soon` until bought;
  *   Rayhaan Elixir was dropped and is `retired`.
- * - Every rating, take, blurb, note list and "smells like" line here is our
+ * - Note lists come from Fragrantica (our main source for scent facts; the
+ *   page id is above each list). Every rating, take, blurb and "smells like" line here is our
  *   DRAFT (`draft: true`). Claude drafts it; the owners edit it before launch.
  *   Empty `smellsLike` means "owner to fill in". The set copy is the owner's.
  * - Decant prices are NOT here: they come from the tier (src/lib/pricing.ts).
@@ -30,10 +31,11 @@ export const PRODUCTS: Product[] = [
     gender: "him",
     status: "live",
     smellsLike: ["Parfums de Marly Althaïr DNA"],
+    // Fragrantica #94713
     notes: {
-      top: ["cinnamon", "cardamom", "orange blossom"],
+      top: ["cinnamon", "orange blossom", "cardamom", "bergamot"],
       heart: ["bourbon vanilla", "elemi"],
-      base: ["praline", "musk", "guaiac wood"],
+      base: ["praline", "ambroxan", "musk", "guaiac wood"],
     },
     vibes: ["sweet", "gourmand", "spicy"],
     occasions: ["date", "lime"],
@@ -54,10 +56,11 @@ export const PRODUCTS: Product[] = [
     gender: "him",
     status: "live",
     smellsLike: [],
+    // Fragrantica #89050
     notes: {
-      top: ["apple", "bergamot", "lemon"],
-      heart: ["plum", "orange blossom"],
-      base: ["musk", "ambergris"],
+      top: ["apple", "lemon", "bergamot", "star anise"],
+      heart: ["plum", "orange blossom", "cardamom"],
+      base: ["musk", "amber", "driftwood", "moss"],
     },
     vibes: ["fresh", "aquatic", "fruity"],
     occasions: ["fete", "lime", "office"],
@@ -78,7 +81,12 @@ export const PRODUCTS: Product[] = [
     gender: "her",
     status: "live",
     smellsLike: [],
-    notes: none,
+    // Fragrantica #113190
+    notes: {
+      top: ["red fruits", "rhubarb", "lychee"],
+      heart: ["rose", "frankincense", "cedar"],
+      base: ["vanilla", "musk", "ambergris"],
+    },
     vibes: ["fruity", "floral", "sweet"],
     occasions: ["lime", "date", "fete"],
     ratings: { heat: 4, longevity: 4, projection: 4, compliments: 4 },
@@ -99,7 +107,12 @@ export const PRODUCTS: Product[] = [
     leans: "her",
     status: "live",
     smellsLike: [],
-    notes: none,
+    // Fragrantica #96768
+    notes: {
+      top: ["ginger", "mandarin", "pink pepper"],
+      heart: ["lavender", "praline", "cacao", "jasmine"],
+      base: ["vanilla", "amber", "musk"],
+    },
     vibes: ["sweet", "floral"],
     occasions: ["date", "office"],
     ratings: { heat: 3, longevity: 4, projection: 3, compliments: 4 },
@@ -119,10 +132,11 @@ export const PRODUCTS: Product[] = [
     gender: "unisex",
     status: "coming_soon",
     smellsLike: ["Kilian Angels' Share DNA"],
+    // Fragrantica #75805
     notes: {
       top: ["cinnamon", "nutmeg", "bergamot"],
-      heart: ["dates", "praline", "tuberose"],
-      base: ["vanilla", "tonka", "amberwood", "myrrh"],
+      heart: ["dates", "praline", "tuberose", "mahonial"],
+      base: ["vanilla", "tonka bean", "amberwood", "myrrh", "benzoin", "akigalawood"],
     },
     vibes: ["sweet", "gourmand", "spicy", "amber"],
     occasions: ["date", "lime"],
@@ -140,10 +154,11 @@ export const PRODUCTS: Product[] = [
     gender: "unisex",
     status: "coming_soon",
     smellsLike: [],
+    // Fragrantica #88175
     notes: {
       top: ["cinnamon", "cardamom", "ginger"],
-      heart: ["praline", "candied fruit", "white flowers"],
-      base: ["coffee", "vanilla", "tonka", "benzoin"],
+      heart: ["praline", "candied fruits", "white flowers"],
+      base: ["vanilla", "coffee", "tonka bean", "benzoin", "musk"],
     },
     vibes: ["gourmand", "coffee", "spicy", "sweet"],
     occasions: ["date", "office"],
@@ -162,9 +177,10 @@ export const PRODUCTS: Product[] = [
     gender: "her",
     status: "coming_soon",
     smellsLike: [],
+    // Fragrantica #76880
     notes: {
       top: ["orchid", "heliotrope", "tangerine"],
-      heart: ["gourmand accord", "tropical fruit"],
+      heart: ["gourmand accord", "tropical fruits"],
       base: ["vanilla", "musk", "sandalwood"],
     },
     vibes: ["sweet", "gourmand", "fruity"],
@@ -184,7 +200,12 @@ export const PRODUCTS: Product[] = [
     leans: "him",
     status: "live",
     smellsLike: [],
-    notes: none,
+    // Fragrantica #120605
+    notes: {
+      top: ["lime", "coconut milk", "bergamot", "mandarin"],
+      heart: ["sugar cane", "jasmine", "hibiscus", "gardenia"],
+      base: ["musk", "rum", "tonka bean", "patchouli"],
+    },
     vibes: ["fresh", "aquatic"],
     occasions: ["office", "lime", "fete"],
     ratings: { heat: 5, longevity: 3, projection: 3, compliments: 3 },
@@ -221,7 +242,12 @@ export const PRODUCTS: Product[] = [
     gender: "him",
     status: "coming_soon",
     smellsLike: [],
-    notes: none,
+    // Fragrantica #98689
+    notes: {
+      top: ["pineapple", "bergamot", "white flowers", "apple"],
+      heart: ["orange blossom", "birch", "amber"],
+      base: ["oakmoss", "musk", "ambergris"],
+    },
     vibes: ["fruity", "woody", "fresh"],
     occasions: ["office", "date", "lime"],
     ratings: { heat: 4, longevity: 4, projection: 4, compliments: 4 },
@@ -238,7 +264,12 @@ export const PRODUCTS: Product[] = [
     gender: "him",
     status: "coming_soon",
     smellsLike: [],
-    notes: none,
+    // Fragrantica #101124
+    notes: {
+      top: ["lavender", "mirabelle", "pink pepper"],
+      heart: ["cacao", "nutmeg", "davana"],
+      base: ["bourbon vanilla", "amber", "vetiver"],
+    },
     vibes: ["spicy", "amber", "sweet"],
     occasions: ["date", "lime"],
     ratings: { heat: 3, longevity: 4, projection: 4, compliments: 4 },
@@ -255,7 +286,12 @@ export const PRODUCTS: Product[] = [
     gender: "unisex",
     status: "live",
     smellsLike: [],
-    notes: none,
+    // Fragrantica #78560
+    notes: {
+      top: ["red berries", "mandarin"],
+      heart: ["vanilla", "cacao", "rose"],
+      base: ["sugar", "tonka bean", "musk", "amber"],
+    },
     vibes: ["sweet", "gourmand"],
     occasions: ["date", "lime"],
     ratings: { heat: 3, longevity: 4, projection: 4, compliments: 4 },
@@ -275,7 +311,12 @@ export const PRODUCTS: Product[] = [
     gender: "him",
     status: "live",
     smellsLike: [],
-    notes: none,
+    // Fragrantica #119987
+    notes: {
+      top: ["lavender", "nutmeg", "sage", "bergamot"],
+      heart: ["cedarwood", "geranium", "mahonial", "rosyfolia"],
+      base: ["cocoa", "tonka bean", "maple", "ambrofix", "patchouli"],
+    },
     vibes: ["sweet", "amber", "woody"],
     occasions: ["date", "lime"],
     ratings: { heat: 3, longevity: 5, projection: 4, compliments: 4 },
@@ -295,7 +336,12 @@ export const PRODUCTS: Product[] = [
     gender: "unisex",
     status: "live",
     smellsLike: [],
-    notes: none,
+    // Fragrantica #51816
+    notes: {
+      top: ["bergamot", "green notes"],
+      heart: ["melon", "pineapple", "amber", "gourmand accord"],
+      base: ["vanilla", "musk", "woody notes"],
+    },
     vibes: ["sweet", "amber", "fruity"],
     occasions: ["fete", "lime"],
     ratings: { heat: 4, longevity: 5, projection: 5, compliments: 5 },
@@ -314,7 +360,12 @@ export const PRODUCTS: Product[] = [
     gender: "him",
     status: "live",
     smellsLike: [],
-    notes: none,
+    // Fragrantica #107084
+    notes: {
+      top: ["bergamot", "lemon", "orange"],
+      heart: ["ginger", "neroli", "cinnamon"],
+      base: ["black tea", "ambroxan", "olibanum", "guaiac wood"],
+    },
     vibes: ["fresh", "fruity"],
     occasions: ["office", "lime"],
     ratings: { heat: 4, longevity: 4, projection: 3, compliments: 4 },
@@ -327,7 +378,12 @@ export const PRODUCTS: Product[] = [
   },
 
   // ---------------------------------------------------------- coming soon (9 more)
-  comingSoon("rare-reef", "Afnan", "Rare Reef", "A", "unisex", ["fresh", "fruity"], 170),
+  comingSoon("rare-reef", "Afnan", "Rare Reef", "A", "unisex", ["fresh", "fruity"], 170, {
+    // Fragrantica #106835
+    top: ["orange", "mint", "citron", "grapefruit", "blackcurrant", "coriander"],
+    heart: ["apricot", "basil", "violet leaf", "rose"],
+    base: ["fig", "ambrette", "amberwood", "dates"],
+  }),
   comingSoon("cdn-untold", "Armaf", "Club de Nuit Untold", "A", "unisex", ["sweet", "amber", "woody"], 350),
   comingSoon("teriaq-intense", "Lattafa", "Teriaq Intense", "A", "unisex", ["sweet", "gourmand", "amber"], 10),
   comingSoon("vintage-radio", "Lattafa", "Vintage Radio", "A", "unisex", ["woody", "sweet"], 40),
@@ -346,6 +402,7 @@ function comingSoon(
   gender: Product["gender"],
   vibes: Product["vibes"],
   hue: number,
+  notes: Product["notes"] = none,
 ): Product {
   return {
     id,
@@ -355,7 +412,7 @@ function comingSoon(
     gender,
     status: "coming_soon",
     smellsLike: [],
-    notes: none,
+    notes,
     vibes,
     occasions: [],
     blurb: "Approved for the Bess List. On the way in a future drop.",
