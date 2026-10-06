@@ -8,6 +8,7 @@ const NAV = [
   { href: "/scents", label: "Scents" },
   { href: "/sets", label: "Sets" },
   { href: "/delivery", label: "Delivery" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Header() {
@@ -51,6 +52,8 @@ export function Footer() {
           <Link href="/scents">All scents</Link>
           <Link href="/sets">Curated sets</Link>
           <Link href="/delivery">Delivery &amp; pickup</Link>
+          <Link href="/contact">Contact</Link>
+          <Link href="/policies">Policies</Link>
           <a href={`https://wa.me/${SITE.whatsappNumber}`} rel="noopener">
             WhatsApp {SITE.whatsappDisplay}
           </a>
