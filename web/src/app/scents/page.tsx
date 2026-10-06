@@ -45,7 +45,7 @@ export default async function ScentsPage({ searchParams }: Props) {
           <h2 id="soon-title" className="wordmark text-xl lg:text-2xl">
             Coming soon
           </h2>
-          <p className="mt-3 max-w-xl text-muted">Already passed the smell test. These land in the next drop.</p>
+          <p className="mt-3 max-w-xl text-muted">Already passed the smell test. These land in the next drop, and designer decants are on the way too.</p>
           <ul className="mt-4 grid divide-y divide-mist sm:grid-cols-2 sm:gap-x-10 sm:divide-y-0 lg:grid-cols-3">
             {soon.map((p) => (
               <li key={p.id} className="sm:border-b sm:border-mist">

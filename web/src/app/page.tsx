@@ -31,9 +31,8 @@ export default async function Home() {
               <a href="#deals" className="text-ink underline decoration-hibiscus underline-offset-4 hover:text-hibiscus">
                 discounts and deals
               </a>
-              . Fragrance is like food, everybody has their own
-              taste, but these are the best smelling affordable frags around. Decants from {formatTtd(60)}
-              {bottles > 0 ? ", sealed bottles while they last." : "."} Designer decants coming soon.
+              . Decants from {formatTtd(60)}
+              {bottles > 0 ? ", sealed bottles while they last." : "."}
             </p>
           </div>
         }
