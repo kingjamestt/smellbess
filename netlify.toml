@@ -4,3 +4,8 @@
   base = "web"
   command = "npm run build"
   publish = ".next"
+
+# Netlify's Next.js runtime: turns the build into server functions. Without it
+# the deploy uploads 0 functions and every page 404s.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
