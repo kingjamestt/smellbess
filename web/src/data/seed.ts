@@ -326,7 +326,7 @@ export const PRODUCTS: Product[] = [
     occasions: ["date", "lime"],
     ratings: { heat: 3, longevity: 5, projection: 4, compliments: 4 },
     take: { by: "him", text: "Dark and rich. Sold out at the other shop in every size." },
-    blurb: "An original, not a clone. Lavender and nutmeg over cocoa, tonka and maple. Deep, intense and hard to find locally.",
+    blurb: "An original by perfumer Jordi Fernández. Lavender and nutmeg over cocoa, tonka and maple. Deep, intense and hard to find locally.",
     draft: true,
     hue: 270,
     wear: { time: "night", weather: "cold" },
