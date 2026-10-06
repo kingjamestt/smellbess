@@ -227,6 +227,8 @@ Landed costs come from one consolidated Websource shipment of the 12 Jomashop bo
 
 *Landed costs from [landed_cost.py](landed_cost.py): the 12 Jomashop bottles at US$385.90 after EXTRA20 + EXTRA10, + 7% tax = US$412.91 (TT$2,816), plus Websource fees of US$256.31 (TT$1,748) on ~15 lb, shared by value. Aquatica is TT$300 from the local dealer.*
 
+⚠️ **These fees are a model, not a bill.** The TT$1,748 is a full-value estimate from one past invoice, and that invoice was taxed below its real value (§2.1). When the launch order is picked up in week 3, put the **actual Websource charge** into the numbers and redo §2.4a, §2.7 and §10. If Websource charges noticeably less, every sealed margin improves and Musamam stops being thin. If it charges more, revisit the Musamam and Angham prices before listing them.
+
 **What changed:** sealed revenue drops by **TT$202** (3,599 → 3,397), and so does sealed profit (~1,017 → ~815). The price cuts on Hawas Ice (−51), Musamam (−100), Angham (−50) and Aquatica (−25) outweigh the +24 on Liquid Brun.
 
 **Thin bottles, and whether to still sell them sealed:**
@@ -670,7 +672,7 @@ Real-world caveat: these are planning assumptions, not forecasts. Within 6 weeks
 12. ☐ Open a separate bank account (or sub-account) for the business and the "card repayment" fund.
 
 **Week 3**
-13. ☐ Collect from Websource. **Verify authenticity** (batch codes, unboxing video).
+13. ☐ Collect from Websource. **Verify authenticity** (batch codes, unboxing video). **Keep the Websource invoice** and rerun the landed costs, sealed profits and cash flow with the actual fees (§2.4a).
 14. ☐ First decanting session. Fill pre-orders. First Saturday pickup.
 15. ☐ Launch the curated sets, the 5×10ml TT$350 bundle and the 7 sealed bottles. Fill the week-2 bottle reservations first.
 
