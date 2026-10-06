@@ -60,7 +60,7 @@ When a decision changes, update `business-plan.md` first, run `python tools/buil
 ## Current status (5 Oct 2026, evening)
 - **Plan:** complete, with the checklist tracked in `business-plan.md` §11. Items 1–4 and 11 are done. Item 5 (launch order) is locked but not placed; order on or after 17 Oct. Item 9 (brand) is locked.
 - **Repo:** github.com/kingjamestt/smellbess. `main` holds the plan files and is pushed.
-- **Website:** on branch **`website-mvp`** (pushed), in `web/`. M0, M1 and M2 are done.
+- **Website:** on **`main`** (pushed), in `web/`. `website-mvp` is older. M0, M1 and M2 are done.
   - Built with Next.js 16, TypeScript, Tailwind 4 and Vitest. 142 tests pass; lint and build are clean.
   - Use Node 24 (`web/.nvmrc`). The shell defaults to Node 20.8, which breaks Vitest, so prefix with `PATH=~/.nvm/versions/node/v24.19.0/bin:$PATH`.
   - Read `docs/website-plan.md` and `web/README.md` on that branch first.
@@ -77,7 +77,8 @@ When a decision changes, update `business-plan.md` first, run `python tools/buil
     - Set `SMELLBESS_ADMIN_EMAILS` (both admins' emails).
     - Optionally add a Resend API key.
 - **Next: M3 launch.**
-  - Deploy to Netlify on smellbess.netlify.app and set its env vars.
+  - **Sync Supabase with the site before leaving preview mode.** The preview runs on `web/src/data/seed.ts`, which has moved ahead of Supabase (Fragrantica notes for all 15 scents, 7 Oct 2026; copy changes). Diff seed.ts against the Supabase rows and push every discrepancy (re-seed via `web/scripts/seed-sql.mts`; never overwrite real orders or bottles). Repeat whenever seed.ts changes.
+  - Netlify is live on smellbess.netlify.app in **preview mode** (demo JSON store, `NEXT_PUBLIC_DESIGN_PREVIEW=1`, `SMELLBESS_ALLOW_JSON_STORE=1`, `SMELLBESS_DATA_DIR=/tmp/smellbess`). For launch, swap these for the Supabase env vars.
   - Add `https://smellbess.netlify.app/**` to Supabase Auth → URL configuration (redirect URLs), and set the Site URL.
   - Add self-hosted brand product images.
   - Owners edit the drafted copy.
