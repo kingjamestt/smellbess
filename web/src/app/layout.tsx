@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
-import { LOOK_BOOT_SCRIPT, LookSwitcher } from "@/components/look-switcher";
+import { DEFAULT_LOOK, LOOK_BOOT_SCRIPT, LookSwitcher } from "@/components/look-switcher";
 import { Footer, Header } from "@/components/site-chrome";
 import "./globals.css";
 
@@ -22,7 +22,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#c4145a",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#123d2b" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f2a1d" },
+  ],
 };
 
 /** DESIGN PREVIEW: the look switcher shows in dev, or when NEXT_PUBLIC_DESIGN_PREVIEW=1. */
@@ -31,7 +34,7 @@ const showLookSwitcher = process.env.NODE_ENV !== "production" || process.env.NE
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     // The boot script may change data-look before React hydrates.
-    <html lang="en-TT" className={bricolage.variable} data-look="carnival" suppressHydrationWarning>
+    <html lang="en-TT" className={bricolage.variable} data-look={DEFAULT_LOOK} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: LOOK_BOOT_SCRIPT }} />
       </head>

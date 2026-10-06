@@ -145,6 +145,75 @@
   background: linear-gradient(180deg, #e7c682, #c99d4f);
 }
 
+/*
+ * 3. Forest (the owners' pick): Northern Range green, bone and amber.
+ * Light or dark follows the customer's phone. Soft cards, no hard shadows.
+ */
+[data-look="forest"] {
+  --ink: #10261b;
+  --muted: #4a5d52;
+  --paper: #f4f4ee;
+  --mist: #e8ebe1;
+  --line: #d3d9cc;
+  --hibiscus: #1a5c3e; /* deep green: buttons, links, the big deal tile */
+  --hibiscus-dark: #12452e;
+  --sun: #f2a93b; /* amber: stickers, the surprise tile */
+  --sea: #1a5c3e;
+  --danger: #b42318;
+  --on-hibiscus: #f4f4ee;
+  --on-sun: #10261b;
+  --on-sea: #f4f4ee;
+  --inverse: #10261b;
+  --on-inverse: #f4f4ee;
+  --hero-bg: #123d2b;
+  --hero-fg: #f4f4ee;
+  --hero-accent: #f2a93b;
+  --art-bg-l: 90%;
+  --art-glass-l: 97%;
+  --art-stroke: #10261b;
+}
+@media (prefers-color-scheme: dark) {
+  [data-look="forest"] {
+    color-scheme: dark;
+    --ink: #e9ece4;
+    --muted: #a1b1a7;
+    --paper: #0c1712;
+    --mist: #13221a;
+    --line: #253a2e;
+    --hibiscus: #5cb487; /* lighter green, dark text on it */
+    --hibiscus-dark: #4a9d73;
+    --sun: #f2a93b;
+    --sea: #5cb487;
+    --danger: #ff9a8a;
+    --on-hibiscus: #0c1712;
+    --on-sun: #10170f;
+    --on-sea: #0c1712;
+    --inverse: #e9ece4;
+    --on-inverse: #0c1712;
+    --hero-bg: #0f2a1d;
+    --hero-fg: #e9ece4;
+    --hero-accent: #f2a93b;
+    --art-bg-l: 15%;
+    --art-glass-l: 23%;
+    --art-stroke: #c9d6cd;
+  }
+}
+[data-look="forest"] .hero {
+  border-bottom: 1px solid var(--line);
+}
+/* Green on green would vanish: the hero's main button goes amber. */
+[data-look="forest"] .hero .btn-primary {
+  background: var(--sun);
+  color: var(--on-sun);
+}
+[data-look="forest"] .hero .btn-primary:hover {
+  filter: brightness(1.06);
+}
+[data-look="forest"] .card,
+[data-look="forest"] .deal {
+  box-shadow: 0 1px 2px rgb(16 38 27 / 0.06);
+}
+
 @theme inline {
   --color-ink: var(--ink);
   --color-muted: var(--muted);
@@ -257,6 +326,40 @@ h3,
 }
 @utility animate-sparkle {
   animation: sparkle 1.6s ease-in-out infinite;
+}
+
+/* Homepage: coloured deal tiles (not .card, so a look can't repaint them). */
+.deal {
+  border-radius: 1rem;
+}
+[data-look="carnival"] .deal {
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+[data-look="luxe"] .deal.bg-sun {
+  background: var(--mist);
+  color: var(--ink);
+  border: 1px solid var(--hibiscus);
+}
+
+/* Homepage hero: copy, then the fanned scents, rise in once on load. */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+.hero-in {
+  animation: hero-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero-in-late {
+  animation-delay: 150ms;
+}
+/* Fanned scent cards lift and straighten on hover. */
+.fan-card {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fan-card:hover,
+.fan-card:focus-visible {
+  transform: translateY(-10px) rotate(0deg);
 }
 
 /* The hero: colours come from the active look. */

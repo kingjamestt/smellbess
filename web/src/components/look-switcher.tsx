@@ -6,8 +6,11 @@ import { useSyncExternalStore } from "react";
 export const LOOKS = [
   { id: "carnival", label: "1 · Carnival" },
   { id: "luxe", label: "2 · Luxe" },
+  { id: "forest", label: "3 · Forest" },
 ] as const;
 export type Look = (typeof LOOKS)[number]["id"];
+/** The owners' pick (Oct 2026). Light or dark follows the phone. */
+export const DEFAULT_LOOK: Look = "forest";
 export const LOOK_KEY = "smellbess.look";
 
 /**
@@ -16,7 +19,7 @@ export const LOOK_KEY = "smellbess.look";
  */
 export const LOOK_BOOT_SCRIPT = `(function(){try{var q=new URLSearchParams(location.search).get("look");var ok=${JSON.stringify(
   LOOKS.map((l) => l.id),
-)};var l=ok.indexOf(q)>=0?q:localStorage.getItem("${LOOK_KEY}");if(ok.indexOf(l)<0)l="carnival";document.documentElement.dataset.look=l;if(q)localStorage.setItem("${LOOK_KEY}",l);}catch(e){}})();`;
+)};var l=ok.indexOf(q)>=0?q:localStorage.getItem("${LOOK_KEY}");if(ok.indexOf(l)<0)l="${DEFAULT_LOOK}";document.documentElement.dataset.look=l;if(q)localStorage.setItem("${LOOK_KEY}",l);}catch(e){}})();`;
 
 /** The look lives on <html data-look>. Writing it is outside React on purpose. */
 function applyLook(id: Look) {
@@ -34,10 +37,10 @@ function subscribe(onChange: () => void) {
   return () => observer.disconnect();
 }
 
-const readLook = () => (document.documentElement.dataset.look as Look | undefined) ?? "carnival";
+const readLook = () => (document.documentElement.dataset.look as Look | undefined) ?? DEFAULT_LOOK;
 
 export function LookSwitcher() {
-  const look = useSyncExternalStore(subscribe, readLook, () => "carnival" as Look);
+  const look = useSyncExternalStore(subscribe, readLook, () => DEFAULT_LOOK);
   const choose = applyLook;
 
   return (

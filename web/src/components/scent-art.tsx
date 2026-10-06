@@ -11,7 +11,7 @@ export function ScentArt({
   label: string;
   className?: string;
 }) {
-  // Lightness comes from the active look (light pastel, or dark for "luxe").
+  // Lightness comes from the active look (light pastel, or dark for dark looks).
   const bg = `hsl(${hue} 70% var(--art-bg-l, 92%))`;
   const juice = `hsl(${hue} 60% 55%)`;
   const glass = `hsl(${hue} 40% var(--art-glass-l, 98%))`;
