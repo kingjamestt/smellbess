@@ -9,6 +9,7 @@ import { formatTtd, priceFor } from "@/lib/pricing";
 import {
   DEALS,
   decantPrices,
+  genderShort,
   groupByTime,
   matchesShelf,
   timeOfDayTT,
@@ -18,13 +19,34 @@ import {
   type ShelfFilter,
 } from "@/lib/shelf";
 import type { Gender, SizeMl } from "@/lib/types";
+import {
+  IconAll,
+  IconAnytime,
+  IconAnyWeather,
+  IconBottle,
+  IconBundle,
+  IconCold,
+  IconDay,
+  IconGift,
+  IconNight,
+  IconWarm,
+} from "./icons";
 import { ScentPhoto } from "./scent-photo";
 
-const GENDERS: { id: Gender; label: string }[] = [
-  { id: "him", label: "Him" },
-  { id: "her", label: "Her" },
-  { id: "unisex", label: "Unisex" },
+/** Unisex scents also show under Him and Her (see matchesShelf). */
+const GENDERS: { id: Gender; label: string; title: string }[] = [
+  { id: "him", label: "Him", title: "For him, unisex included" },
+  { id: "her", label: "Her", title: "For her, unisex included" },
+  { id: "unisex", label: "Unisex", title: "Unisex only" },
 ];
+
+function GenderTag({ product, className = "" }: { product: ProductView; className?: string }) {
+  return (
+    <span className={`label-caps inline-flex h-5 shrink-0 items-center rounded-[0.25rem] border px-1.5 text-[0.5625rem] tracking-[0.16em] ${className}`}>
+      {genderShort(product)}
+    </span>
+  );
+}
 
 const noop = () => () => {};
 /** Daytime or nighttime right now in Trinidad. Null on the server, so the marker never mismatches. */
@@ -41,13 +63,79 @@ function bottleLine(p: ProductView): { text: string; on: boolean } {
 
 // ------------------------------------------------------------------ filters
 
-function Toggle({ on, onClick, children }: { on: boolean; onClick: () => void; children: React.ReactNode }) {
+type Option<T extends string> = { id: T; label: string; icon?: React.ReactNode; title?: string };
+
+/**
+ * A tray of options with one Amber-edged thumb that slides to the choice.
+ * Radio semantics: arrow keys move the choice, Tab leaves the group.
+ */
+function Segmented<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: T;
+  options: Option<T>[];
+  onChange: (v: T) => void;
+}) {
+  const n = options.length;
+  const index = Math.max(0, options.findIndex((o) => o.id === value));
+  const move = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const step = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0;
+    if (!step) return;
+    e.preventDefault();
+    const next = (index + step + n) % n;
+    onChange(options[next].id);
+    (e.currentTarget.querySelectorAll<HTMLButtonElement>("[role=radio]")[next])?.focus();
+  };
   return (
-    <button type="button" aria-pressed={on} onClick={onClick} className={`chip label-caps min-h-10 shrink-0 justify-center px-2 tracking-[0.14em] ${on ? "chip-on" : ""}`}>
-      {children}
-    </button>
+    <div className="space-y-2">
+      <p className="label-caps text-[0.625rem] text-muted">{label}</p>
+      <div
+        role="radiogroup"
+        aria-label={label}
+        onKeyDown={move}
+        className="relative grid rounded-md border border-line bg-mist p-1"
+        style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}
+      >
+        <span
+          aria-hidden
+          className="seg-thumb absolute inset-y-1 left-1 rounded-[0.3rem] bg-inverse"
+          style={{ width: `calc((100% - 0.5rem) / ${n})`, transform: `translateX(${index * 100}%)` }}
+        >
+          <span className="absolute inset-x-3 bottom-1 h-0.5 bg-hibiscus" />
+        </span>
+        {options.map((o, i) => {
+          const on = i === index;
+          return (
+            <button
+              key={o.id}
+              type="button"
+              role="radio"
+              aria-checked={on}
+              aria-label={o.title}
+              tabIndex={on ? 0 : -1}
+              onClick={() => onChange(o.id)}
+              className={`relative z-10 flex ${o.icon ? "min-h-[3.25rem]" : "min-h-10"} flex-col items-center justify-center gap-1 rounded-[0.3rem] px-1 transition-colors duration-300 ${
+                on ? "text-on-inverse" : "text-muted hover:text-ink"
+              }`}
+            >
+              {o.icon}
+              <span className="label-caps text-[0.5625rem] tracking-[0.16em]">{o.label}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
   );
 }
+
+const TIME_ICONS = { day: <IconDay />, night: <IconNight />, any: <IconAnytime /> } as const;
+const WEATHER_ICONS = { warm: <IconWarm />, cold: <IconCold /> } as const;
+const DEAL_ICONS: Record<DealFilter, React.ReactNode> = { bundle: <IconBundle />, "free-5ml": <IconGift /> };
+const DEAL_SHORT: Record<DealFilter, string> = { bundle: "5×10ml", "free-5ml": "Free 5ml" };
 
 export function ShelfFilters({
   filter,
@@ -61,57 +149,95 @@ export function ShelfFilters({
 }) {
   const set = (patch: Partial<ShelfFilter>) => onChange({ ...filter, ...patch });
   const active = Object.values(filter).some((v) => v);
+  const time = (
+    <Segmented
+      label="When"
+      value={filter.time ?? "all"}
+      onChange={(v) => set({ time: v === "all" ? undefined : v })}
+      options={[
+        { id: "all" as const, label: "All", icon: <IconAll />, title: "Any time of day" },
+        ...WEAR_TIMES.map((t) => ({ id: t.id, label: t.short, icon: TIME_ICONS[t.id], title: t.label })),
+      ]}
+    />
+  );
+  const weather = (
+    <Segmented
+      label="Weather"
+      value={filter.weather ?? "all"}
+      onChange={(v) => set({ weather: v === "all" ? undefined : v })}
+      options={[
+        { id: "all" as const, label: "Any", icon: <IconAnyWeather />, title: "Any weather" },
+        ...WEATHERS.map((w) => ({ id: w.id, label: w.id === "warm" ? "Warm" : "Cold", icon: WEATHER_ICONS[w.id], title: w.label })),
+      ]}
+    />
+  );
+
+  const gender = (
+    <Segmented
+      label="For"
+      value={filter.gender ?? "all"}
+      onChange={(v) => set({ gender: v === "all" ? undefined : v })}
+      options={[{ id: "all" as const, label: "All", title: "Everyone" }, ...GENDERS.map((g) => ({ id: g.id, label: g.label, title: g.title }))]}
+    />
+  );
+
+  if (!full) {
+    return (
+      <div className="space-y-4">
+        {gender}
+        {time}
+        {weather}
+      </div>
+    );
+  }
+
   return (
-    <div className="space-y-3">
-      {full && (
-        <label className="block">
-          <span className="sr-only">Search scents</span>
-          <input
-            type="search"
-            value={filter.query ?? ""}
-            onChange={(e) => set({ query: e.target.value || undefined })}
-            placeholder="Search a name, a note, or what it smells like"
-            className="field"
-          />
-        </label>
-      )}
-      <div role="group" aria-label="When you'd wear it" className="grid grid-cols-4 gap-2">
-        <Toggle on={!filter.time} onClick={() => set({ time: undefined })}>
-          All
-        </Toggle>
-        {WEAR_TIMES.map((t) => (
-          <Toggle key={t.id} on={filter.time === t.id} onClick={() => set({ time: filter.time === t.id ? undefined : t.id })}>
-            {t.short}
-          </Toggle>
-        ))}
+    <div className="space-y-5">
+      <label className="block">
+        <span className="sr-only">Search scents</span>
+        <input
+          type="search"
+          value={filter.query ?? ""}
+          onChange={(e) => set({ query: e.target.value || undefined })}
+          placeholder="Search a name, a note, or what it smells like"
+          className="field"
+        />
+      </label>
+      <div className="grid gap-4 md:grid-cols-[minmax(0,4fr)_minmax(0,3fr)]">
+        {time}
+        {weather}
       </div>
-      <div role="group" aria-label="Weather" className="grid grid-cols-2 gap-2">
-        {WEATHERS.map((w) => (
-          <Toggle key={w.id} on={filter.weather === w.id} onClick={() => set({ weather: filter.weather === w.id ? undefined : w.id })}>
-            {w.short}
-          </Toggle>
-        ))}
-      </div>
-      {full && (
-        <div className="flex flex-wrap gap-2">
-          {GENDERS.map((g) => (
-            <Toggle key={g.id} on={filter.gender === g.id} onClick={() => set({ gender: filter.gender === g.id ? undefined : g.id })}>
-              {g.label}
-            </Toggle>
-          ))}
-          <span aria-hidden className="mx-1 w-px shrink-0 self-stretch bg-line" />
-          {(Object.keys(DEALS) as DealFilter[]).map((d) => (
-            <Toggle key={d} on={filter.deal === d} onClick={() => set({ deal: filter.deal === d ? undefined : d })}>
-              {DEALS[d].short}
-            </Toggle>
-          ))}
+      <div className="flex flex-wrap items-end gap-x-6 gap-y-4">
+        <div className="w-full sm:w-80">{gender}</div>
+        <div className="space-y-2">
+          <p className="label-caps text-[0.625rem] text-muted">Counts toward</p>
+          <div className="flex flex-wrap gap-2">
+            {(Object.keys(DEALS) as DealFilter[]).map((d) => {
+              const on = filter.deal === d;
+              return (
+                <button
+                  key={d}
+                  type="button"
+                  aria-pressed={on}
+                  aria-label={DEALS[d].short}
+                  onClick={() => set({ deal: on ? undefined : d })}
+                  className={`flex min-h-12 items-center gap-2 rounded-md border px-3.5 transition-colors duration-300 ${
+                    on ? "border-hibiscus text-hibiscus" : "border-line text-muted hover:border-ink hover:text-ink"
+                  }`}
+                >
+                  {DEAL_ICONS[d]}
+                  <span className="label-caps text-[0.5625rem] tracking-[0.16em]">{DEAL_SHORT[d]}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
-      )}
-      {full && active && (
-        <button type="button" className="text-sm text-muted underline underline-offset-4 hover:text-ink" onClick={() => onChange({})}>
-          Clear filters
-        </button>
-      )}
+        {active && (
+          <button type="button" className="min-h-12 text-sm text-muted underline underline-offset-4 hover:text-ink" onClick={() => onChange({})}>
+            Clear filters
+          </button>
+        )}
+      </div>
     </div>
   );
 }
@@ -127,9 +253,11 @@ export function ScentRow({ product: p, priority = false }: { product: ProductVie
       <div className="flex min-w-0 flex-col gap-1 py-0.5">
         <div className="flex items-baseline justify-between gap-3">
           <span className="truncate text-[1.0625rem] font-medium group-hover:text-hibiscus">{p.name}</span>
-          <span className="shrink-0 text-xs text-muted">{p.house}</span>
+          <GenderTag product={p} className="border-line text-ink" />
         </div>
-        <span className="line-clamp-2 text-sm leading-snug text-muted">{p.blurb}</span>
+        <span className="line-clamp-2 text-sm leading-snug text-muted">
+          <span className="text-ink/80">{p.house}.</span> {p.blurb}
+        </span>
         {live ? (
           <>
             <span className="label-caps mt-1 text-[0.625rem] tracking-[0.14em] tabular-nums">
@@ -164,13 +292,19 @@ export function ScentCase({ product: p, priority = false }: { product: ProductVi
       <div className="case-face case-front absolute inset-0 flex flex-col overflow-hidden rounded-md bg-ink text-paper" inert={flipped}>
         <Link href={`/scents/${p.id}`} className="group relative block min-h-0 flex-1" aria-label={`${p.house} ${p.name}`}>
           <ScentPhoto product={p} sizes="(min-width: 1024px) 22vw, 30vw" priority={priority} fill inset="p-[10%]" />
+          <GenderTag product={p} className="absolute left-3 top-3 border-paper/25 text-paper/80" />
         </Link>
         <div className="space-y-2 px-4 pb-4">
           <p className="truncate text-[0.9375rem] font-medium leading-tight">{p.name}</p>
           <div className="flex items-center justify-between gap-2">
-            <p className="label-caps text-[0.625rem] tracking-[0.14em] text-pearl-ink-quiet tabular-nums">
+            <p className="label-caps min-w-0 text-[0.625rem] tracking-[0.1em] text-pearl-ink-quiet tabular-nums">
               <span className="block whitespace-nowrap">{live ? `From ${formatTtd(priceFor(p.tier, 5))}` : STOCK_LABELS[p.stock]}</span>
-              {live && p.sealed && <span className="block whitespace-nowrap">Bottle too</span>}
+              {live && p.sealed && (
+                <span className="mt-0.5 flex items-center gap-1 whitespace-nowrap text-paper">
+                  <IconBottle size={12} />
+                  Bottle {formatTtd(p.sealed.price)}
+                </span>
+              )}
             </p>
             {live && (
               <button
@@ -178,7 +312,7 @@ export function ScentCase({ product: p, priority = false }: { product: ProductVi
                 aria-expanded={flipped}
                 aria-label={`Sizes and prices for ${p.name}`}
                 onClick={() => setFlipped(true)}
-                className="label-caps min-h-11 shrink-0 rounded-md border border-paper/25 px-3 text-[0.625rem] text-paper hover:border-paper"
+                className="label-caps min-h-11 shrink-0 rounded-md border border-paper/25 px-2.5 text-[0.625rem] tracking-[0.16em] text-paper hover:border-paper"
               >
                 Sizes
               </button>

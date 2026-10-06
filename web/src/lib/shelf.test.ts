@@ -37,6 +37,14 @@ describe("shelf filters", () => {
     expect([ice, brun, angham].filter((p) => matchesShelf(p, { weather: "cold" })).map((p) => p.id)).toEqual(["brun", "angham"]);
   });
 
+  it("a unisex scent shows under Him and Her; Unisex shows only unisex", () => {
+    const diva = view("diva", { gender: "her" });
+    const all = [ice, angham, diva];
+    expect(all.filter((p) => matchesShelf(p, { gender: "him" })).map((p) => p.id)).toEqual(["ice", "angham"]);
+    expect(all.filter((p) => matchesShelf(p, { gender: "her" })).map((p) => p.id)).toEqual(["angham", "diva"]);
+    expect(all.filter((p) => matchesShelf(p, { gender: "unisex" })).map((p) => p.id)).toEqual(["angham"]);
+  });
+
   it("the 5×10ml deal counts Tier A only; the free 5ml counts every live scent with a 10ml", () => {
     expect(countsToward(musamam, "bundle")).toBe(false);
     expect(countsToward(musamam, "free-5ml")).toBe(true);

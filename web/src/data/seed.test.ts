@@ -39,13 +39,13 @@ describe("seed catalog (from scent-lists.md)", () => {
   it("the 7 bought scents have a sealed bottle at the market price; shelf scents are decants only", () => {
     const prices = Object.fromEntries(PRODUCTS.filter((p) => p.bottle).map((p) => [p.id, p.bottle!.price]));
     expect(prices).toEqual({
-      "liquid-brun": 475,
-      "hawas-ice": 550,
+      "liquid-brun": 499,
+      "hawas-ice": 499,
       "hawas-diva": 450,
-      angham: 525,
+      angham: 475,
       "pride-nebras": 425,
-      "musamam-black-intense": 699,
-      "rayhaan-aquatica": 475,
+      "musamam-black-intense": 599,
+      "rayhaan-aquatica": 450,
     });
     expect(byId.get("amber-oud-gold")?.bottle).toBeUndefined();
     expect(byId.get("marwa")?.bottle).toBeUndefined();
@@ -70,7 +70,7 @@ describe("seed catalog (from scent-lists.md)", () => {
   });
 
   it("the four launch sets", () => {
-    expect(SETS.map((s) => s.name)).toEqual(["Fete Pack", "Date Night", "Office/School Days", "For Her"]);
+    expect(SETS.map((s) => s.name)).toEqual(["Fete Pack", "For Her", "Date Night", "Office/School Days"]);
   });
 
   it("curated sets hold three different live scents; any non-Tier-A scent needs a set price", () => {

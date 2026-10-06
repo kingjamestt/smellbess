@@ -44,7 +44,7 @@ export const PRODUCTS: Product[] = [
     hue: 28,
     wear: { time: "night", weather: "cold" },
     image: "/scents/liquid-brun.webp",
-    bottle: { sizeMl: 100, price: 475 },
+    bottle: { sizeMl: 100, price: 499 },
   },
   {
     id: "hawas-ice",
@@ -68,7 +68,7 @@ export const PRODUCTS: Product[] = [
     hue: 195,
     wear: { time: "day", weather: "warm" },
     image: "/scents/hawas-ice.webp",
-    bottle: { sizeMl: 100, price: 550 },
+    bottle: { sizeMl: 100, price: 499 },
   },
   {
     id: "hawas-diva",
@@ -109,7 +109,7 @@ export const PRODUCTS: Product[] = [
     hue: 300,
     wear: { time: "any", weather: "any" },
     image: "/scents/angham.webp",
-    bottle: { sizeMl: 100, price: 525 },
+    bottle: { sizeMl: 100, price: 475 },
   },
   {
     id: "khamrah",
@@ -194,7 +194,7 @@ export const PRODUCTS: Product[] = [
     hue: 185,
     wear: { time: "day", weather: "warm" },
     image: "/scents/rayhaan-aquatica.webp",
-    bottle: { sizeMl: 100, price: 475 },
+    bottle: { sizeMl: 100, price: 450 },
   },
   {
     id: "rayhaan-elixir",
@@ -285,7 +285,7 @@ export const PRODUCTS: Product[] = [
     hue: 270,
     wear: { time: "night", weather: "cold" },
     image: "/scents/musamam-black-intense.webp",
-    bottle: { sizeMl: 100, price: 699 },
+    bottle: { sizeMl: 100, price: 599 },
   },
   {
     id: "amber-oud-gold",
@@ -381,6 +381,14 @@ export const SETS: CuratedSet[] = [
     draft: false,
   },
   {
+    id: "for-her",
+    name: "For Her",
+    description:
+      "These are some of the best smelling scents around. Guaranteed she will love AT LEAST one.",
+    productIds: ["hawas-diva", "angham", "pride-nebras"],
+    draft: false,
+  },
+  {
     id: "date-night",
     name: "Date Night",
     description:
@@ -395,14 +403,6 @@ export const SETS: CuratedSet[] = [
     description:
       "Smell the bess at the office or school, make a statement without saying a word. Go light on sprays: 2–4 max.",
     productIds: ["rayhaan-aquatica", "hawas-ice", "marwa"],
-    draft: false,
-  },
-  {
-    id: "for-her",
-    name: "For Her",
-    description:
-      "These are some of the best smelling scents around. Guaranteed she will love AT LEAST one.",
-    productIds: ["hawas-diva", "angham", "pride-nebras"],
     draft: false,
   },
 ];

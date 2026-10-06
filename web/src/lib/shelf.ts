@@ -46,7 +46,8 @@ export function matchesShelf(p: ProductView, f: ShelfFilter): boolean {
   // "Any weather" scents suit both, so they stay in either weather filter.
   if (f.weather && p.wear && p.wear.weather !== f.weather && p.wear.weather !== "any") return false;
   if (f.weather && !p.wear) return false;
-  if (f.gender && p.gender !== f.gender) return false;
+  // Unisex scents belong to everyone, so they show under Him and Her too.
+  if (f.gender && p.gender !== f.gender && !(p.gender === "unisex" && f.gender !== "unisex")) return false;
   if (f.deal && !countsToward(p, f.deal)) return false;
   const q = f.query?.trim().toLowerCase();
   if (q) {
@@ -90,6 +91,12 @@ export function filterFromParams(params: Record<string, string | string[] | unde
 }
 
 const GENDER_LABELS: Record<Gender, string> = { him: "For him", her: "For her", unisex: "Unisex" };
+const GENDER_SHORT: Record<Gender, string> = { him: "Him", her: "Her", unisex: "Unisex" };
+
+/** Short tag for cards and rows: "Him", "Her", "Unisex". */
+export function genderShort(p: Pick<ProductView, "gender">): string {
+  return GENDER_SHORT[p.gender];
+}
 
 export function genderLabel(p: Pick<ProductView, "gender" | "leans">): string {
   if (p.gender === "unisex" && p.leans) return `Unisex, leans ${p.leans === "her" ? "feminine" : "masculine"}`;
