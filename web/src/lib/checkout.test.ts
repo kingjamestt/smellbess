@@ -226,6 +226,6 @@ describe("sealed bottles at checkout", () => {
   it("says plainly when the sealed bottle has just sold", () => {
     const r = buildOrder(input, { ...bctx, available: { ...ctx.available, "bottle:a1": 0 } });
     expect(r.ok).toBe(false);
-    if (!r.ok) expect(r.errors).toContain("The sealed bottle of House a1 has just sold. Its decants are still available.");
+    if (!r.ok) expect(r.errors).toContain("The full bottle of House a1 has just sold. Its decants are still available.");
   });
 });

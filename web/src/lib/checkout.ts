@@ -180,8 +180,8 @@ export function buildOrder(input: CheckoutInput, ctx: CheckoutContext): Checkout
     errors.push(
       isBottleKey(s.productId)
         ? s.availableMl === 0
-          ? `The sealed bottle of ${name} has just sold. Its decants are still available.`
-          : `We don't have that many sealed bottles of ${name}. Lower the quantity.`
+          ? `The full bottle of ${name} has just sold. Its decants are still available.`
+          : `We don't have that many full bottles of ${name}. Lower the quantity.`
         : `We don't have enough ${name} for this order. Try a smaller size or fewer.`,
     );
   }

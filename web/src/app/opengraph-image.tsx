@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 // The link preview on WhatsApp, Instagram, Facebook and Google: the brand card
 // (business-plan.md §5a colours). Pages without their own image inherit it.
-export const alt = "Smell Bess: only the best. Perfume decants and sealed bottles in Trinidad & Tobago.";
+export const alt = "Smell Bess: only the best. Perfume decants and full bottles in Trinidad & Tobago.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

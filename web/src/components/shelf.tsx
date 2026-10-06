@@ -56,7 +56,7 @@ function useNow() {
 
 function bottleLine(p: ProductView): { text: string; on: boolean } {
   if (p.stock !== "in_stock") return { text: STOCK_LABELS[p.stock], on: false };
-  if (p.sealed) return { text: `Sealed bottle ${formatTtd(p.sealed.price)}`, on: true };
+  if (p.sealed) return { text: `Full bottle ${formatTtd(p.sealed.price)}`, on: true };
   if (p.bottle) return { text: "Bottle sold · decants only", on: false };
   return { text: "Decants only", on: false };
 }

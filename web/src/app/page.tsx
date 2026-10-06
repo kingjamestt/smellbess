@@ -32,7 +32,7 @@ export default async function Home() {
                 discounts and deals
               </a>
               . Decants from {formatTtd(60)}
-              {bottles > 0 ? ", sealed bottles while they last." : "."}
+              {bottles > 0 ? ", full bottles while they last." : "."}
             </p>
           </div>
         }
@@ -88,7 +88,7 @@ export default async function Home() {
         </div>
         <ol className="grid gap-x-10 gap-y-6 sm:grid-cols-2">
           {[
-            ["Choose", "A 5ml to try it out, a 10ml to wear it, a 15ml if you can't stop. Or grab the sealed bottle."],
+            ["Choose", "A 5ml to try it out, a 10ml to wear it, a 15ml if you can't stop. Or grab a brand new full bottle."],
             ["See the full price", "Delivery added and the best deal applied for you. No surprises."],
             ["Send it on WhatsApp", "One tap sends your order to us. We check stock and reply right there."],
             ["Pay, then collect", `Bank transfer, or cash at ${delivery.pickupDay} pickup.`],

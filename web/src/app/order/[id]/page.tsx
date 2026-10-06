@@ -92,7 +92,7 @@ export default async function OrderPage({ params }: Props) {
                   : l.kind === "set"
                     ? `${l.qty}× ${l.label} set (3×${l.size}ml)`
                     : l.kind === "bottle"
-                      ? `${l.qty}× ${l.label}, sealed ${l.sizeMl}ml bottle`
+                      ? `${l.qty}× ${l.label}, full ${l.sizeMl}ml bottle`
                       : `${l.qty}× ${l.label} ${l.size}ml${l.shipsAsSplit ? " (ships as 10ml + 5ml)" : ""}`}
               </span>
               <span>{l.kind === "free" ? "FREE" : formatTtd(l.unitPrice * l.qty)}</span>

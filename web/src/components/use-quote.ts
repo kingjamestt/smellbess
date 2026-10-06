@@ -19,8 +19,8 @@ export function useQuote(catalog: CatalogSnapshot, cart: Cart) {
       const name = p ? productLabel(p) : "a scent";
       if (isBottleKey(s.productId)) {
         return s.availableMl === 0
-          ? `The sealed bottle of ${name} has sold. Remove it, or pick a decant instead.`
-          : `We don't have that many sealed bottles of ${name}. Lower the quantity.`;
+          ? `The full bottle of ${name} has sold. Remove it, or pick a decant instead.`
+          : `We don't have that many full bottles of ${name}. Lower the quantity.`;
       }
       return `We don't have enough ${name} for that. Try a smaller size or fewer.`;
     });

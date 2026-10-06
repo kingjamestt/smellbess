@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!p) return { title: "Scent not found" };
   const decants = `5ml ${formatTtd(priceFor(p.tier, 5))}, 10ml ${formatTtd(priceFor(p.tier, 10))}, 15ml ${formatTtd(priceFor(p.tier, 15))}`;
   const title = p.sealed ? `${p.house} ${p.name} Decants & Bottle in Trinidad` : `${p.house} ${p.name} Decant in Trinidad`;
-  const description = `${p.house} ${p.name}: ${p.blurb} Decants ${decants}${p.sealed ? `, sealed bottle ${formatTtd(p.sealed.price)}` : ""}.`;
+  const description = `${p.house} ${p.name}: ${p.blurb} Decants ${decants}${p.sealed ? `, full bottle ${formatTtd(p.sealed.price)}` : ""}.`;
   return {
     title,
     description,

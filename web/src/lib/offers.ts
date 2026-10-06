@@ -107,7 +107,7 @@ export function priceCart(cart: Cart, ctx: OfferContext): Quote {
       lines.push({
         index,
         line,
-        label: `${product.label}, sealed ${product.bottle.sizeMl}ml bottle`,
+        label: `${product.label}, full ${product.bottle.sizeMl}ml bottle`,
         regularUnit: unit,
         regularTotal: unit * line.qty,
         unit,

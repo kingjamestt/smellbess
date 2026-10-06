@@ -322,7 +322,7 @@ describe("sealed bottles", () => {
   it("are priced on their own, at the product's bottle price", () => {
     const q = priceCart(cart([bottle]), withBottle);
     expect(q.subtotal).toBe(550);
-    expect(q.lines[0].label).toBe("Alpha, sealed 100ml bottle");
+    expect(q.lines[0].label).toBe("Alpha, full 100ml bottle");
     expect(q.offer).toBeNull();
   });
 

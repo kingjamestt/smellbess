@@ -24,7 +24,7 @@ export function Purchase({ product: p }: { product: ProductView }) {
   const split = choice === 15 && p.sizes.find((s) => s.size === 15)?.shipsAsSplit;
   const note =
     choice === "bottle"
-      ? "Sealed, boxed and in cellophane. Bottles aren't part of our offers."
+      ? "Brand new, boxed and in cellophane. Full bottles aren't part of our offers."
       : choice && choice >= 10
         ? p.tier === OFFER_RULES.bundle.tier && choice === 10
           ? "Counts toward 5 Arabian 10ml for TT$350, or a free 5ml with any three 10ml+ decants."
@@ -61,7 +61,7 @@ export function Purchase({ product: p }: { product: ProductView }) {
             option(s.size as SizeMl, `${s.size}ml`, s.available ? formatTtd(priceFor(p.tier, s.size as SizeMl)) : "Sold out", s.available),
           )}
           {p.sealed
-            ? option("bottle", `Bottle ${p.sealed.sizeMl}ml`, formatTtd(p.sealed.price), true)
+            ? option("bottle", `Full bottle ${p.sealed.sizeMl}ml`, formatTtd(p.sealed.price), true)
             : option("bottle", "Bottle", p.bottle ? "Sold" : "Decants only", false)}
         </div>
       </fieldset>
