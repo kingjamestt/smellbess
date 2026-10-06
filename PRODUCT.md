@@ -32,7 +32,7 @@ Prices match the market (KmG Scents, Fragrance Fanatics); the site never compete
 ## Capabilities and Constraints
 - **Prices come from the tier, never per product (TTD):** A 60/100/150, A+ 70/120/175, D1 75/125/185, D2 120/200/275 (5/10/15ml). No 2ml and no 30ml.
 - **Stock is real millilitres.** A size sells only while enough juice is left. The site never says how much is left (owner, 6 Oct 2026): a size is available or sold out, nothing in between. With 15ml atomizers off, a 15ml ships as 10ml + 5ml.
-- **Sealed bottles are single items** with their own price (match the local market, e.g. Hawas Ice TT$550). When the sealed bottle sells, the scent becomes decants-only; out-of-stock bottles fall back to pre-order with a 50% deposit. Sealed bottles don't count toward any offer.
+- **Sealed bottles are single items** with their own price (match the local market, e.g. Hawas Ice TT$499). When the sealed bottle sells, the scent becomes decants-only; out-of-stock bottles fall back to pre-order with a 50% deposit. Sealed bottles don't count toward any offer.
 - **Exactly one offer per order**, chosen automatically and explained in plain words:
   - 5×10ml bundle at TT$350 per full group of 5 (Tier A only).
   - Curated sets at 3×5ml TT$150 or 3×10ml TT$280. The Fete Pack is TT$175 / TT$300.

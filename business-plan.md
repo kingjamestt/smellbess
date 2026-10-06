@@ -2,7 +2,7 @@
 
 **Smell Bess** sells only the best: proven best sellers and scents that perform and get compliments, as full bottles and hand-poured decants. If it isn't bess, we don't carry it. Tagline: *Only the best.* Website: smellbess.com · Handle: @smellbess
 
-*Prepared 5 Oct 2026; updated the same evening for **full bottles at launch** (§1, §3.1) and the **luxury rebrand** (§5a). FX: 6.82 TTD/USD. All landed costs assume **full-value declaration with invoices**, at the rates on a real Websource invoice (§2.1, recalibrated 6 Oct 2026). The numbers come from [landed_cost.py](landed_cost.py), so you can rerun them when prices change.*
+*Prepared 5 Oct 2026; updated the same evening for **full bottles at launch** (§1, §3.1) and the **luxury rebrand** (§5a). **Sealed bottle prices reset to the local market on 6 Oct 2026** (§2.4a); cash flow and projection redone. FX: 6.82 TTD/USD. All landed costs assume **full-value declaration with invoices**, at the rates on a real Websource invoice (§2.1, recalibrated 6 Oct 2026). The numbers come from [landed_cost.py](landed_cost.py), so you can rerun them when prices change.*
 
 **Labels used:** ✅ verified online (source linked at the end) · ⚠️ estimate or unverified, so confirm before relying on it.
 
@@ -28,15 +28,15 @@ Why bottles at launch, even though they earn far less per ml:
 - **Christmas.** Full bottles are the easy gift and sell quickly from mid-November. Launching in week 3 (early Nov) catches that.
 - **Breaking in.** A new shop with bottles in stock reads as serious; decants alone read as a side hustle. The bottle buyers then come back for decants.
 
-The trade-off, per bottle (Hawas Ice, landed TT$295):
+The trade-off, per bottle (Hawas Ice, landed TT$295, sealed price TT$499):
 
 | | Sold sealed | Decanted |
 |---|---|---|
-| Revenue | TT$550 | ~TT$1,000 |
-| Gross profit | ~TT$255 (46%) | ~TT$590 (59%) |
+| Revenue | TT$499 | ~TT$1,000 |
+| Gross profit | ~TT$204 (41%) | ~TT$590 (59%) |
 | Orders / time | 1 order, 5 min | ~5–8 orders, ~60 min |
 
-On the launch lineup, the 7 sealed bottles bring ~TT$3,600 for ~TT$1,020 profit (§2.4a). Decanting them instead would earn ~TT$3,700 more over time. **Bottles are a cash-flow and launch tool, not the profit engine.** The rule "one sealed bottle per scent, then decants only" keeps that trade small.
+On the launch lineup, the 7 sealed bottles bring ~TT$3,400 for ~TT$815 profit (§2.4a). Decanting them instead would earn ~TT$3,900 more over time. **Bottles are a cash-flow and launch tool, not the profit engine.** The rule "one sealed bottle per scent, then decants only" keeps that trade small.
 
 Why decants stay the core (the original analysis still holds):
 
@@ -142,7 +142,7 @@ Use **glass, screw-top or crimp-free atomizers with good pumps** (not plastic). 
 | **10ml, TT$100** | The core size, and the one used in the 5×10ml bundle. KmG and FF both anchor here | TT$10.00 | 48–59% |
 | **15ml, TT$150** | **Regulars.** FF's 15ml is often the size that's sold out (Marwa, Musamam), which suggests it sells best. It lasts about 2 months of daily wear. The price per ml is the same as a 10ml, so you earn 50% more per order for the same fill-and-label time | TT$10.00 | 50–61% |
 
-**No 30ml.** At TT$250 it sits too close to a full bottle (Pride Nebras TT$425, Hawas Ice TT$550), and it ties up 30% of a bottle in one sale. Customers who want that much should buy the sealed bottle or pre-order one.
+**No 30ml.** At TT$250 it sits too close to a full bottle (Pride Nebras TT$425, Hawas Ice TT$499), and it ties up 30% of a bottle in one sale. Customers who want that much should buy the sealed bottle or pre-order one.
 
 **If you run out of 15ml atomizers,** tell the customer and send **a 10ml + a 5ml** at the same TT$150. It's the same 15ml of juice, and most people will be fine with it. It costs you ~TT$6 more in supplies (margin drops ~4 points), so treat it as a fallback and reorder 15ml atomizers when you're down to ~5.
 
@@ -212,18 +212,30 @@ Landed costs come from one consolidated Websource shipment of the 12 Jomashop bo
 
 ### 2.4a Sealed bottles at launch (one per scent, priced to the local market)
 
-| Scent | Landed TT$ | Sealed price | Profit | Margin | Market reference |
-|---|---|---|---|---|---|
-| Rasasi Hawas Ice | 295 | **TT$550** | 255 | 46% | KmG TT$599.99, sold out ✅ |
-| Rayhaan Aquatica | 300 | **TT$475** | 175 | 37% | KmG sells other Rayhaans (Obsidian, Terra) at TT$499 ✅ |
-| Lattafa Angham | 390 | **TT$525** ⚠️ | 135 | 26% | Not found locally yet; check KmG/FF/SA before listing |
-| French Avenue Liquid Brun (100ml EDP) | 355 | **TT$475** ⚠️ | 120 | 25% | KmG sells the 150ml LTD at TT$550 ✅ |
-| Lattafa Pride Nebras | 296 | **TT$425** ⚠️ | 129 | 30% | Not found locally yet |
-| Lattafa Musamam Black Intense | 532 | **TT$699** ⚠️ | 167 | 24% | FF sold out in every size ✅; no local bottle price seen |
-| Rasasi Hawas Diva | 414 | **TT$450** | 36 | 8% | KmG TT$450 ✅ |
-| **All 7** | **2,582** | **TT$3,599** | **~1,017** | 28% | |
+**Prices reset by the owner on 6 Oct 2026** to sit just under local competitors. One local seller lists Musamam Black Intense at TT$600 and Liquid Brun at TT$525, both sold out. Landed costs are unchanged (same cart, same coupons, same rates).
 
-**Price rule (owner, 5 Oct 2026): match the market.** Sit at or just under the going local price. Where no local price exists (⚠️), start at landed + ~25% and adjust once you see one.
+| Scent | Landed TT$ | Sealed price | Profit | Margin | Was (5 Oct) | Market reference |
+|---|---|---|---|---|---|---|
+| Rasasi Hawas Ice | 295 | **TT$499** | 204 | 41% | 550 → profit 255 | KmG TT$599.99, sold out ✅ |
+| Rayhaan Aquatica | 300 | **TT$450** | 150 | 33% | 475 → 175 | KmG sells other Rayhaans (Obsidian, Terra) at TT$499 ✅ |
+| French Avenue Liquid Brun (100ml EDP) | 355 | **TT$499** | 144 | 29% | 475 → 120 | A local seller TT$525, sold out ✅; KmG sells the 150ml LTD at TT$550 ✅ |
+| Lattafa Pride Nebras | 296 | **TT$425** ⚠️ | 129 | 30% | unchanged | Not found locally yet |
+| Lattafa Angham | 390 | **TT$475** | 85 | 18% | 525 → 135 | Owner's price; not found locally yet |
+| Lattafa Musamam Black Intense | 532 | **TT$599** | 67 | **11%** | 699 → 167 | A local seller TT$600, sold out ✅; FF sold out in every size ✅ |
+| Rasasi Hawas Diva | 414 | **TT$450** | 36 | **8%** | unchanged | KmG TT$450 ✅ |
+| **All 7** | **2,582** | **TT$3,397** | **~815** | 24% | 3,599 → ~1,017 | |
+
+*Landed costs from [landed_cost.py](landed_cost.py): the 12 Jomashop bottles at US$385.90 after EXTRA20 + EXTRA10, + 7% tax = US$412.91 (TT$2,816), plus Websource fees of US$256.31 (TT$1,748) on ~15 lb, shared by value. Aquatica is TT$300 from the local dealer.*
+
+**What changed:** sealed revenue drops by **TT$202** (3,599 → 3,397), and so does sealed profit (~1,017 → ~815). The price cuts on Hawas Ice (−51), Musamam (−100), Angham (−50) and Aquatica (−25) outweigh the +24 on Liquid Brun.
+
+**Thin bottles, and whether to still sell them sealed:**
+- **Hawas Diva, TT$36 (8%).** No change: cash recovery only (below).
+- **Musamam Black Intense, TT$67 (11%), down from TT$167.** Now the weakest sealed sale in TT$ terms after Diva, and it fails the Phase 2 restock rule (landed + 20% ≤ local price). Decanted at A+ prices, the same bottle brings ~TT$1,100 (~TT$540 profit after supplies). **Still sell it sealed at launch:** in the expected case it's the week 7 sale, and without its TT$599 the card would be ~TT$170 short on 5 Dec. But don't push it ahead of the others. If it hasn't sold by mid-December, decant it. **Don't restock it as a sealed bottle unless Jomashop has it at ≤ ~US$42** after coupons.
+- **Angham, TT$85 (18%), down from TT$135.** Thin but positive, and it still just passes the restock rule (landed 390 + 20% = 468 ≤ 475). Fine to sell sealed at launch; restock sealed only at ≤ ~US$33 after coupons.
+- Every other bottle still earns TT$129–204. **None is negative.**
+
+**Price rule (owner, 5 Oct 2026; applied 6 Oct): match the market.** Sit at or just under the going local price. Where no local price exists (⚠️, now only Pride Nebras), start at landed + ~25% and adjust once you see one.
 
 **Hawas Diva is mostly a cash-recovery sale.** It's a strong seller, but at full declaration US$35 becomes ~TT$414 landed, against KmG's TT$450 shelf price. Selling it sealed gets the money back quickly for ~TT$36 profit. Decanted, the same bottle brings ~TT$1,000. Fine for the first one at launch; don't restock Diva as a sealed bottle unless it drops below ~US$28.
 
@@ -232,15 +244,15 @@ Landed costs come from one consolidated Websource shipment of the 12 Jomashop bo
 ### 2.5 Break-even
 
 - **Per bottle (decanted):** a TT$295 bottle (Hawas Ice) is paid back after **~4 × 10ml or ~7 × 5ml sales (~40% of the bottle)**. Everything after that is profit.
-- **Per bottle (sealed):** one sale, paid back on the spot. The 7 sealed bottles return TT$3,599 against TT$2,582 landed.
+- **Per bottle (sealed):** one sale, paid back on the spot. The 7 sealed bottles return TT$3,397 against TT$2,582 landed.
 - **Per month:** fixed costs in Phase 1 are ~TT$300–550 (ads, data, misc). At an average decant order of ~TT$130 with ~TT$65 contribution, that's **5–9 orders/month**.
-- **Launch capital:** the full launch outlay is ~TT$5,700 (§2.6). The 7 sealed bottles cover ~63% of it; decant sales cover the rest, **~16 decant orders** at TT$130 average.
+- **Launch capital:** the full launch outlay is ~TT$5,700 (§2.6). The 7 sealed bottles cover ~59% of it; decant sales cover the rest, **~18 decant orders** at TT$130 average.
 
 ### 2.6 Capital split (launch outlay ≈ TT$5,700: US$495 on the card + TT$2,348 paid at pickup)
 
 | Bucket | USD | TTD | Notes |
 |---|---|---|---|
-| 12 bottles at Jomashop: 2 each of Liquid Brun, Hawas Ice, Hawas Diva, Angham, Pride Nebras, Musamam Black Intense (US$545.88 list, −US$100 with EXTRA20 + EXTRA10, + 7% tax, free shipping) | $413 | 2,816 | One order, placed on or after 17 Oct. **Rayhaan Aquatica was removed from the cart** (cheaper locally) |
+| 12 bottles at Jomashop: 2 each of Liquid Brun, Hawas Ice, Hawas Diva, Angham, Pride Nebras, Musamam Black Intense (US$385.90 after EXTRA20 + EXTRA10, + 7% tax, free shipping) | $413 | 2,816 | One order, placed on or after 17 Oct. **Rayhaan Aquatica was removed from the cart** (cheaper locally) |
 | Decant supplies, landed | $82 | 560 | ~45×10ml, 35×15ml, 30×5ml, gift boxes for curated sets, labels, bags, pipettes/syringes, funnel |
 | **Total charged to card** | **$495** | **3,376** | ✅ **Under the US$600 ceiling**, as long as the Websource fees go on debit or cash |
 | Websource fees for the 12 bottles (duty, OPT, VAT, freight; ~15 lb) | $256 | 1,748 | **Paid at pickup in week 3, by debit or cash, not the card** |
@@ -258,18 +270,18 @@ Week 1 starts **Sat 17 Oct**, the day after the statement closes. **Payment is d
 |---|---|---|---|---|---|---|---|---|
 | 1 | Order 12 bottles (one Jomashop order, both coupons) and supplies (Amazon). Claim @smellbess, set up WhatsApp Business. Teaser posts. Start a pre-order list with coworkers and friends | 2,816 + 560 | 0 | 0 | 0 | 0 | 0 | 0 |
 | 2 | Goods reach Miami and fly. Post "what's coming" and "bottles in stock for Christmas". Take bottle reservations (50% deposit) | 0 | 0 | 0 | 0 | 0 | 0 | 300 |
-| 3 | **Pick up from Websource and pay fees (TT$1,748). Buy 2 Rayhaan Aquatica (TT$600).** Decanting session. Soft launch: fill reservations, first Saturday pickup | 0 | 600 | 1,025 | 2,348 | −723 | −1,448 | 352 |
-| 4 | Public launch. Register business name. First small boosted post | 0 | 700 | 975 | 395 | 557 | −818 | 2,532 |
-| 5 | Curated-set and 5×10ml bundle push, Christmas gift posts | 0 | 650 | 475 | 0 | 1,682 | −468 | 4,056 |
-| 6 | DNA-comparison content. Boost the best post | 0 | 750 | 425 | 150 | 2,707 | 232 | 5,006 |
-| 7 | Restock supplies (small). **Pay the card in full by 5 Dec (TT$3,376).** | 0 | 700 | 699 | 100 | **4,006 → +630 after paying card** | **1,057 → −2,319** | **6,006 → +2,630** |
+| 3 | **Pick up from Websource and pay fees (TT$1,748). Buy 2 Rayhaan Aquatica (TT$600).** Decanting session. Soft launch: fill reservations, first Saturday pickup | 0 | 600 | 949 | 2,348 | −799 | −1,499 | 300 |
+| 4 | Public launch. Register business name. First small boosted post | 0 | 700 | 925 | 395 | 431 | −894 | 2,379 |
+| 5 | Curated-set and 5×10ml bundle push, Christmas gift posts | 0 | 650 | 499 | 0 | 1,580 | −544 | 3,854 |
+| 6 | DNA-comparison content. Boost the best post | 0 | 750 | 425 | 150 | 2,605 | 156 | 4,804 |
+| 7 | Restock supplies (small). **Pay the card in full by 5 Dec (TT$3,376).** | 0 | 700 | 599 | 100 | **3,804 → +428 after paying card** | **931 → −2,445** | **5,804 → +2,428** |
 | 8+ | Christmas rush. Repay any salary top-up first, then reorder bestsellers as decant stock | | 800+ | | | | | |
 
-*Ops out in week 3 = Websource fees + the 2 Rayhaans; week 4 = TT$245 registration + TT$150 ads (skipped in the conservative case). Expected sealed sales: Hawas Ice + Aquatica (wk 3), Angham + Diva (wk 4), Liquid Brun (wk 5), Nebras (wk 6), Musamam (wk 7). Conservative: 4 of the 7 sealed bottles sell by 5 Dec (TT$2,000), decants 350 / 400 / 350 / 400 / 400. Optimistic: all 7 gone by week 5, decants 300 / 900 / 1,000 / 1,000 / 1,100 / 1,100. Delivery fees pass straight through to customers and are excluded.*
+*Ops out in week 3 = Websource fees + the 2 Rayhaans; week 4 = TT$245 registration + TT$150 ads (skipped in the conservative case). Expected sealed sales, at the 6 Oct prices: Hawas Ice + Aquatica (wk 3, TT$949), Angham + Diva (wk 4, TT$925), Liquid Brun (wk 5, TT$499), Nebras (wk 6, TT$425), Musamam (wk 7, TT$599). Conservative: 4 of the 7 sealed bottles sell by 5 Dec (Hawas Ice wk 3, Aquatica wk 4, Diva wk 6, Angham wk 7: TT$1,874), decants 350 / 400 / 350 / 400 / 400. Optimistic: all 7 gone by week 5 (Hawas Ice, Aquatica and Liquid Brun wk 3; Musamam, Diva and Nebras wk 4; Angham wk 5), decants 300 / 900 / 1,000 / 1,000 / 1,100 / 1,100. Delivery fees pass straight through to customers and are excluded.*
 
 **Reading it honestly:**
-- **Expected:** the card is covered on 5 Dec with ~TT$630 to spare. That's the bottle strategy working: sealed bottles return ~TT$3,600 in five weeks. You do front **~TT$2,350 in week 3** (Websource fees and Rayhaans) from salary or savings; it's back by week 4.
-- **Conservative:** you're ~TT$2,300 short on 5 Dec and cover it from salary, but you'd still hold 3 sealed bottles (~TT$1,600) plus decant stock going into the Christmas weeks, so the money is tied up, not lost. **Decide now that you'll pay the card in full regardless.** Treat any shortfall as a loan to the business, repaid first from week 8+ sales.
+- **Expected:** the card is still covered on 5 Dec, with **~TT$430 to spare** (down from ~TT$630 at the 5 Oct prices). That's the bottle strategy working: sealed bottles return ~TT$3,400 in five weeks. The cushion is thinner, though: it now depends on Musamam (TT$599) selling by week 7. You do front **~TT$2,350 in week 3** (Websource fees and Rayhaans) from salary or savings; it's back by week 4.
+- **Conservative:** you're ~TT$2,450 short on 5 Dec (was ~TT$2,300) and cover it from salary, but you'd still hold 3 sealed bottles (Liquid Brun, Nebras, Musamam: ~TT$1,500) plus decant stock going into the Christmas weeks, so the money is tied up, not lost. **Decide now that you'll pay the card in full regardless.** Treat any shortfall as a loan to the business, repaid first from week 8+ sales.
 - **Cash rule:** every sale goes into a separate "card" savings account until TT$3,376 (the card) is covered, then repay the TT$2,348 you fronted. No restocks before that, except supplies needed to fill orders.
 
 ---
@@ -282,13 +294,13 @@ Week 1 starts **Sat 17 Oct**, the day after the statement closes. **Payment is d
 
 | # | Scent | For | Source | Price each (after coupons) | Qty | Tier | Sealed bottle price |
 |---|---|---|---|---|---|---|---|
-| 1 | French Avenue Liquid Brun (**original 100ml EDP**; the LTD Extrait stays on the research list until you've smelled it) | Men | Jomashop | $29.99 | 2 | A | TT$475 ⚠️ |
-| 2 | Rasasi Hawas Ice | Men | Jomashop | $24.98 | 2 | A | TT$550 |
+| 1 | French Avenue Liquid Brun (**original 100ml EDP**; the LTD Extrait stays on the research list until you've smelled it) | Men | Jomashop | $29.99 | 2 | A | TT$499 |
+| 2 | Rasasi Hawas Ice | Men | Jomashop | $24.98 | 2 | A | TT$499 |
 | 3 | Rasasi Hawas Diva | Women | Jomashop | $35.00 | 2 | A | TT$450 |
-| 4 | Lattafa Angham | Unisex | Jomashop | $33.00 | 2 | A | TT$525 ⚠️ |
+| 4 | Lattafa Angham | Unisex | Jomashop | $33.00 | 2 | A | TT$475 |
 | 5 | **Lattafa Pride Nebras** (new) | Unisex | Jomashop | $24.99 | 2 | A | TT$425 ⚠️ |
-| 6 | **Lattafa Musamam Black Intense** (new; FF sold out in every size) | Men | Jomashop | $44.99 | 2 | **A+** (70 / 120 / 175) | TT$699 ⚠️ |
-| 7 | Rayhaan Aquatica | Men / unisex | **Local Rayhaan dealer** | TT$300 | 2 | A | TT$475 |
+| 6 | **Lattafa Musamam Black Intense** (new; FF sold out in every size) | Men | Jomashop | $44.99 | 2 | **A+** (70 / 120 / 175) | TT$599 |
+| 7 | Rayhaan Aquatica | Men / unisex | **Local Rayhaan dealer** | TT$300 | 2 | A | TT$450 |
 
 **Moved to the next order (still on the Bess List):** Khamrah, Khamrah Qahwa, Yara (pink), **Supremacy Collector's Edition** (a must-have), Asad Bourbon. **Dropped:** Rayhaan Elixir (owner, 5 Oct). Rebuy the next batch from Christmas sales (§2.7 week 8+), watching for Jomashop coupons.
 
@@ -390,13 +402,13 @@ Pick 2–3 designers you own and are willing to drain, e.g., **Versace Eros, Dio
 |---|---|---|---|---|---|
 | Armaf CDNIM 105ml | — | 525 ✅ | — | ~470 | Skip for now |
 | Afnan 9PM 100ml | 525 (Night Out, sold out) ✅ | 650 ✅ | — | ~399 | Pre-order ~TT$500 |
-| Rasasi Hawas Ice 100ml | 599.99 (sold out) ✅ | — | — | **~295 (sale + coupons)** | **Sealed at TT$550 (launch)** |
+| Rasasi Hawas Ice 100ml | 599.99 (sold out) ✅ | — | — | **~295 (sale + coupons)** | **Sealed at TT$499 (launch)** |
 | Rasasi Hawas Diva 100ml | 450 ✅ | — | — | ~414 | **Sealed at TT$450 (launch, mostly cash recovery)** |
-| Lattafa Angham 100ml | — | — | — | ~390 | Sealed at TT$525 ⚠️ (launch) |
-| French Avenue Liquid Brun 100ml EDP | — | — | — | ~355 | Sealed at TT$475 ⚠️ (launch) |
+| Lattafa Angham 100ml | — | — | — | ~390 | Sealed at TT$475 (launch) |
+| French Avenue Liquid Brun 100ml EDP | — | — | Local seller 525 (sold out) ✅ | ~355 | **Sealed at TT$499 (launch)** |
 | Lattafa Pride Nebras 100ml | — | — | — | ~296 | Sealed at TT$425 ⚠️ (launch) |
-| Lattafa Musamam Black Intense 100ml | — | — | FF sold out ✅ | ~532 | Sealed at TT$699 ⚠️ (launch) |
-| Rayhaan Aquatica 100ml | Other Rayhaans 499 ✅ | — | — | 300 (local) | **Sealed at TT$475 (launch)** |
+| Lattafa Musamam Black Intense 100ml | — | — | Local seller 600 (sold out) ✅; FF sold out ✅ | ~532 | Sealed at TT$599 (launch, thin: ~TT$67 profit) |
+| Rayhaan Aquatica 100ml | Other Rayhaans 499 ✅ | — | — | 300 (local) | **Sealed at TT$450 (launch)** |
 | Lattafa Vintage Radio 100ml | 499 ✅ | — | — | ⚠️ ~400 | Pre-order possible |
 | Liquid Brun LTD 150ml | 550 ✅ | — | — | ⚠️ ~480 | Decants only |
 | AH Amber Oud Aqua Dubai | 500 ✅ | 795 ✅ | — | ⚠️ ~560 | Decants only |
@@ -593,8 +605,8 @@ Website / DM order → WhatsApp message → confirm stock + total + delivery met
 | **Customs variability** (reassessment, commercial flag) | Medium / Med | Always declare full value. The plan's margins already assume full fees. Keep the ~US$100 reserve |
 | **Exchange rate / card FX** | Low / Low–Med | Prices already include about 2% headroom. Review the price list quarterly |
 | **Dead stock** | Medium / Med | With decants, a slow bottle still moves through curated sets and free 5ml decants. Follow the restock/retire rule (§3.3). Pre-orders only for anything above US$50 |
-| **A sealed bottle doesn't sell** | Medium / Low | Hold it through Christmas. If it's still there in mid-January, decant it: that's worth ~TT$1,000 versus TT$425–699 sealed, so an unsold bottle is a better outcome, just slower cash |
-| **Bottles undercut on price** | Medium / Low | Margins on sealed bottles are thin (0–42%). Don't chase a lower price; switch that scent to decants-only instead |
+| **A sealed bottle doesn't sell** | Medium / Low | Hold it through Christmas. If it's still there in mid-January, decant it: that's worth ~TT$1,000 versus TT$425–599 sealed, so an unsold bottle is a better outcome, just slower cash |
+| **Bottles undercut on price** | Medium / Low | Margins on sealed bottles are thin (8–41%). Don't chase a lower price; switch that scent to decants-only instead |
 | **Price war (KmG and others cut prices)** | Medium / Med | Compete on bundles, curated sets, content and service, not a lower per-ml price. Your 50%+ margins leave room for a 10% promo when you need it |
 | **Time crunch from the day job** | High / Med | Fixed weekly rhythm (§7.1). Batch decanting and filming. Your girlfriend covers women's content and the Saturday pickup |
 | **Card not repaid from sales (conservative case)** | Medium / Low (you have a salary) | Pay in full from salary, treat it as a loan to the business, hold ad spend until it's repaid |
@@ -603,19 +615,19 @@ Website / DM order → WhatsApp message → confirm stock + total + delivery met
 
 ## 10. 12-month projection (Nov 2026 – Oct 2027)
 
-Assumptions: ramp-up from launch, seasonality (Christmas, Carnival/Valentine's, Mother's and Father's Day), full bottles (sealed restocks at peaks plus pre-orders) rising from 10% to 40% of revenue, blended gross margin falling from ~51% to ~41%, no free delivery (customers pay delivery), ~1% of revenue for fuel on own-vehicle runs and payment fees, and monthly opex (ads, data, domain, misc) of TT$300 / 550 / 900. **Nov and Dec now include the 7 launch sealed bottles** (TT$3,599 revenue, ~TT$1,017 gross profit), split by when each scenario sells them (§2.7).
+Assumptions: ramp-up from launch, seasonality (Christmas, Carnival/Valentine's, Mother's and Father's Day), full bottles (sealed restocks at peaks plus pre-orders) rising from 10% to 40% of revenue, blended gross margin falling from ~51% to ~41%, no free delivery (customers pay delivery), ~1% of revenue for fuel on own-vehicle runs and payment fees, and monthly opex (ads, data, domain, misc) of TT$300 / 550 / 900. **Nov and Dec now include the 7 launch sealed bottles** at the 6 Oct prices (TT$3,397 revenue, ~TT$815 gross profit; was TT$3,599 / ~TT$1,017), split by when each scenario sells them (§2.7).
 
 | Monthly revenue (TTD) | Nov | Dec | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | **Year** |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Conservative | 2,975 | 4,774 | 1,990 | 2,750 | 1,690 | 1,930 | 2,790 | 3,100 | 2,460 | 2,750 | 2,740 | 3,200 | **33,149** |
-| Expected | 5,500 | 5,499 | 3,740 | 5,320 | 3,360 | 3,910 | 5,750 | 6,480 | 5,220 | 5,890 | 5,940 | 7,000 | **63,609** |
-| Optimistic | 7,399 | 7,270 | 5,820 | 8,450 | 5,430 | 6,400 | 9,510 | 10,820 | 8,790 | 9,980 | 10,130 | 12,000 | **101,999** |
+| Conservative | 2,899 | 4,648 | 1,990 | 2,750 | 1,690 | 1,930 | 2,790 | 3,100 | 2,460 | 2,750 | 2,740 | 3,200 | **32,947** |
+| Expected | 5,398 | 5,399 | 3,740 | 5,320 | 3,360 | 3,910 | 5,750 | 6,480 | 5,220 | 5,890 | 5,940 | 7,000 | **63,407** |
+| Optimistic | 7,197 | 7,270 | 5,820 | 8,450 | 5,430 | 6,400 | 9,510 | 10,820 | 8,790 | 9,980 | 10,130 | 12,000 | **101,797** |
 
 | Scenario | Revenue | Net profit, pre-tax | After ~25% income tax | Orders/month at end (avg TT$150) |
 |---|---|---|---|---|
-| Conservative | TT$33.1k | **TT$10.6k** | ~TT$7.9k | ~21 |
-| Expected | TT$63.6k | **TT$21.2k** | ~TT$15.9k | ~47 |
-| Optimistic | TT$102.0k | **TT$33.9k** | ~TT$25.4k | ~80 |
+| Conservative | TT$32.9k | **TT$10.4k** | ~TT$7.8k | ~21 |
+| Expected | TT$63.4k | **TT$21.0k** | ~TT$15.8k | ~47 |
+| Optimistic | TT$101.8k | **TT$33.7k** | ~TT$25.3k | ~80 |
 
 **Milestones:**
 

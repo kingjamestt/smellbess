@@ -16,7 +16,7 @@ When a decision changes, update `business-plan.md` first, run `python tools/buil
 
 ## Locked decisions (Oct 2026)
 - **Model (revised 5 Oct 2026):** bottles to break in, decants to earn. Buy **2 bottles of each launch scent**: one stays **sealed for sale**, one is decanted. When the sealed bottle sells, the scent goes decants-only. Other full bottles are pre-order with a 50% deposit.
-- **Sealed bottle prices match the local market:** Hawas Ice 550, Aquatica 475, Angham 525 ⚠️, Liquid Brun 475 ⚠️, Pride Nebras 425 ⚠️, Musamam Black Intense 699 ⚠️, Hawas Diva 450 (~TT$36 profit, mostly cash recovery). ⚠️ = no local price seen yet. Sealed bottles don't count toward any offer.
+- **Sealed bottle prices match the local market (owner, 6 Oct 2026):** Liquid Brun 499, Hawas Ice 499, Rayhaan Aquatica 450, Musamam Black Intense 599, Angham 475, Hawas Diva 450, Pride Nebras 425 ⚠️. ⚠️ = no local price seen yet. All 7 total TT$3,397 for ~TT$815 profit. Thin: Hawas Diva (~TT$36, cash recovery only) and Musamam (~TT$67; decant it if unsold by mid-Dec, restock sealed only at ≤ ~US$42). Sealed bottles don't count toward any offer.
 - **Sizes:** 5ml, 10ml and 15ml only. **No 2ml, no 30ml.** If 15ml atomizers run out, send a 10ml + 5ml at the 15ml price.
 - **Prices (TTD):**
 
@@ -47,7 +47,7 @@ When a decision changes, update `business-plan.md` first, run `python tools/buil
     - From the local Rayhaan dealer at TT$300 each: 2 Rayhaan Aquatica (removed from the Jomashop cart, where it lands at ~TT$360).
     - **Next order:** Khamrah, Khamrah Qahwa, Yara (pink), Supremacy CE, Asad Bourbon.
   - **From the owner's shelf (no purchase, decants only):** Amber Oud Gold Edition (~50ml, A+) and Marwa (~80ml, Tier A).
-  - **Money:** card ≈ US$495 (TT$3,376: bottles + supplies), under the US$600 ceiling. Paid at pickup by debit/cash: Websource fees ~TT$1,748 and TT$600 for the Rayhaans. Total outlay ~TT$5,700. Expected case covers the card on 5 Dec with ~TT$630 to spare (§2.7).
+  - **Money:** card ≈ US$495 (TT$3,376: bottles + supplies), under the US$600 ceiling. Paid at pickup by debit/cash: Websource fees ~TT$1,748 and TT$600 for the Rayhaans. Total outlay ~TT$5,700. Expected case covers the card on 5 Dec with ~TT$430 to spare (§2.7, at the 6 Oct sealed prices; it was ~TT$630).
   - **Women's side:** mostly designer decants (testers and the girlfriend's bottles), because Trini women prefer designers.
 - **Card:** statement closes on the 16th, due on the 5th. Launch orders go in on or after 17 Oct 2026 and are due 5 Dec 2026.
 - **No quizzes, no vouchers.** Trini customers don't use them.

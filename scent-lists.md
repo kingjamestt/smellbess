@@ -13,7 +13,7 @@
 **Rayhaan, from the local dealer: any Rayhaan for TT$300.**
 - Cheaper than importing (~TT$360 landed through Jomashop and Websource), with no wait and no customs risk.
 - Rayhaan is now the cheapest line we carry (TT$3.16/ml, 58% on a 10ml).
-- Rayhaan sealed bottles sell at TT$475 (KmG sells Obsidian and Terra at TT$499). Aquatica is a launch sealed bottle.
+- Rayhaan sealed bottles sell at TT$450 (KmG sells Obsidian and Terra at TT$499). Aquatica is a launch sealed bottle.
 - Always get a receipt, and confirm the dealer is an authorized distributor.
 
 ## The price rule (owner's call)
@@ -36,13 +36,13 @@ One bottle of each stays **sealed for sale**; the other is decanted. When the se
 
 | Scent | For | Jomashop (each) | Landed TT$ | TT$/ml | 10ml margin | Sealed price | KmG (5 / 10 / full) | Signal |
 |---|---|---|---|---|---|---|---|---|
-| Liquid Brun (French Avenue), **original 100ml EDP** | Men | $29.99 | 355 | 3.73 | 53% | TT$475 ⚠️ | 60 / 100 / 550 (LTD Extrait 150ml) | KmG popular. The LTD Extrait is on the research list until the owner has smelled it |
-| Hawas Ice (Rasasi) | Men | $24.98 | 295 | 3.11 | 59% | TT$550 | 60 / 100 / 599.99 | **KmG 10ml 4 left, 5ml 8 left, 100ml sold out** |
+| Liquid Brun (French Avenue), **original 100ml EDP** | Men | $29.99 | 355 | 3.73 | 53% | TT$499 | 60 / 100 / 550 (LTD Extrait 150ml) | KmG popular. A local seller lists the 100ml EDP at TT$525 (sold out). The LTD Extrait is on the research list until the owner has smelled it |
+| Hawas Ice (Rasasi) | Men | $24.98 | 295 | 3.11 | 59% | TT$499 | 60 / 100 / 599.99 | **KmG 10ml 4 left, 5ml 8 left, 100ml sold out** |
 | Hawas Diva (Rasasi) | Women | $35.00 | 414 | 4.36 | 46% | TT$450 (~TT$36 profit) | 60 / 100 / 450 | Strong seller. Sealed sale is cash recovery only |
-| Angham (Lattafa) | Unisex (leans fem.) | $33.00 | 390 | 4.11 | 49% | TT$525 ⚠️ | 60 / 100 | KmG new |
+| Angham (Lattafa) | Unisex (leans fem.) | $33.00 | 390 | 4.11 | 49% | TT$475 | 60 / 100 | KmG new |
 | **Pride Nebras (Lattafa)** | Unisex | $24.99 | 296 | 3.11 | 59% | TT$425 ⚠️ | not carried | Added 5 Oct (cart). Promoted from the approved list |
-| **Musamam Black Intense (Lattafa)** | Men | $44.99 | 532 | 5.60 | **A+: 45%** | TT$699 ⚠️ | not carried | Added 5 Oct (cart). **FF sold out in all sizes. Tier A+** |
-| Rayhaan Aquatica | Men / unisex | **Local TT$300** | 300 | 3.16 | 58% | TT$475 | not carried | FF stocks it. Fresh, good for heat. Removed from the Jomashop cart (lands ~TT$360 imported) |
+| **Musamam Black Intense (Lattafa)** | Men | $44.99 | 532 | 5.60 | **A+: 45%** | TT$599 (~TT$67 profit) | not carried | Added 5 Oct (cart). **FF sold out in all sizes; a local seller lists the bottle at TT$600, sold out. Tier A+** |
+| Rayhaan Aquatica | Men / unisex | **Local TT$300** | 300 | 3.16 | 58% | TT$450 | not carried | FF stocks it. Fresh, good for heat. Removed from the Jomashop cart (lands ~TT$360 imported) |
 
 **From the owner's shelf (no purchase, decants only):** Amber Oud Gold Edition (~50ml, A+, in the Fete Pack) and Marwa (~80ml, Tier A).
 

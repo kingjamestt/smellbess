@@ -22,7 +22,7 @@ Before writing code, read `CLAUDE.md` and `business-plan.md` (especially §2.3 p
 2. **Sizes and prices from tier, never hard-coded per product.**
    - Tier A: 5ml TT$60 · 10ml TT$100 · 15ml TT$150.
    - D1: 75 / 125 / 185. D2: 120 / 200 / 275. All prices in TTD.
-   - **Sealed bottles:** each launch scent has one sealed bottle in stock, priced per product (e.g., Hawas Ice TT$550). It's a single item: shown as "1 left" until sold, then the scent is decants-only. Sealed bottles don't count toward the free 5ml or the bundle.
+   - **Sealed bottles:** each launch scent has one sealed bottle in stock, priced per product (e.g., Hawas Ice TT$499). It's a single item: shown as "1 left" until sold, then the scent is decants-only. Sealed bottles don't count toward the free 5ml or the bundle.
    - Full bottles not in stock are **pre-order**, priced per product, with a 50% deposit.
 3. **Stock from real millilitres.** Each bottle has ml remaining.
    - A size is available only while there's enough juice left. Never show how much is left (owner, 6 Oct 2026); a size is available or sold out.
