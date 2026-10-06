@@ -156,6 +156,7 @@ export const PRODUCTS: Product[] = [
     gender: "unisex",
     status: "coming_soon",
     smellsLike: [],
+    inspiredBy: ["Kilian Angels' Share"],
     // Fragrantica #88175
     notes: {
       top: ["cinnamon", "cardamom", "ginger"],
