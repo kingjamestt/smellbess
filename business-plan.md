@@ -657,7 +657,7 @@ Real-world caveat: these are planning assumptions, not forecasts. Within 6 weeks
     - ☐ **Buy smellbess.com now and claim @smellbess everywhere today**, before someone else does. Set up **WhatsApp Business** (catalog, quick replies, away message).
     - ☐ Start the website build (`website-brief.md`). The MVP should be live for the week 4 public launch.
 5. ◐ **Launch buy locked** (§3.1, revised 5 Oct: 12 Jomashop bottles, 2 each of Liquid Brun, Hawas Ice, Hawas Diva, Angham, Pride Nebras, Musamam Black Intense, + 2 local Rayhaan Aquatica). Order on or after 17 Oct in **one Jomashop order with EXTRA20 + EXTRA10** (check both still work). Buy the 2 Rayhaans locally in week 3. **Upload invoices to Websource and ask them to keep the boxes on.**
-    - ☐ Confirm the 4 sealed-bottle prices marked ⚠️ in §2.4a against local listings.
+    - ☐ Confirm the Pride Nebras sealed price (TT$425 ⚠️, the only one still unconfirmed; the owner set the other 6 on 6 Oct) against local listings.
     - ☐ Re-pick the scents for the Fete Pack, Date Night, Office/School and For Her sets (§2.3b).
 6. ☐ Order decant supplies (glass atomizers 10ml/15ml/5ml, gift boxes for curated sets, syringes/pipettes, funnel, labels, zip bags, thank-you cards).
 7. ☐ Choose 2–4 bottles from your own collection to decant (designer crowd-pleasers plus one women's).
