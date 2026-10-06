@@ -23,7 +23,7 @@ export function Deals({
   const rows = [
     {
       figure: `${OFFER_RULES.bundle.count} for ${OFFER_RULES.bundle.price}`,
-      text: `Any ${OFFER_RULES.bundle.count} Arabian 10ml decants for ${formatTtd(OFFER_RULES.bundle.price)}.`,
+      text: `${OFFER_RULES.bundle.count} selected 10ml decants for ${formatTtd(OFFER_RULES.bundle.price)}.`,
       href: "/scents?deal=bundle",
       link: `The ${bundle} that count`,
     },
