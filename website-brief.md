@@ -4,7 +4,7 @@
 
 ---
 
-You're building **smellbess.com**, the storefront for **Smell Bess**, a fragrance decant business in Trinidad & Tobago. "Bess" is Trini slang for the best. The shop only carries fire scents and proven best sellers. The site has to be **the best fragrance shopping experience in T&T**. Local competitors run on Take App, a basic Ecwid store and a weak WooCommerce site. This site should make a first-time visitor from Instagram trust us and order within two minutes. It's also our main advantage over them.
+You're building **smellbess.com**, the storefront for **Smell Bess**, a fine-fragrance business in Trinidad & Tobago selling **sealed full bottles and hand-poured decants**. "Bess" is Trini slang for the best. The shop carries only the best: proven performers and best sellers. The site has to be **the best fragrance shopping experience in T&T**. Local competitors run on Take App, a basic Ecwid store and a weak WooCommerce site. This site should make a first-time visitor from Instagram trust us and order within two minutes. It's also our main advantage over them.
 
 Before writing code, read `CLAUDE.md` and `business-plan.md` (especially §2.3 pricing, §2.3a sizes, §2.3b offers, §4 positioning and §7.4 delivery). Then propose a short plan and the data model, and wait for my OK.
 
@@ -22,9 +22,10 @@ Before writing code, read `CLAUDE.md` and `business-plan.md` (especially §2.3 p
 2. **Sizes and prices from tier, never hard-coded per product.**
    - Tier A: 5ml TT$60 · 10ml TT$100 · 15ml TT$150.
    - D1: 75 / 125 / 185. D2: 120 / 200 / 275. All prices in TTD.
-   - Full bottles are **pre-order only**, priced per product, with a 50% deposit.
+   - **Sealed bottles:** each launch scent has one sealed bottle in stock, priced per product (e.g., Hawas Ice TT$550). It's a single item: shown as "1 left" until sold, then the scent is decants-only. Sealed bottles don't count toward the free 5ml or the bundle.
+   - Full bottles not in stock are **pre-order**, priced per product, with a 50% deposit.
 3. **Stock from real millilitres.** Each bottle has ml remaining.
-   - A size is available only while there's enough juice left. Show honest low-stock badges ("2 left in 10ml").
+   - A size is available only while there's enough juice left. Never show how much is left (owner, 6 Oct 2026); a size is available or sold out.
    - When the 15ml atomizer stock flag is off, the 15ml still sells but shows "ships as 10ml + 5ml".
 4. **Offers engine.** Exactly **one offer per order**.
    - **5×10ml bundle for TT$350** (Tier A only). Each full group of 5 gets the bundle price, so 10×10ml is TT$700.
@@ -48,7 +49,7 @@ Before writing code, read `CLAUDE.md` and `business-plan.md` (especially §2.3 p
    - Same-day delivery on request.
    - Area → zone mapping should be editable in admin.
 7. **Admin (login for 2 people):**
-   - Products and bottles (ml remaining, bottle ID, cost).
+   - Products and bottles (ml remaining, bottle ID, cost). Each bottle is either **open (decant stock)** or **sealed (for sale whole)**; marking a sealed bottle sold removes it from the shop.
    - **Orders pipeline:** new → paid → decanted → ready / out for delivery → done.
    - Atomizer stock flags.
    - A "today's decanting list" grouped by scent and size.
@@ -67,7 +68,7 @@ Before writing code, read `CLAUDE.md` and `business-plan.md` (especially §2.3 p
 
 ## Design direction
 - **Mobile-first and very fast.** Target LCP under 2s on 4G and Lighthouse 95+. Most traffic is phones on data.
-- **Confident and a bit playful, with local voice** ("this one is a fete weapon"). It shouldn't look like a generic luxury template or AI-generated design. Don't use the cream-and-serif "luxury" look.
+- **Quiet luxury, per the brand in `business-plan.md` §5a** (locked 5 Oct 2026): Night #121014 ground, Pearl #EAE8E5 text, Ash #8F8A93 quiet text, Amber #E3A23B as the only accent. Archivo only: Expanded Light caps for display and the SMELL BESS wordmark (tracked 0.22em, BESS in Amber, Amber rule, "FINE FRAGRANCE" descriptor), normal width for body. Voice: assured, discerning, warm, quietly local; no hype, no exclamation marks. It shouldn't look like a generic luxury template, gold foil, or cream-and-serif "luxury".
 - **Product photos:** start with each brand's official product image, downloaded and hosted on our site (never hotlinked). Use them only to show the product, never as our branding or logo. Replace them with our own bottle shoots on a consistent backdrop once we have lighting.
 - Meet WCAG AA. Dark mode is optional. Support reduced motion.
 
@@ -85,6 +86,6 @@ Before writing code, read `CLAUDE.md` and `business-plan.md` (especially §2.3 p
 - **Ask me before** buying anything, creating paid cloud resources, or deploying to production.
 
 ## Launch data
-- **Seed the catalog from `scent-lists.md`:** the Bess List (approved scents) shows which scents are live. The launch buy hasn't been finalized yet, so build the catalog so a scent can be listed as "coming soon" until its bottle arrives.
-- **Add 2–4 designer decants from the owner's own collection** (to be confirmed).
+- **Seed the catalog from `scent-lists.md`:** the launch buy is 7 scents, 2 bottles each (one sealed, one open), plus Amber Oud Gold and Marwa from the owner's shelf. Next-order scents can be listed as "coming soon" until their bottles arrive.
+- **No designer decants at launch** (owner, 5 Oct 2026).
 - Mark any rating or description you draft as `DRAFT`, so we can rewrite them in our own words.

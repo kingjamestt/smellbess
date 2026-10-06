@@ -5,15 +5,15 @@
 **How a scent moves:**
 1. **Research list:** smell it, wear-test it in TT heat, and check the price.
 2. **Bess List (approved):** the owner (men's) or the girlfriend (women's) vouches for it.
-3. **In stock:** bought, decanted and listed on the site.
+3. **In stock:** bought and listed on the site, as decants and (for launch scents) one sealed bottle.
 4. **Retired:** played out or not selling. Don't restock.
 
 ## Local sourcing
 
 **Rayhaan, from the local dealer: any Rayhaan for TT$300.**
-- Cheaper than importing (~TT$389 landed through Jomashop and Websource), with no wait and no customs risk.
+- Cheaper than importing (~TT$360 landed through Jomashop and Websource), with no wait and no customs risk.
 - Rayhaan is now the cheapest line we carry (TT$3.16/ml, 58% on a 10ml).
-- Rayhaan full bottles are worth stocking at TT$450–499 (KmG sells Obsidian and Terra at TT$499).
+- Rayhaan sealed bottles sell at TT$475 (KmG sells Obsidian and Terra at TT$499). Aquatica is a launch sealed bottle.
 - Always get a receipt, and confirm the dealer is an authorized distributor.
 
 ## The price rule (owner's call)
@@ -24,29 +24,39 @@
 - At US$40 and under, a scent stays Tier A (60 / 100 / 150).
 - **Testers** are the same authentic juice without the box or cap. They're often 20–30% cheaper and lighter to ship. Ideal for decant stock.
 
-*Prices: Jomashop, checked 5 Oct 2026. They change daily, so check before ordering. **Landed TT$** = price + 7% Miami tax + Websource duty, OPT, VAT and freight, inside one order over US$100 (free shipping). Margins are at list price after supplies, from 95 usable ml.*
+*Prices: Jomashop, checked 5 Oct 2026. They change daily, so check before ordering. **Landed TT$** = price + 7% Miami tax + Websource duty, OPT, VAT and freight, inside one order over US$100 (free shipping). Margins are at list price after supplies, from 95 usable ml. Launch-buy rows use the recalibrated fees (6 Oct 2026, `landed_cost.py`); other rows still use the older model and are ~8% too high.*
 
 ---
 
 ## 1. Bess List (approved)
 
-### Launch buy (locked 5 Oct 2026; 11 scents)
+### Launch buy (locked 5 Oct 2026, revised that evening; 7 scents, 2 bottles each)
 
-| Scent | For | Jomashop | Landed TT$ | TT$/ml | 10ml margin | KmG (5 / 10 / full) | Signal |
-|---|---|---|---|---|---|---|---|
-| Liquid Brun (French Avenue), **original 100ml EDP** | Men | $29.99 | 389 | 4.09 | 49% | 60 / 100 / 550 (LTD Extrait 150ml) | KmG popular. The LTD Extrait is on the research list until the owner has smelled it |
-| Hawas Ice (Rasasi) | Men | $30 (sale) | 389 | 4.09 | 49% | 60 / 100 / 599.99 | **KmG 10ml 4 left, 5ml 8 left, 100ml sold out** |
-| Hawas Diva (Rasasi) | Women | $35 (71% off) | 441 | 4.64 | 44% | 60 / 100 / 450 | KmG popular |
-| Angham (Lattafa) | Unisex (leans fem.) | $33 | 420 | 4.42 | 46% | 60 / 100 | KmG new |
-| Khamrah (Lattafa) | Unisex | $26.99 | 358 | 3.76 | 52% | 60 / 100 | Global best seller |
-| Khamrah Qahwa (Lattafa) | Unisex | $28.49 | 373 | 3.93 | 51% | not carried (KmG has Khamrah Waha) | |
-| Yara, original pink (Lattafa) | Women | **$23.50** (Fall Sale, limited) | 321 | 3.38 | 56% | — (KmG sells Yara Elixir) | If the sale ends, rebuy at ≤ $40, or swap in a local Rayhaan |
-| Rayhaan Aquatica | Men / unisex | **Local TT$300** | 300 | 3.16 | 58% | not carried | FF stocks it. Fresh, good for heat |
-| Rayhaan Elixir | Unisex | **Local TT$300** | 300 | 3.16 | 58% | not carried | **FF sold out in all sizes** |
-| Supremacy Collector's Edition (Afnan) | Men | $54.99 ($44.99 with EXTRA10 ⚠️) | 650 | 6.84 | **A+: 35%** (44% with code) | not carried | Only Smell Bess carries it locally. **Tier A+** |
-| Asad Bourbon (Lattafa) | Men | ~$27.95 ⚠️ | 368 | 3.87 | 51% | not carried | Added 5 Oct for the Date Night set. Replaces Asad |
+One bottle of each stays **sealed for sale**; the other is decanted. When the sealed bottle sells, the scent goes decants-only. Prices are after EXTRA20 + EXTRA10; landed costs are from one consolidated shipment of 12 Jomashop bottles.
 
-**From the owner's shelf (no purchase):** Amber Oud Gold Edition (~50ml, A+, in the Fete Pack) and Marwa (~80ml, Tier A).
+| Scent | For | Jomashop (each) | Landed TT$ | TT$/ml | 10ml margin | Sealed price | KmG (5 / 10 / full) | Signal |
+|---|---|---|---|---|---|---|---|---|
+| Liquid Brun (French Avenue), **original 100ml EDP** | Men | $29.99 | 355 | 3.73 | 53% | TT$475 ⚠️ | 60 / 100 / 550 (LTD Extrait 150ml) | KmG popular. The LTD Extrait is on the research list until the owner has smelled it |
+| Hawas Ice (Rasasi) | Men | $24.98 | 295 | 3.11 | 59% | TT$550 | 60 / 100 / 599.99 | **KmG 10ml 4 left, 5ml 8 left, 100ml sold out** |
+| Hawas Diva (Rasasi) | Women | $35.00 | 414 | 4.36 | 46% | TT$450 (~TT$36 profit) | 60 / 100 / 450 | Strong seller. Sealed sale is cash recovery only |
+| Angham (Lattafa) | Unisex (leans fem.) | $33.00 | 390 | 4.11 | 49% | TT$525 ⚠️ | 60 / 100 | KmG new |
+| **Pride Nebras (Lattafa)** | Unisex | $24.99 | 296 | 3.11 | 59% | TT$425 ⚠️ | not carried | Added 5 Oct (cart). Promoted from the approved list |
+| **Musamam Black Intense (Lattafa)** | Men | $44.99 | 532 | 5.60 | **A+: 45%** | TT$699 ⚠️ | not carried | Added 5 Oct (cart). **FF sold out in all sizes. Tier A+** |
+| Rayhaan Aquatica | Men / unisex | **Local TT$300** | 300 | 3.16 | 58% | TT$475 | not carried | FF stocks it. Fresh, good for heat. Removed from the Jomashop cart (lands ~TT$360 imported) |
+
+**From the owner's shelf (no purchase, decants only):** Amber Oud Gold Edition (~50ml, A+, in the Fete Pack) and Marwa (~80ml, Tier A).
+
+**Next order (approved, moved out of the launch buy on 5 Oct):**
+
+| Scent | For | Jomashop | Landed TT$ | 10ml margin | Notes |
+|---|---|---|---|---|---|
+| Khamrah (Lattafa) | Unisex | $26.99 | 358 | 52% | Global best seller |
+| Khamrah Qahwa (Lattafa) | Unisex | $28.49 | 373 | 51% | KmG has Khamrah Waha, not Qahwa |
+| Yara, original pink (Lattafa) | Women | $23.50 (Fall Sale, limited) | 321 | 56% | Rebuy at ≤ $40 |
+| **Supremacy Collector's Edition (Afnan)** | Men | $54.99 ($44.99 with EXTRA10 ⚠️) | 650 | A+: 35% (44% with code) | **Must-have.** Only Smell Bess would carry it locally |
+| Asad Bourbon (Lattafa) | Men | ~$27.95 ⚠️ | 368 | 51% | Replaces original Asad |
+
+**Dropped (owner, 5 Oct):** Rayhaan Elixir. (FF sold out in all sizes, so it can come back later from the local dealer.)
 
 ### Approved (wave 2 and later)
 
@@ -56,7 +66,6 @@
 | CDN Untold (Armaf) | Unisex | $37.25 (105ml) | 465 | 44% | not carried | SA sells the full bottle at TT$595 |
 | Marwa (Arabiyat Prestige) | Men | $34.99 | 441 | 44% | 60 / 100 / 490 | Both competitors carry it. FF 15ml sold out |
 | Teriaq Intense (Lattafa) | Unisex | $34.99 | 441 | 44% | 60 / 100 / 399 | KmG popular |
-| Nebras (Lattafa) | Unisex | ~$35 ⚠️ | 441 | 44% | not carried | |
 | Amber Oud Gold Edition (Al Haramain) | Unisex | $43.99 (120ml) | 550 | **A+: 52%** | not carried | Over $40, so A+. 120ml helps the margin |
 | Vintage Radio (Lattafa) | Unisex | ~$39.99 ⚠️ | 493 | 38% | 60 / 100 / 499 | Right at the $40 line. Tier A if ≤ $40, A+ above |
 | 9PM Night Out (Afnan) | Men | $49.99 | 597 | **A+: 39%** | 60 / 100 / 525 | Replaces 9PM. **Tier A+** (owner's call: price it a bit higher) |
@@ -65,7 +74,7 @@
 | Game of Spades Full House (Jo Milano) | Unisex | $61.85 (with FRAG20) | 721 | 52% at niche 100 / 180 / 250 | 100 / 180 (sold out) | Niche tier. Matches KmG's price |
 | Game of Spades Wildcard (Jo Milano) | **Unisex** ✅ (Fragrantica: floral woody musk, 2022) | ~$60–75 ⚠️ | ~754 | ~50% at niche | not carried | Niche tier |
 
-**23 approved (10 in the launch buy). KmG doesn't carry 10 of them.**
+**23 approved: 7 in the launch buy, 5 in the next order, the rest wave 2 and later.**
 
 ---
 
@@ -76,8 +85,8 @@
 **How we do it:**
 1. **Decant from testers.** Example: Versace Bright Crystal tester $42.67 vs $60.73 boxed. Price at D1 (75 / 125 / 185) or D2 (120 / 200 / 275).
 2. **Decant from the girlfriend's own bottles** at replacement cost, the same way as the owner's designer shelf.
-3. **Full bottles by pre-order only, especially for Christmas gifts.** Partners buying for women, with a 50% deposit, so no stock risk.
-4. **Keep 2–3 women's Arabians** (Hawas Diva, Angham, later Yara Elixir and Atheeri) for budget buyers.
+3. **Full bottles: Hawas Diva is in stock sealed at launch; everything else is pre-order, especially for Christmas gifts.** Partners buying for women, with a 50% deposit, so no stock risk.
+4. **Keep 2–3 women's Arabians** (Hawas Diva, Angham, Pride Nebras at launch; later Yara, Yara Elixir and Atheeri) for budget buyers.
 
 | Women's designer (girlfriend to shortlist) | Jomashop | Landed TT$ | 10ml margin | KmG 5 / 10 |
 |---|---|---|---|---|
@@ -138,7 +147,7 @@ From KmG's store data (99 products, 5 Oct 2026) and FF's storefront.
 | Lattafa Give Me Gourmand (Vanilla Freak / Choco Overdose / Whipped Pleasure) | KmG popular, 3 variants |
 | Paris Corner Khair Confection | KmG popular |
 | **Rayhaan Obsidian / Terra / Tropical Vibe** | KmG popular (Obsidian, Terra full bottles TT$499). FF's Tropical Vibe 100ml sold out. **TT$300 locally, so smell these first** |
-| Lattafa Musamam Black Intense / White Intense | FF: Black sold out in all sizes |
+| Lattafa Musamam White Intense | FF stocks it. (Black Intense is in the launch buy) |
 | Maison Asrar III Thriller | KmG popular |
 | Lattafa Badee Al Oud For Glory | KmG popular |
 | Lattafa Petra, Habik (women) | KmG popular |

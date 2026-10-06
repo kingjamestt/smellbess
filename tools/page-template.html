@@ -1,52 +1,55 @@
 <title>Smell Bess Business Plan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..700&display=swap">
 <style>
-/* Layout: a working plan. Amber "juice" accent from the bottles, cool glass-grey neutrals, sticky contents rail on wide screens, tables scroll in their own frames. */
+/* Smell Bess brand (business-plan.md §5a): Night, Pearl, Ash, one Amber accent; Archivo only. Light mode for reading and printing, dark mode in the brand's own colours. */
 :root {
-  --bg: #f6f7f8;
-  --surface: #ffffff;
-  --fg: #1b2026;
-  --muted: #5b6470;
-  --line: #dde1e6;
-  --accent: #a3540f;       /* amber, like Khamrah juice */
-  --accent-soft: #fbeedd;
+  --bg: #EAE8E5;
+  --surface: #F6F5F3;
+  --fg: #121014;
+  --muted: #5E5962;
+  --line: #CFCBD1;
+  --accent: #8A5A0E;       /* Amber, darkened for text contrast on Pearl */
+  --accent-fill: #E3A23B;  /* brand Amber, for rules and fills */
+  --accent-soft: #F3E6CF;
   --ok: #23704a;
-  --ok-soft: #e1f2e8;
-  --warn: #9a6300;
-  --warn-soft: #fdf1d6;
-  --row: #f1f3f5;
-  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --ok-soft: #DCEFE3;
+  --warn: #8A5A0E;
+  --warn-soft: #F3E6CF;
+  --row: #E1DEDA;
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-body: "Archivo", system-ui, sans-serif;
   --font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #12151a; --surface: #191d23; --fg: #e6e9ed; --muted: #9aa3ae; --line: #2c323b;
-    --accent: #f0a65a; --accent-soft: #3a2a19; --ok: #6fcf9a; --ok-soft: #173326;
-    --warn: #f2c25c; --warn-soft: #3a3016; --row: #1e232a; color-scheme: dark;
+    --bg: #121014; --surface: #1E1B21; --fg: #EAE8E5; --muted: #A39EA7; --line: #2E2A31;
+    --accent: #E3A23B; --accent-fill: #E3A23B; --accent-soft: #2E2416; --ok: #6fcf9a; --ok-soft: #173326;
+    --warn: #E3A23B; --warn-soft: #2E2416; --row: #19161C; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #12151a; --surface: #191d23; --fg: #e6e9ed; --muted: #9aa3ae; --line: #2c323b;
-  --accent: #f0a65a; --accent-soft: #3a2a19; --ok: #6fcf9a; --ok-soft: #173326;
-  --warn: #f2c25c; --warn-soft: #3a3016; --row: #1e232a; color-scheme: dark;
+  --bg: #121014; --surface: #1E1B21; --fg: #EAE8E5; --muted: #A39EA7; --line: #2E2A31;
+  --accent: #E3A23B; --accent-fill: #E3A23B; --accent-soft: #2E2416; --ok: #6fcf9a; --ok-soft: #173326;
+  --warn: #E3A23B; --warn-soft: #2E2416; --row: #19161C; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15.5px; line-height: 1.6; }
 .page { max-width: 1240px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 64px; }
 
 header.top { display: grid; gap: 18px; padding-block: 12px 28px; border-bottom: 1px solid var(--line); }
-.eyebrow { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
-h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(30px, 5vw, 48px); line-height: 1.05; margin: 0; text-wrap: balance; }
+.wordmark { font-stretch: 125%; font-weight: 300; font-size: 22px; letter-spacing: .22em; text-transform: uppercase; display: grid; gap: 10px; justify-items: start; }
+.wordmark::after { content: ""; width: 56px; height: 2px; background: var(--accent-fill); }
+.eyebrow { font-stretch: 125%; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 4.4vw, 44px); line-height: 1.1; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
 .lede { color: var(--muted); max-width: 64ch; margin: 0; }
 
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
 .stat { background: var(--surface); padding: 14px 16px; display: grid; gap: 2px; align-content: start; }
-.stat b { font-family: var(--font-display); font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--fg); }
+.stat b { font-family: var(--font-display); font-size: 22px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--fg); }
 .stat span { font-size: 13px; color: var(--muted); line-height: 1.35; }
-.stat .k { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+.stat .k { font-stretch: 125%; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
 
 .layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; margin-top: 28px; }
 nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); align-self: start; font-size: 13.5px; }
@@ -64,8 +67,8 @@ main { min-width: 0; }
 .intro { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 4px 20px 8px; margin-bottom: 8px; }
 section { padding-block: 26px 10px; border-bottom: 1px solid var(--line); scroll-margin-top: 16px; }
 section:last-child { border-bottom: 0; }
-h2 { font-family: var(--font-display); font-size: 27px; line-height: 1.15; margin: 0 0 14px; text-wrap: balance; scroll-margin-top: 16px; }
-h3 { font-family: var(--font-display); font-size: 19px; margin: 26px 0 10px; text-wrap: balance; scroll-margin-top: 16px; }
+h2 { font-family: var(--font-display); font-weight: 500; font-size: 27px; line-height: 1.15; margin: 0 0 14px; text-wrap: balance; scroll-margin-top: 16px; }
+h3 { font-family: var(--font-display); font-weight: 600; font-size: 19px; margin: 26px 0 10px; text-wrap: balance; scroll-margin-top: 16px; }
 p, li { max-width: 74ch; }
 p { margin: 10px 0; }
 ul, ol { padding-left: 1.3em; }
@@ -99,15 +102,16 @@ footer { margin-top: 32px; color: var(--muted); font-size: 13px; }
 
 <div class="page">
   <header class="top">
-    <div class="eyebrow">Smell Bess · smellbess.com · Trinidad &amp; Tobago · Oct 2026</div>
-    <h1>Smell Bess: only the bess scents, from a US$500 card to a real side business</h1>
-    <p class="lede">A numbers-first plan for selling Arabian, clone and designer fragrances in T&amp;T. Start with decants, take full-bottle pre-orders, and grow on curation and service rather than price.</p>
+    <div class="wordmark">Smell Bess</div>
+    <div class="eyebrow">Business plan · Trinidad &amp; Tobago · Oct 2026</div>
+    <h1>Only the best. Sealed bottles to break in, decants to earn.</h1>
+    <p class="lede">A numbers-first plan for selling fine fragrance in T&amp;T. Launch with one sealed bottle per scent for fast cash before Christmas, decant the second bottle, and grow on curation and service rather than price.</p>
     <div class="stats">
-      <div class="stat"><span class="k">Launch model</span><b>Decants first</b><span>Full bottles by pre-order with a 50% deposit</span></div>
-      <div class="stat"><span class="k">On the card</span><b>US$624</b><span>card for 9 bottles + supplies, due 5 Dec; 2 Rayhaans bought locally</span></div>
+      <div class="stat"><span class="k">Launch model</span><b>Bottles + decants</b><span>2 of each scent: 1 sealed for sale, 1 decanted. Then decants only</span></div>
+      <div class="stat"><span class="k">On the card</span><b>US$495</b><span>12 Jomashop bottles + supplies, due 5 Dec. Websource fees and 2 Rayhaans paid at pickup</span></div>
       <div class="stat"><span class="k">Market price</span><b>TT$60 / 100</b><span>Arabian 5ml / 10ml list price, plus 5×10ml for TT$350</span></div>
-      <div class="stat"><span class="k">Decant margin</span><b>48–61%</b><span>on 5ml and 10ml at list price, vs ~20% selling the same bottle whole</span></div>
-      <div class="stat"><span class="k">Year 1, expected</span><b>TT$60k</b><span>revenue · ~TT$20k profit before tax</span></div>
+      <div class="stat"><span class="k">Margins</span><b>41–60%</b><span>on decants, vs 0–42% on the 7 sealed bottles (TT$3,599 back fast)</span></div>
+      <div class="stat"><span class="k">Year 1, expected</span><b>TT$64k</b><span>revenue · ~TT$21k profit before tax</span></div>
     </div>
   </header>
 

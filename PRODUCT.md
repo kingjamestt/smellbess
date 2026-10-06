@@ -8,15 +8,17 @@ web
 
 ## Users
 - **Primary (launch):** young Trini men, roughly 20–35, arriving on their phones from Instagram, TikTok and WhatsApp links, usually on mobile data. Many are new to niche and Arabian fragrances and are price-aware. They trust people more than websites. Their job: find a scent that actually performs, see the price, and order fast.
-- **Secondary:** women (Hawas Diva, Yara, Angham) and gift buyers. The women's designer side grows later; launch is Arabian decants only.
+- **Secondary:** women (Hawas Diva, Yara, Angham) and gift buyers. The women's designer side grows later; launch is Arabian only (decants plus one sealed bottle per scent).
 - **Admins (2):** the owner (men's side) and their girlfriend (women's side). They run stock, orders and decanting from their phones between other tasks. The owner also works full-time in IT.
 
 ## Product Purpose
-Smell Bess sells fragrance decants (5ml, 10ml, 15ml) and full bottles by pre-order (50% deposit) in Trinidad & Tobago. "Bess" is Trini slang for the best. The site should let a first-time visitor from Instagram trust the shop and send an order within two minutes. Success means orders that arrive on WhatsApp complete and correctly priced, and admin work that fits in a phone session.
+Smell Bess sells fine fragrance in Trinidad & Tobago: hand-poured decants (5ml, 10ml, 15ml), one sealed full bottle per launch scent while it lasts, and other full bottles by pre-order (50% deposit). "Bess" is Trini slang for the best. The site should let a first-time visitor from Instagram trust the shop and send an order within two minutes. Success means orders that arrive on WhatsApp complete and correctly priced, and admin work that fits in a phone session.
 
 ## Positioning
-- **Curation: only fire.** The shelf holds only strong performers, compliment-getters and proven best sellers. Nothing is filler, and played-out scents get retired (e.g. original Asad, original 9PM).
+- **Curation: only the best.** The shelf holds only strong performers, compliment-getters and proven best sellers. Nothing is filler, and played-out scents get retired (e.g. original Asad, original 9PM).
 - **Smoothest ordering in T&T.** Clear tier prices, the best single offer applied and explained automatically, delivery cost shown before ordering, and a pre-filled WhatsApp hand-off. Competitors run on Take App, a basic Ecwid store and a weak WooCommerce site.
+
+- **Try it, then own it.** The same scent as a decant and as a sealed bottle, side by side.
 
 Prices match the market (KmG Scents, Fragrance Fanatics); the site never competes by undercutting.
 
@@ -29,7 +31,8 @@ Prices match the market (KmG Scents, Fragrance Fanatics); the site never compete
 
 ## Capabilities and Constraints
 - **Prices come from the tier, never per product (TTD):** A 60/100/150, A+ 70/120/175, D1 75/125/185, D2 120/200/275 (5/10/15ml). No 2ml and no 30ml.
-- **Stock is real millilitres.** A size sells only while enough juice is left. Low-stock badges are honest ("2 left in 10ml"). With 15ml atomizers off, a 15ml ships as 10ml + 5ml.
+- **Stock is real millilitres.** A size sells only while enough juice is left. The site never says how much is left (owner, 6 Oct 2026): a size is available or sold out, nothing in between. With 15ml atomizers off, a 15ml ships as 10ml + 5ml.
+- **Sealed bottles are single items** with their own price (match the local market, e.g. Hawas Ice TT$550). When the sealed bottle sells, the scent becomes decants-only; out-of-stock bottles fall back to pre-order with a 50% deposit. Sealed bottles don't count toward any offer.
 - **Exactly one offer per order**, chosen automatically and explained in plain words:
   - 5×10ml bundle at TT$350 per full group of 5 (Tier A only).
   - Curated sets at 3×5ml TT$150 or 3×10ml TT$280. The Fete Pack is TT$175 / TT$300.
@@ -41,9 +44,10 @@ Prices match the market (KmG Scents, Fragrance Fanatics); the site never compete
 
 ## Brand Commitments
 - **Name:** Smell Bess. **Handle:** `smellbess` (not yet claimed).
-- **Voice:** confident, a bit playful, local and honest ("this one is a fete weapon", "don't blind buy this"). The brand is the owners as enthusiasts telling people what works in TT heat.
+- **Look (locked 5 Oct 2026, `business-plan.md` §5a):** quiet luxury. Night #121014, Smoke #1E1B21, Pearl #EAE8E5, Ash #8F8A93, and Amber #E3A23B as the only accent. Archivo only: Expanded Light caps tracked 0.22em for display and the SMELL BESS wordmark (BESS in Amber, Amber rule, "FINE FRAGRANCE"), normal width for body. Monogram S|B and a thin-ring seal. Tagline: "Only the best." Brand pack: https://claude.ai/artifact/UofYt4NYKqVGszxNcpQXcw
+- **Voice:** assured, discerning, warm and honest, quietly local. Calm statements, no exclamation marks or hype; at most one Trini touch per piece. The brand is the owners as enthusiasts telling people what works in TT heat ("don't blind buy this" still fits).
 - **Scent cards:** "smells like" DNA, our ratings (TT heat, longevity, projection, compliments) and a his/her take. All drafted copy is marked DRAFT until the owners rewrite it.
-- **Must not look like** a generic luxury template, cream-and-serif "luxury", or AI-generated design.
+- **Must not look like** a generic luxury template, gold foil, cream-and-serif "luxury", or AI-generated design.
 - **Legal line** for the footer and product pages: "Decanted by hand from authentic bottles. Smell Bess is not affiliated with any brand. 'Smells like' comparisons are our opinion."
 - Never imply a clone *is* the original. Never use designer trademarks as logos.
 - **Brand product images** are downloaded and self-hosted, never hotlinked, and only show the product. They are never used as our branding. They get replaced by our own bottle shoots on a consistent backdrop.
