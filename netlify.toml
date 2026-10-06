@@ -1,0 +1,6 @@
+# Netlify builds the site in web/ (Next.js, Node 24 from web/.nvmrc).
+# Environment variables are set in the Netlify UI, never here: see web/.env.example.
+[build]
+  base = "web"
+  command = "npm run build"
+  publish = ".next"

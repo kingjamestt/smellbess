@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   },
   description:
     "Only the bess scents: strong performers and proven compliment-getters, decanted by hand from authentic bottles. 5ml, 10ml and 15ml in TTD. Saturday pickup or delivery across T&T.",
+  // A design-preview deploy (demo data, look switcher) stays out of search engines.
+  ...(process.env.NEXT_PUBLIC_DESIGN_PREVIEW === "1" ? { robots: { index: false, follow: false } } : {}),
 };
 
 export const viewport: Viewport = {
