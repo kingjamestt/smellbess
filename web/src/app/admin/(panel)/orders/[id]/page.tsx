@@ -45,7 +45,7 @@ export default async function AdminOrder({ params }: Props) {
         ← Orders
       </Link>
       <div className="space-y-1">
-        <h1 className="text-3xl font-extrabold">
+        <h1 className="text-3xl font-medium">
           {order.number} · {formatTtd(order.totals.total)}
         </h1>
         <p className="text-muted">
@@ -136,7 +136,9 @@ export default async function AdminOrder({ params }: Props) {
                   ? `Free 5ml: ${l.productId ? l.label : "surprise (not picked)"}`
                   : l.kind === "set"
                     ? `${l.qty}× ${l.label} set 3×${l.size}ml (${l.items.map((x) => x.label).join(", ")})`
-                    : `${l.qty}× ${l.label} ${l.size}ml${l.shipsAsSplit ? " (as 10ml + 5ml)" : ""}`}
+                    : l.kind === "bottle"
+                      ? `${l.qty}× ${l.label} SEALED ${l.sizeMl}ml bottle (pack whole)`
+                      : `${l.qty}× ${l.label} ${l.size}ml${l.shipsAsSplit ? " (as 10ml + 5ml)" : ""}`}
               </span>
               <span>{l.kind === "free" ? "FREE" : formatTtd(l.unitPrice * l.qty)}</span>
             </li>

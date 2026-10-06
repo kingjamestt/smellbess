@@ -95,6 +95,9 @@ export async function saveBottleAction(_prev: FormState, fd: FormData): Promise<
       source: text(fd, "source"),
       isTester: fd.get("isTester") === "on" || undefined,
       openedAt: text(fd, "openedAt") || undefined,
+      sealed: fd.get("sealed") === "on" || undefined,
+      // Ticking "sold" keeps the original sale date if there was one.
+      soldAt: fd.get("sold") === "on" ? text(fd, "soldAt") || new Date().toISOString() : undefined,
     }),
     "/admin",
   );

@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import type { FormState } from "@/app/admin/actions";
+import { Spinner } from "@/components/spinner";
 
 /**
  * A form wired to a server action that returns FormState. Shows errors and a
@@ -32,6 +33,7 @@ export function ActionForm({
       <fieldset disabled={pending} className="contents">
         {children}
       </fieldset>
+      {pending && <Spinner size="sm" label="Saving" className="self-center text-ink" />}
       {state?.error && (
         <p role="alert" className="basis-full text-sm font-semibold text-danger">
           {state.error}

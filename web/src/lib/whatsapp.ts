@@ -11,6 +11,8 @@ export function orderMessage(order: Order, pickupDay = "Saturday"): string {
     if (line.kind === "single") {
       const split = line.shipsAsSplit ? " (ships as 10ml + 5ml)" : "";
       out.push(`• ${line.qty}× ${line.label} ${line.size}ml${split}: ${formatTtd(line.unitPrice * line.qty)}`);
+    } else if (line.kind === "bottle") {
+      out.push(`• ${line.qty}× ${line.label}, sealed ${line.sizeMl}ml bottle: ${formatTtd(line.unitPrice * line.qty)}`);
     } else if (line.kind === "set") {
       out.push(`• ${line.qty}× ${line.label} set 3×${line.size}ml: ${formatTtd(line.unitPrice * line.qty)}`);
       out.push(`   (${line.items.map((i) => i.label).join(", ")})`);

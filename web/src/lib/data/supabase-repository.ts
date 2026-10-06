@@ -22,6 +22,8 @@ interface BottleRow {
   source: string;
   is_tester: boolean;
   opened_at: string | null;
+  sealed: boolean;
+  sold_at: string | null;
 }
 
 interface OrderRow {
@@ -49,6 +51,8 @@ const toBottle = (r: BottleRow): Bottle => ({
   source: r.source,
   isTester: r.is_tester || undefined,
   openedAt: r.opened_at ?? undefined,
+  sealed: r.sealed || undefined,
+  soldAt: r.sold_at ?? undefined,
 });
 
 const toOrder = (r: OrderRow): Order => ({
@@ -110,6 +114,8 @@ export class SupabaseRepository implements Repository {
         source: b.source,
         is_tester: b.isTester ?? false,
         opened_at: b.openedAt ?? null,
+        sealed: b.sealed ?? false,
+        sold_at: b.soldAt ?? null,
         updated_at: new Date().toISOString(),
       }),
       "upsert bottle",

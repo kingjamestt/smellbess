@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
+import { Spinner } from "./spinner";
 import { placeOrderAction } from "@/app/checkout/actions";
 import type { CatalogSnapshot } from "@/lib/catalog";
 import { cartActions, readUtm, useCart, useHydrated } from "@/lib/cart-store";
@@ -34,12 +35,12 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
   const total = quote.itemsTotal + (dq.ok ? dq.fee : 0);
 
   if (!hydrated) return <p className="text-muted">Loading…</p>;
-  if (placed) return <p className="text-lg font-semibold">Order placed. Taking you to your confirmation…</p>;
+  if (placed) return <p className="text-lg font-medium">Order placed. Taking you to your confirmation…</p>;
   if (cart.lines.length === 0) {
     return (
       <p>
         Your cart is empty.{" "}
-        <Link href="/scents" className="font-semibold text-hibiscus underline">
+        <Link href="/scents" className="font-medium text-hibiscus underline">
           Browse scents
         </Link>
       </p>
@@ -69,10 +70,10 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
   }
 
   return (
-    <form onSubmit={submit} className="grid gap-6 md:grid-cols-[1fr_20rem]" noValidate>
+    <form onSubmit={submit} className="grid gap-8 md:grid-cols-[minmax(0,1fr)_22rem] md:gap-12" noValidate>
       <div className="space-y-6">
         <section aria-labelledby="you" className="space-y-3">
-          <h2 id="you" className="text-xl font-bold">
+          <h2 id="you" className="text-lg font-medium">
             You
           </h2>
           <label className="block">
@@ -101,7 +102,7 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
         </section>
 
         <section aria-labelledby="delivery" className="space-y-3">
-          <h2 id="delivery" className="text-xl font-bold">
+          <h2 id="delivery" className="text-lg font-medium">
             Pickup or delivery
           </h2>
           <DeliveryPicker
@@ -113,7 +114,7 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
         </section>
 
         <section aria-labelledby="pay" className="space-y-2">
-          <h2 id="pay" className="text-xl font-bold">
+          <h2 id="pay" className="text-lg font-medium">
             Payment
           </h2>
           <div className="flex flex-wrap gap-2" role="radiogroup" aria-labelledby="pay">
@@ -133,7 +134,7 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
           <p className="text-sm text-muted">
             {delivery.method === "pickup"
               ? "Pay by transfer before pickup, or bring cash."
-              : "Delivery orders are paid by bank transfer before we send them out. We send our bank details on WhatsApp. No card payments yet."}
+              : "Delivery orders are paid by bank transfer before we send them out. We send our bank details on WhatsApp. No rounded-md border border-line payments yet."}
           </p>
         </section>
 
@@ -151,8 +152,8 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
 
       <aside className="space-y-4">
         <OfferBox quote={quote} />
-        <section aria-labelledby="summary" className="card space-y-2 p-4">
-          <h2 id="summary" className="text-lg font-bold">
+        <section aria-labelledby="summary" className="space-y-2 rounded-md border border-line p-5">
+          <h2 id="summary" className="text-lg font-medium">
             Order summary
           </h2>
           <ul className="space-y-1 text-sm">
@@ -165,7 +166,7 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
               </li>
             ))}
             {quote.freeSample && (
-              <li className="flex justify-between gap-2 text-sea">
+              <li className="flex justify-between gap-2 text-hibiscus">
                 <span>Free 5ml surprise (we pick)</span>
                 <span>FREE</span>
               </li>
@@ -177,7 +178,7 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
               <dd>{formatTtd(quote.subtotal)}</dd>
             </div>
             {quote.discount > 0 && (
-              <div className="flex justify-between text-sea">
+              <div className="flex justify-between text-hibiscus">
                 <dt>Offer</dt>
                 <dd>−{formatTtd(quote.discount)}</dd>
               </div>
@@ -186,7 +187,7 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
               <dt>Delivery</dt>
               <dd>{dq.ok ? (dq.fee === 0 ? "Free" : formatTtd(dq.fee)) : "Choose above"}</dd>
             </div>
-            <div className="flex justify-between border-t border-line pt-2 text-xl font-extrabold">
+            <div className="flex justify-between border-t border-line pt-2 text-xl font-medium">
               <dt>Total</dt>
               <dd>{formatTtd(total)}</dd>
             </div>
@@ -195,7 +196,7 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
         </section>
 
         {[...blockers, ...errors].length > 0 && (
-          <ul className="space-y-1 text-sm font-semibold text-danger" role="alert">
+          <ul className="space-y-1 text-sm font-medium text-danger" role="alert">
             {[...new Set([...blockers, ...errors])].map((b) => (
               <li key={b}>{b}</li>
             ))}
@@ -211,7 +212,14 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
           className="btn-primary w-full"
           disabled={placing || blockers.length > 0 || !dq.ok}
         >
-          {placing ? "Placing order…" : `Place order · ${formatTtd(total)}`}
+          {placing ? (
+            <>
+              <Spinner size="sm" arc="current" label="Placing your order" />
+              Placing order
+            </>
+          ) : (
+            `Place order · ${formatTtd(total)}`
+          )}
         </button>
         {!dq.ok && <p className="text-sm text-muted">{dq.error}</p>}
         <p className="text-xs text-muted">

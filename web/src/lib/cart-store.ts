@@ -74,12 +74,18 @@ export function cartCount(cart: Cart): number {
   return cart.lines.reduce((n, l) => n + l.qty, 0);
 }
 
-const sameLine = (a: CartLine, b: CartLine) =>
-  a.kind === b.kind &&
-  a.size === b.size &&
-  (a.kind === "single"
-    ? a.productId === (b as typeof a).productId
-    : a.setId === (b as typeof a).setId);
+function sameLine(a: CartLine, b: CartLine): boolean {
+  if (a.kind === "bottle") return b.kind === "bottle" && a.productId === b.productId;
+  if (b.kind === "bottle") return false;
+  return (
+    a.kind === b.kind &&
+    a.size === b.size &&
+    (a.kind === "single" ? a.productId === (b as typeof a).productId : a.setId === (b as typeof a).setId)
+  );
+}
+
+/** Sealed bottles go one at a time: there's usually just one of each. */
+const maxQty = (l: CartLine) => (l.kind === "bottle" ? 1 : 20);
 
 export const cartActions = {
   add(line: CartLine) {
@@ -87,12 +93,18 @@ export const cartActions = {
     const existing = state.lines.findIndex((l) => sameLine(l, line));
     const lines =
       existing >= 0
-        ? state.lines.map((l, i) => (i === existing ? { ...l, qty: Math.min(20, l.qty + line.qty) } : l))
+        ? state.lines.map((l, i) => (i === existing ? { ...l, qty: Math.min(maxQty(l), l.qty + line.qty) } : l))
         : [...state.lines, line];
     emit({ ...state, lines });
   },
   addSingle(productId: string, size: SizeMl, qty = 1) {
     cartActions.add({ kind: "single", productId, size, qty });
+  },
+  /** A sealed bottle. One per scent in the cart: there's usually only one in stock. */
+  addBottle(productId: string) {
+    load();
+    if (state.lines.some((l) => l.kind === "bottle" && l.productId === productId)) return;
+    cartActions.add({ kind: "bottle", productId, qty: 1 });
   },
   addSet(setId: string, size: 5 | 10) {
     cartActions.add({ kind: "set", setId, size, qty: 1 });
@@ -102,7 +114,7 @@ export const cartActions = {
     const lines =
       qty <= 0
         ? state.lines.filter((_, i) => i !== index)
-        : state.lines.map((l, i) => (i === index ? { ...l, qty: Math.min(20, qty) } : l));
+        : state.lines.map((l, i) => (i === index ? { ...l, qty: Math.min(maxQty(l), qty) } : l));
     emit({ ...state, lines });
   },
   clear() {

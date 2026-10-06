@@ -14,7 +14,7 @@ export default async function AdminLogin({ searchParams }: Props) {
   const { error } = await searchParams;
   return (
     <div className="mx-auto max-w-sm space-y-4 py-8">
-      <h1 className="text-3xl font-extrabold">Admin login</h1>
+      <h1 className="text-3xl font-medium">Admin login</h1>
       <p className="text-muted">We email you a one-time link. No password.</p>
       {error === "link" && (
         <p role="alert" className="rounded-xl bg-sun/40 p-3 text-sm">

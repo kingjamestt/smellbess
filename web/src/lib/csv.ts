@@ -36,7 +36,9 @@ function itemsText(order: Order): string {
         ? `Free 5ml: ${l.productId ? l.label : "surprise (not picked)"}`
         : l.kind === "set"
           ? `${l.qty}x ${l.label} set 3x${l.size}ml`
-          : `${l.qty}x ${l.label} ${l.size}ml`,
+          : l.kind === "bottle"
+            ? `${l.qty}x ${l.label} sealed ${l.sizeMl}ml bottle`
+            : `${l.qty}x ${l.label} ${l.size}ml`,
     )
     .join("; ");
 }

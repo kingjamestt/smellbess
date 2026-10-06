@@ -1,6 +1,7 @@
 import type { DeliveryConfig } from "./delivery";
 import {
   availableMl,
+  bottleKey,
   reservedMl,
   sizeAvailability,
   stockState,
@@ -13,6 +14,8 @@ import type { Bottle, CuratedSet, Order, Product, Settings } from "./types";
 export interface ProductView extends Product {
   stock: StockState;
   sizes: SizeAvailability[];
+  /** The sealed full bottle, while one is for sale. Null = decants only. */
+  sealed: { sizeMl: number; price: number; left: number } | null;
 }
 
 export interface SetView extends CuratedSet {
@@ -42,11 +45,14 @@ export function buildCatalogSnapshot(input: {
   const products = input.products
     .filter((p) => p.status !== "retired")
     .map((p) => {
-      const ml = p.status === "live" ? (available[p.id] ?? 0) : 0;
+      const live = p.status === "live";
+      const ml = live ? (available[p.id] ?? 0) : 0;
+      const sealedLeft = live && p.bottle ? (available[bottleKey(p.id)] ?? 0) : 0;
       return {
         ...p,
-        stock: stockState(p, input.bottles, ml),
+        stock: stockState(p, input.bottles, ml, sealedLeft),
         sizes: sizeAvailability(ml, input.settings),
+        sealed: p.bottle && sealedLeft > 0 ? { ...p.bottle, left: sealedLeft } : null,
       };
     });
   const sets = input.sets.map((s) => ({

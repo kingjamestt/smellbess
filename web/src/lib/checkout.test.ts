@@ -161,7 +161,7 @@ describe("buildOrder", () => {
   it("checks stock including set contents", () => {
     const r = buildOrder({ ...base, cart: { lines: [{ kind: "set", setId: "fete", size: 5, qty: 1 }] } }, ctx);
     expect(r.ok).toBe(false);
-    if (!r.ok) expect(r.errors[0]).toMatch(/Not enough House a3/);
+    if (!r.ok) expect(r.errors[0]).toBe("We don't have enough House a3 for this order. Try a smaller size or fewer.");
   });
 
   it("checks stock across lines of the same scent", () => {
@@ -202,5 +202,30 @@ describe("buildOrder", () => {
   it("keeps UTM source for the order", () => {
     const r = buildOrder({ ...base, utm: { source: "instagram", medium: "bio" } }, ctx);
     expect(r.ok && r.order.utm).toEqual({ source: "instagram", medium: "bio", campaign: undefined });
+  });
+});
+
+describe("sealed bottles at checkout", () => {
+  const bottled = products.map((p) => (p.id === "a1" ? { ...p, bottle: { sizeMl: 100, price: 550 } } : p));
+  const bctx: CheckoutContext = { ...ctx, products: bottled, available: { ...ctx.available, "bottle:a1": 1 } };
+  const input: CheckoutInput = { ...base, cart: { lines: [{ kind: "bottle", productId: "a1", qty: 1 }] } };
+
+  it("accepts a bottle line from the browser", () => {
+    expect(sanitizeCheckoutInput(input)?.cart.lines).toEqual([{ kind: "bottle", productId: "a1", qty: 1 }]);
+  });
+
+  it("builds a bottle order line at the bottle price", () => {
+    const r = buildOrder(input, bctx);
+    if (!r.ok) throw new Error(r.errors.join("; "));
+    expect(r.order.lines).toEqual([
+      { kind: "bottle", productId: "a1", label: "House a1", sizeMl: 100, qty: 1, unitPrice: 550 },
+    ]);
+    expect(r.order.totals.total).toBe(550);
+  });
+
+  it("says plainly when the sealed bottle has just sold", () => {
+    const r = buildOrder(input, { ...bctx, available: { ...ctx.available, "bottle:a1": 0 } });
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.errors).toContain("The sealed bottle of House a1 has just sold. Its decants are still available.");
   });
 });

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   availableMl,
   cartDemandMl,
+  planDeductions,
   reservedMl,
   sizeAvailability,
   stockShortfalls,
@@ -85,12 +86,12 @@ describe("reservedMl", () => {
 });
 
 describe("sizeAvailability", () => {
-  it("shows honest low-stock badges", () => {
+  it("knows when stock is low, but never words it for the shop (owner: no stock counts on the site)", () => {
     const sizes = sizeAvailability(22, settings);
-    expect(sizes.map((s) => [s.size, s.unitsLeft, s.badge])).toEqual([
-      [5, 4, null],
-      [10, 2, "2 left in 10ml"],
-      [15, 1, "1 left in 15ml"],
+    expect(sizes.map((s) => [s.size, s.unitsLeft, s.lowStock, s.badge])).toEqual([
+      [5, 4, false, null],
+      [10, 2, true, null],
+      [15, 1, true, null],
     ]);
   });
 
@@ -113,7 +114,8 @@ describe("sizeAvailability", () => {
   });
 
   it("respects the low-stock threshold setting", () => {
-    expect(sizeAvailability(50, { ...settings, lowStockThreshold: 5 })[1].badge).toBe("5 left in 10ml");
+    expect(sizeAvailability(50, { ...settings, lowStockThreshold: 5 })[1].lowStock).toBe(true);
+    expect(sizeAvailability(50, { ...settings, lowStockThreshold: 4 })[1].lowStock).toBe(false);
   });
 });
 
@@ -155,5 +157,52 @@ describe("cart demand and shortfalls", () => {
     ]);
     expect(stockShortfalls({ a: 10 }, {})).toHaveLength(1);
     expect(stockShortfalls({ a: 10 }, { a: 10 })).toEqual([]);
+  });
+});
+
+describe("sealed bottles", () => {
+  const sealed = (id: string, productId: string, soldAt?: string): Bottle => ({
+    ...bottle(id, productId, 100),
+    sealed: true,
+    soldAt,
+  });
+
+  it("count as units under bottle:<id>, never as decant ml", () => {
+    const bottles = [bottle("HI-01", "hi", 22), sealed("HI-S1", "hi"), sealed("HD-S1", "hd", "2026-11-07")];
+    expect(availableMl(bottles)).toEqual({ hi: 22, "bottle:hi": 1 });
+  });
+
+  it("are reserved by open orders like ml are", () => {
+    const line = { kind: "bottle" as const, productId: "hi", label: "Hawas Ice", sizeMl: 100, qty: 1, unitPrice: 550 };
+    const reserved = reservedMl([order("new", [line])]);
+    expect(reserved).toEqual({ "bottle:hi": 1 });
+    expect(availableMl([sealed("HI-S1", "hi")], reserved)).toEqual({ "bottle:hi": 0 });
+  });
+
+  it("are in a cart's demand and caught by the shortfall check", () => {
+    const demand = cartDemandMl({ lines: [{ kind: "bottle", productId: "hi", qty: 1 }] }, {});
+    expect(demand).toEqual({ "bottle:hi": 1 });
+    expect(stockShortfalls(demand, { "bottle:hi": 0 })).toEqual([
+      { productId: "bottle:hi", neededMl: 1, availableMl: 0 },
+    ]);
+  });
+
+  it("are marked sold when the order is packed, and never decanted from", () => {
+    const bottles = [bottle("HI-01", "hi", 22), sealed("HI-S1", "hi")];
+    expect(planDeductions({ hi: 20, "bottle:hi": 1 }, bottles)).toEqual({
+      deductions: [
+        { bottleId: "HI-01", ml: 20 },
+        { bottleId: "HI-S1", ml: 0, sell: true },
+      ],
+      missing: [],
+    });
+    expect(planDeductions({ hi: 30 }, bottles).missing).toEqual([{ productId: "hi", ml: 8 }]);
+    expect(planDeductions({ "bottle:hi": 1 }, [sealed("HI-S1", "hi", "2026-11-07")]).missing).toEqual([
+      { productId: "hi", ml: 1, sealed: true },
+    ]);
+  });
+
+  it("keep a scent in stock when only the sealed bottle is left", () => {
+    expect(stockState({ id: "hi", status: "live" }, [], 0, 1)).toBe("in_stock");
   });
 });

@@ -11,6 +11,8 @@ import type { Cart, CartLine, OfferId, SizeMl, Tier } from "./types";
  *   an A+ scent, so it's TT$175 / TT$300).
  * - Free 5ml: 3+ single decants of 10ml or bigger, any tier. It's a surprise:
  *   the customer doesn't choose, we pack a Tier A 5ml (often a slow seller).
+ * - Sealed full bottles are priced on their own and never part of an offer:
+ *   they don't count toward the bundle or the free 5ml.
  * - No vouchers, no free delivery.
  */
 export const OFFER_RULES = {
@@ -23,7 +25,7 @@ export const OFFER_RULES = {
 const PRIORITY: OfferId[] = ["bundle_5x10", "set", "free_5ml"];
 
 export interface OfferContext {
-  products: Record<string, { tier: Tier; label: string }>;
+  products: Record<string, { tier: Tier; label: string; bottle?: { sizeMl: number; price: number } }>;
   sets: Record<
     string,
     { name: string; productIds: readonly string[]; price?: Record<5 | 10, number> }
@@ -95,7 +97,23 @@ export function priceCart(cart: Cart, ctx: OfferContext): Quote {
       problems.push(`Line ${index + 1} has an invalid quantity.`);
       return;
     }
-    if (line.kind === "single") {
+    if (line.kind === "bottle") {
+      const product = ctx.products[line.productId];
+      if (!product?.bottle) {
+        problems.push(`We couldn't find one of the bottles in your cart.`);
+        return;
+      }
+      const unit = product.bottle.price;
+      lines.push({
+        index,
+        line,
+        label: `${product.label}, sealed ${product.bottle.sizeMl}ml bottle`,
+        regularUnit: unit,
+        regularTotal: unit * line.qty,
+        unit,
+        total: unit * line.qty,
+      });
+    } else if (line.kind === "single") {
       const product = ctx.products[line.productId];
       if (!product) {
         problems.push(`We couldn't find one of the scents in your cart.`);

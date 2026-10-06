@@ -19,29 +19,29 @@ export default async function DeliveryPage() {
   return (
     <div className="container-page max-w-3xl space-y-8 py-6">
       <div>
-        <h1 className="text-3xl font-extrabold sm:text-4xl">Delivery &amp; pickup</h1>
+        <h1 className="wordmark text-[1.75rem] leading-tight lg:text-[2.25rem]">Delivery &amp; pickup</h1>
         <p className="mt-1 text-muted">
           You always see the delivery price before you order. No surprise fees.
         </p>
       </div>
 
       <section aria-labelledby="pickup" className="space-y-3">
-        <h2 id="pickup" className="text-2xl font-bold">
+        <h2 id="pickup" className="text-xl font-medium">
           {delivery.pickupDay} pickup: free
         </h2>
         <p>Pick your stop at checkout. Pay by transfer before, or bring cash.</p>
         <ol className="space-y-2">
           {delivery.pickupPoints.map((p) => (
-            <li key={p.id} className="card flex items-center justify-between p-3">
-              <span className="font-semibold">{p.name}</span>
-              <span className="rounded-full bg-sun px-3 py-1 text-sm font-bold text-on-sun">{p.time}</span>
+            <li key={p.id} className="rounded-md border border-line flex items-center justify-between p-3">
+              <span className="font-medium">{p.name}</span>
+              <span className="label-caps rounded-md border border-line px-3 py-2 tabular-nums">{p.time}</span>
             </li>
           ))}
         </ol>
       </section>
 
       <section aria-labelledby="courier" className="space-y-3">
-        <h2 id="courier" className="text-2xl font-bold">
+        <h2 id="courier" className="text-xl font-medium">
           ODeliver courier, anywhere in T&amp;T
         </h2>
         <p>
@@ -66,10 +66,10 @@ export default async function DeliveryPage() {
           <tbody>
             {ZONES.map((z) => (
               <tr key={z} className="border-b border-line align-top">
-                <th scope="row" className="py-2 pr-2 font-semibold">
+                <th scope="row" className="py-2 pr-2 font-medium">
                   {ZONE_LABELS[z]}
                 </th>
-                <td className="py-2 pr-2 font-semibold">{formatTtd(ZONE_FEES[z])}</td>
+                <td className="py-2 pr-2 font-medium">{formatTtd(ZONE_FEES[z])}</td>
                 <td className="py-2 text-muted">
                   {delivery.areas
                     .filter((a) => a.zone === z)

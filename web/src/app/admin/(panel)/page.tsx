@@ -30,7 +30,7 @@ export default async function AdminHome() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-extrabold">Today</h1>
+      <h1 className="text-3xl font-medium">Today</h1>
       {getRepository().kind === "json" && (
         <p className="rounded-xl bg-sun/40 p-3 text-sm">Local test data (JSON file). Production uses Supabase.</p>
       )}
@@ -38,7 +38,7 @@ export default async function AdminHome() {
         {tiles.map((t) => (
           <li key={t.label}>
             <Link href={t.href} className="card block p-4 hover:bg-mist">
-              <span className="font-display text-3xl font-extrabold">{t.value}</span>
+              <span className="font-display text-3xl font-medium">{t.value}</span>
               <span className="block text-sm text-muted">{t.label}</span>
             </Link>
           </li>

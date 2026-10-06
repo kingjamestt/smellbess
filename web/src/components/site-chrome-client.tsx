@@ -11,11 +11,11 @@ export function CartLink() {
   return (
     <Link
       href="/cart"
-      className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-inverse px-3 text-on-inverse"
+      className="inline-flex min-h-10 items-center gap-2 rounded-md border border-line px-3 text-ink hover:border-ink"
       aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
     >
       Cart
-      <span className="inline-flex min-w-5 justify-center rounded-full bg-sun px-1 text-xs font-bold text-on-sun">
+      <span className="inline-flex min-w-5 justify-center rounded-sm bg-hibiscus px-1 text-[0.7rem] font-semibold tracking-normal text-on-hibiscus">
         {count}
       </span>
     </Link>

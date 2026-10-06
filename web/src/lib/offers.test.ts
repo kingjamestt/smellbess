@@ -311,3 +311,30 @@ describe("bad input", () => {
     expect(priceCart(cart([single("A1", 10, 1.5)]), ctx).problems).toHaveLength(1);
   });
 });
+
+describe("sealed bottles", () => {
+  const withBottle: OfferContext = {
+    ...ctx,
+    products: { ...ctx.products, A1: { ...ctx.products.A1, bottle: { sizeMl: 100, price: 550 } } },
+  };
+  const bottle: CartLine = { kind: "bottle", productId: "A1", qty: 1 };
+
+  it("are priced on their own, at the product's bottle price", () => {
+    const q = priceCart(cart([bottle]), withBottle);
+    expect(q.subtotal).toBe(550);
+    expect(q.lines[0].label).toBe("Alpha, sealed 100ml bottle");
+    expect(q.offer).toBeNull();
+  });
+
+  it("don't count toward the free 5ml, and sit alongside a decant offer untouched", () => {
+    const q = priceCart(cart([bottle, single("A2", 10), single("A3", 10)]), withBottle);
+    expect(q.offer).toBeNull();
+    const withThree = priceCart(cart([bottle, single("A2", 10), single("A3", 10), single("A4", 10)]), withBottle);
+    expect(withThree.offer?.id).toBe("free_5ml");
+    expect(withThree.itemsTotal).toBe(550 + 300);
+  });
+
+  it("are a problem when the scent has no bottle price", () => {
+    expect(priceCart(cart([{ kind: "bottle", productId: "A2", qty: 1 }]), withBottle).problems).toHaveLength(1);
+  });
+});

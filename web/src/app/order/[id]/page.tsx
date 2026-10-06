@@ -27,26 +27,26 @@ export default async function OrderPage({ params }: Props) {
   return (
     <div className="container-page max-w-2xl space-y-6 py-6">
       <div className="space-y-1">
-        <p className="text-sm font-semibold uppercase tracking-wide text-sea">Order saved</p>
-        <h1 className="text-3xl font-extrabold">Thanks, {firstName}! Your order is {order.number}.</h1>
+        <p className="text-sm font-medium uppercase tracking-wide text-hibiscus">Order saved</p>
+        <h1 className="text-[1.75rem] font-medium leading-tight lg:text-[2.25rem]">Thank you, {firstName}. Your order is {order.number}.</h1>
         <p className="text-muted">Two quick steps and it&apos;s locked in.</p>
       </div>
 
-      <section aria-labelledby="step1" className="card space-y-3 p-4">
-        <h2 id="step1" className="text-xl font-bold">
+      <section aria-labelledby="step1" className="space-y-3 rounded-md border border-line p-5">
+        <h2 id="step1" className="text-lg font-medium">
           1. Send us your order on WhatsApp
         </h2>
         <p className="text-sm text-muted">
           It opens WhatsApp with your order already typed. Just hit send. We confirm stock and reply fast.
         </p>
-        <a href={waHref} className="btn-whatsapp w-full" rel="noopener">
+        <a href={waHref} className="btn-primary w-full" rel="noopener">
           Send order on WhatsApp
         </a>
         <p className="text-xs text-muted">WhatsApp us at {SITE.whatsappDisplay}.</p>
       </section>
 
-      <section aria-labelledby="step2" className="card space-y-3 p-4">
-        <h2 id="step2" className="text-xl font-bold">
+      <section aria-labelledby="step2" className="space-y-3 rounded-md border border-line p-5">
+        <h2 id="step2" className="text-lg font-medium">
           2. {order.payment === "bank_transfer" ? "Pay by bank transfer" : "Pay cash at pickup"}
         </h2>
         {order.payment === "bank_transfer" ? (
@@ -63,8 +63,8 @@ export default async function OrderPage({ params }: Props) {
         )}
       </section>
 
-      <section aria-labelledby="getting" className="card space-y-2 p-4">
-        <h2 id="getting" className="text-xl font-bold">
+      <section aria-labelledby="getting" className="space-y-2 rounded-md border border-line p-5">
+        <h2 id="getting" className="text-lg font-medium">
           {pickup ? "Your pickup" : "Delivery"}
         </h2>
         {pickup ? (
@@ -79,8 +79,8 @@ export default async function OrderPage({ params }: Props) {
         )}
       </section>
 
-      <section aria-labelledby="items" className="card space-y-2 p-4">
-        <h2 id="items" className="text-xl font-bold">
+      <section aria-labelledby="items" className="space-y-2 rounded-md border border-line p-5">
+        <h2 id="items" className="text-lg font-medium">
           What you ordered
         </h2>
         <ul className="space-y-1 text-sm">
@@ -91,20 +91,22 @@ export default async function OrderPage({ params }: Props) {
                   ? `Free 5ml surprise${l.productId ? `: ${l.label}` : " (we pick)"}`
                   : l.kind === "set"
                     ? `${l.qty}× ${l.label} set (3×${l.size}ml)`
-                    : `${l.qty}× ${l.label} ${l.size}ml${l.shipsAsSplit ? " (ships as 10ml + 5ml)" : ""}`}
+                    : l.kind === "bottle"
+                      ? `${l.qty}× ${l.label}, sealed ${l.sizeMl}ml bottle`
+                      : `${l.qty}× ${l.label} ${l.size}ml${l.shipsAsSplit ? " (ships as 10ml + 5ml)" : ""}`}
               </span>
               <span>{l.kind === "free" ? "FREE" : formatTtd(l.unitPrice * l.qty)}</span>
             </li>
           ))}
         </ul>
-        {order.offer && <p className="text-sm text-sea">{order.offer.explanation}</p>}
+        {order.offer && <p className="text-sm text-hibiscus">{order.offer.explanation}</p>}
         <dl className="space-y-1 border-t border-line pt-2 text-sm">
           <div className="flex justify-between">
             <dt>Subtotal</dt>
             <dd>{formatTtd(order.totals.subtotal)}</dd>
           </div>
           {order.totals.discount > 0 && (
-            <div className="flex justify-between text-sea">
+            <div className="flex justify-between text-hibiscus">
               <dt>Offer</dt>
               <dd>−{formatTtd(order.totals.discount)}</dd>
             </div>
@@ -113,7 +115,7 @@ export default async function OrderPage({ params }: Props) {
             <dt>Delivery</dt>
             <dd>{order.totals.delivery === 0 ? "Free" : formatTtd(order.totals.delivery)}</dd>
           </div>
-          <div className="flex justify-between text-lg font-extrabold">
+          <div className="flex justify-between text-lg font-medium">
             <dt>Total</dt>
             <dd>{formatTtd(order.totals.total)}</dd>
           </div>

@@ -4,12 +4,13 @@ import { AREAS, DEFAULT_SETTINGS, DEMO_BOTTLES, OWNER_SHELF_BOTTLES, PRODUCTS, S
 const byId = new Map(PRODUCTS.map((p) => [p.id, p]));
 
 describe("seed catalog (from scent-lists.md)", () => {
-  it("has the 23 approved Bess List scents with unique ids", () => {
-    expect(PRODUCTS).toHaveLength(23);
-    expect(byId.size).toBe(23);
+  it("has the 23 approved Bess List scents, plus the dropped Elixir as retired", () => {
+    expect(PRODUCTS).toHaveLength(24);
+    expect(byId.size).toBe(24);
+    expect(PRODUCTS.filter((p) => p.status === "retired").map((p) => p.id)).toEqual(["rayhaan-elixir"]);
   });
 
-  it("launches with the 11 bought scents plus 2 from the owner's shelf", () => {
+  it("launches with the 7 bought scents plus 2 from the owner's shelf", () => {
     const live = PRODUCTS.filter((p) => p.status === "live").map((p) => p.name);
     expect(live.sort()).toEqual(
       [
@@ -17,31 +18,44 @@ describe("seed catalog (from scent-lists.md)", () => {
         "Hawas Ice",
         "Hawas Diva",
         "Angham",
-        "Khamrah",
-        "Khamrah Qahwa",
-        "Yara",
+        "Pride Nebras",
+        "Musamam Black Intense",
         "Aquatica",
-        "Elixir",
-        "Supremacy Collector's Edition",
-        "Asad Bourbon",
         "Amber Oud Gold Edition",
         "Marwa",
       ].sort(),
     );
   });
 
-  it("Arabians only at launch: 2 A+ (Supremacy, Amber Oud Gold), the other 11 Tier A", () => {
+  it("Arabians only at launch: 2 A+ (Musamam, Amber Oud Gold), the other 7 Tier A", () => {
     const live = PRODUCTS.filter((p) => p.status === "live");
     expect(live.filter((p) => p.tier === "A+").map((p) => p.id).sort()).toEqual([
       "amber-oud-gold",
-      "supremacy-collectors-edition",
+      "musamam-black-intense",
     ]);
-    expect(live.filter((p) => p.tier === "A")).toHaveLength(11);
-    expect(live.every((p) => p.tier === "A" || p.tier === "A+")).toBe(true);
+    expect(live.filter((p) => p.tier === "A")).toHaveLength(7);
   });
 
-  it("the rest of the Bess List is coming soon", () => {
-    expect(PRODUCTS.filter((p) => p.status === "coming_soon")).toHaveLength(10);
+  it("the 7 bought scents have a sealed bottle at the market price; shelf scents are decants only", () => {
+    const prices = Object.fromEntries(PRODUCTS.filter((p) => p.bottle).map((p) => [p.id, p.bottle!.price]));
+    expect(prices).toEqual({
+      "liquid-brun": 475,
+      "hawas-ice": 550,
+      "hawas-diva": 450,
+      angham: 525,
+      "pride-nebras": 425,
+      "musamam-black-intense": 699,
+      "rayhaan-aquatica": 475,
+    });
+    expect(byId.get("amber-oud-gold")?.bottle).toBeUndefined();
+    expect(byId.get("marwa")?.bottle).toBeUndefined();
+  });
+
+  it("the next order (Khamrah, Qahwa, Yara, Supremacy, Asad Bourbon) is coming soon", () => {
+    for (const id of ["khamrah", "khamrah-qahwa", "yara", "supremacy-collectors-edition", "asad-bourbon"]) {
+      expect(byId.get(id)?.status).toBe("coming_soon");
+    }
+    expect(PRODUCTS.filter((p) => p.status === "coming_soon")).toHaveLength(14);
   });
 
   it("every product is marked DRAFT until rewritten; the set copy is the owner's", () => {
@@ -68,8 +82,9 @@ describe("seed catalog (from scent-lists.md)", () => {
     }
   });
 
-  it("the Fete Pack is TT$175 / TT$300 because it has an A+ scent", () => {
+  it("the Fete Pack and Date Night are TT$175 / TT$300 because each has an A+ scent", () => {
     expect(SETS.find((s) => s.id === "fete-pack")?.price).toEqual({ 5: 175, 10: 300 });
+    expect(SETS.find((s) => s.id === "date-night")?.price).toEqual({ 5: 175, 10: 300 });
   });
 
   it("the owner's shelf bottles are real: Amber Oud Gold 50ml, Marwa 80ml", () => {
@@ -79,8 +94,11 @@ describe("seed catalog (from scent-lists.md)", () => {
     ]);
   });
 
-  it("demo bottles only belong to live scents", () => {
-    for (const b of DEMO_BOTTLES) expect(byId.get(b.productId)?.status).toBe("live");
+  it("demo bottles only belong to live scents, and sealed ones to scents with a bottle price", () => {
+    for (const b of DEMO_BOTTLES) {
+      expect(byId.get(b.productId)?.status).toBe("live");
+      if (b.sealed) expect(byId.get(b.productId)?.bottle).toBeDefined();
+    }
   });
 
   it("areas are unique, and Tobago is on the list", () => {

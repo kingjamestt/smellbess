@@ -1,6 +1,8 @@
 import { ActionForm } from "@/components/admin/action-form";
 import { loadAdminData } from "@/lib/admin-ops";
 import { productLabel } from "@/lib/checkout";
+import { formatTtd } from "@/lib/pricing";
+import { bottleKey } from "@/lib/stock";
 import { deleteBottleAction, saveBottleAction, saveStockSettingsAction } from "../../actions";
 
 export const metadata = { title: "Stock" };
@@ -11,7 +13,7 @@ export default async function AdminStock() {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl font-extrabold">Stock</h1>
+      <h1 className="text-3xl font-medium">Stock</h1>
 
       <section className="card space-y-3 p-4">
         <h2 className="text-lg font-bold">Atomizers and alerts</h2>
@@ -45,8 +47,10 @@ export default async function AdminStock() {
       <section className="space-y-3">
         <h2 className="text-lg font-bold">Bottles</h2>
         <p className="text-sm text-muted">
-          &quot;Free&quot; is what the shop can still sell: ml in the bottles minus what open orders have claimed.
-          Decanting an order takes its ml out automatically; edit here after spills, tests or a new bottle.
+          &quot;Free&quot; is what the shop can still sell: ml in the open bottles minus what open orders have
+          claimed. Decanting an order takes its ml out automatically; edit here after spills, tests or a new bottle.
+          A <strong className="text-ink">sealed</strong> bottle is sold whole and never decanted. Packing its order
+          marks it sold; tick &quot;Sold&quot; yourself for a sale made off the site.
         </p>
         {live.map((p) => {
           const own = bottles.filter((b) => b.productId === p.id);
@@ -57,7 +61,15 @@ export default async function AdminStock() {
                 <span>
                   {productLabel(p)} <span className="text-sm font-normal text-muted">({p.tier})</span>
                 </span>
-                <span className="text-sm">{available[p.id] ?? 0}ml free</span>
+                <span className="text-sm">
+                  {available[p.id] ?? 0}ml free
+                  {p.bottle && (
+                    <span className="text-muted">
+                      {" "}
+                      · {available[bottleKey(p.id)] ?? 0} sealed for sale at {formatTtd(p.bottle.price)}
+                    </span>
+                  )}
+                </span>
               </p>
               {own.length === 0 && <p className="text-sm text-muted">No bottle yet: shows as &quot;arriving soon&quot;.</p>}
               {own.map((b) => (
@@ -69,21 +81,34 @@ export default async function AdminStock() {
                     <input type="hidden" name="source" value={b.source} />
                     <input type="hidden" name="openedAt" value={b.openedAt ?? ""} />
                     {b.isTester && <input type="hidden" name="isTester" value="on" />}
+                    {b.sealed && <input type="hidden" name="sealed" value="on" />}
+                    <input type="hidden" name="soldAt" value={b.soldAt ?? ""} />
                     <span className="min-w-20 text-sm font-semibold">
                       {b.id} <span className="font-normal text-muted">/ {b.sizeMl}ml</span>
+                      {b.sealed && <span className="label-caps ml-2 text-hibiscus">Sealed</span>}
                     </span>
-                    <label>
-                      <span className="label">ml left</span>
-                      <input
-                        name="mlRemaining"
-                        type="number"
-                        step="0.5"
-                        min={0}
-                        max={b.sizeMl}
-                        defaultValue={b.mlRemaining}
-                        className="field w-24"
-                      />
-                    </label>
+                    {b.sealed ? (
+                      <>
+                        <input type="hidden" name="mlRemaining" value={b.mlRemaining} />
+                        <label className="flex min-h-11 items-center gap-2">
+                          <input type="checkbox" name="sold" defaultChecked={!!b.soldAt} className="h-5 w-5" />
+                          Sold{b.soldAt ? ` (${b.soldAt.slice(0, 10)})` : ""}
+                        </label>
+                      </>
+                    ) : (
+                      <label>
+                        <span className="label">ml left</span>
+                        <input
+                          name="mlRemaining"
+                          type="number"
+                          step="0.5"
+                          min={0}
+                          max={b.sizeMl}
+                          defaultValue={b.mlRemaining}
+                          className="field w-24"
+                        />
+                      </label>
+                    )}
                     <label>
                       <span className="label">Cost TT$</span>
                       <input name="costTtd" type="number" min={0} defaultValue={b.costTtd} className="field w-24" />
@@ -145,6 +170,10 @@ export default async function AdminStock() {
           </label>
           <label className="flex items-center gap-2 self-end pb-2">
             <input type="checkbox" name="isTester" className="h-5 w-5" /> Tester bottle
+          </label>
+          <label className="flex items-center gap-2 sm:col-span-2">
+            <input type="checkbox" name="sealed" className="h-5 w-5" /> Keep sealed: sell it whole, never decant
+            (needs a sealed price on the scent)
           </label>
           <button type="submit" className="btn-primary sm:col-span-2">
             Add bottle

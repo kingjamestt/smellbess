@@ -69,7 +69,20 @@ export interface Product {
   draft: boolean;
   /** Hue (0–360) for the placeholder artwork until real photos exist. */
   hue: number;
+  /**
+   * Sealed full bottle, sold whole while one is in stock (business-plan.md
+   * §2.4a). Priced to the local market, not by tier. Without it, the scent is
+   * decants only.
+   */
+  bottle?: { sizeMl: number; price: number };
+  /** When it's best worn (our call, DRAFT). Drives the Daytime / Nighttime / Anytime and weather filters. */
+  wear?: { time: WearTime; weather: Weather };
+  /** Self-hosted product photo under /public, e.g. "/scents/hawas-ice.webp". Product only, never our branding. */
+  image?: string;
 }
+
+export type WearTime = "day" | "night" | "any";
+export type Weather = "warm" | "cold" | "any";
 
 export interface Bottle {
   /** Physical bottle ID written on the bottle, e.g. "LB-01". */
@@ -82,6 +95,12 @@ export interface Bottle {
   source: string;
   isTester?: boolean;
   openedAt?: string;
+  /**
+   * Kept sealed and sold whole, never decanted. Its ml don't count as decant
+   * stock. `soldAt` is set when the order it went in is packed.
+   */
+  sealed?: boolean;
+  soldAt?: string;
 }
 
 export interface CuratedSet {
@@ -136,7 +155,9 @@ export interface Settings {
 
 export type CartLine =
   | { kind: "single"; productId: string; size: SizeMl; qty: number }
-  | { kind: "set"; setId: string; size: 5 | 10; qty: number };
+  | { kind: "set"; setId: string; size: 5 | 10; qty: number }
+  /** A sealed full bottle. Never part of an offer. */
+  | { kind: "bottle"; productId: string; qty: number };
 
 export interface Cart {
   lines: CartLine[];
@@ -175,6 +196,15 @@ export type OrderLine =
       qty: number;
       unitPrice: number;
       items: { productId: string; label: string }[];
+    }
+  | {
+      /** A sealed full bottle, at the product's own price. */
+      kind: "bottle";
+      productId: string;
+      label: string;
+      sizeMl: number;
+      qty: number;
+      unitPrice: number;
     }
   | {
       /** The surprise free 5ml. We pick the scent when packing. */

@@ -12,7 +12,7 @@ import type { CartLine, DeliveryMethod, PaymentMethod, SizeMl } from "@/lib/type
 
 type Row = { key: number; ref: string; size: SizeMl; qty: number };
 
-/** Admin order entry. Rows are "p:<productId>" or "s:<setId>". The server re-prices everything. */
+/** Admin order entry. Rows are "p:<productId>", "s:<setId>" or "b:<productId>" (sealed bottle). The server re-prices everything. */
 export function AdminOrderForm({ catalog }: { catalog: CatalogSnapshot }) {
   const router = useRouter();
   const live = catalog.products.filter((p) => p.status === "live");
@@ -29,10 +29,12 @@ export function AdminOrderForm({ catalog }: { catalog: CatalogSnapshot }) {
 
   const lines: CartLine[] = rows
     .filter((r) => r.ref)
-    .map((r) =>
+    .map((r): CartLine =>
       r.ref.startsWith("s:")
         ? { kind: "set", setId: r.ref.slice(2), size: r.size === 5 ? 5 : 10, qty: r.qty }
-        : { kind: "single", productId: r.ref.slice(2), size: r.size, qty: r.qty },
+        : r.ref.startsWith("b:")
+          ? { kind: "bottle", productId: r.ref.slice(2), qty: 1 }
+          : { kind: "single", productId: r.ref.slice(2), size: r.size, qty: r.qty },
     );
   const { quote, blockers } = useQuote(catalog, { lines });
   const delivery = { method, pickupPointId: pickupPointId || undefined, areaId: areaId || undefined };
@@ -58,6 +60,7 @@ export function AdminOrderForm({ catalog }: { catalog: CatalogSnapshot }) {
         <legend className="px-1 font-bold">What they want</legend>
         {rows.map((r) => {
           const isSet = r.ref.startsWith("s:");
+          const isBottle = r.ref.startsWith("b:");
           return (
             <div key={r.key} className="grid grid-cols-[1fr_auto_auto_auto] items-end gap-2">
               <label>
@@ -71,6 +74,17 @@ export function AdminOrderForm({ catalog }: { catalog: CatalogSnapshot }) {
                       </option>
                     ))}
                   </optgroup>
+                  {live.some((p) => p.sealed) && (
+                    <optgroup label="Sealed bottles">
+                      {live
+                        .filter((p) => p.sealed)
+                        .map((p) => (
+                          <option key={p.id} value={`b:${p.id}`}>
+                            {productLabel(p)}, sealed ({formatTtd(p.sealed!.price)})
+                          </option>
+                        ))}
+                    </optgroup>
+                  )}
                   <optgroup label="Sets">
                     {catalog.sets.map((s) => (
                       <option key={s.id} value={`s:${s.id}`}>
@@ -84,12 +98,13 @@ export function AdminOrderForm({ catalog }: { catalog: CatalogSnapshot }) {
                 <span className="label">Size</span>
                 <select
                   className="field"
+                  disabled={isBottle}
                   value={r.size}
                   onChange={(e) => update(r.key, { size: Number(e.target.value) as SizeMl })}
                 >
                   <option value={5}>{isSet ? "3×5ml" : "5ml"}</option>
                   <option value={10}>{isSet ? "3×10ml" : "10ml"}</option>
-                  {!isSet && <option value={15}>15ml</option>}
+                  {!isSet && <option value={15}>{isBottle ? "Whole bottle" : "15ml"}</option>}
                 </select>
               </label>
               <label>
@@ -184,7 +199,7 @@ export function AdminOrderForm({ catalog }: { catalog: CatalogSnapshot }) {
         {quote.freeSample && <p className="font-semibold text-hibiscus">+ free 5ml surprise (pick it on the order page)</p>}
         <p>Items: {formatTtd(quote.itemsTotal)}</p>
         <p>Delivery: {dq.ok ? formatTtd(dq.fee) : "choose above"}</p>
-        <p className="text-lg font-extrabold">Total: {formatTtd(quote.itemsTotal + (dq.ok ? dq.fee : 0))}</p>
+        <p className="text-lg font-medium">Total: {formatTtd(quote.itemsTotal + (dq.ok ? dq.fee : 0))}</p>
       </section>
 
       {[...blockers, ...errors].length > 0 && (

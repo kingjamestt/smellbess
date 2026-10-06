@@ -160,7 +160,12 @@ export class JsonFileRepository implements Repository {
       order.status = to;
       for (const d of deductions) {
         const bottle = s.bottles.find((b) => b.id === d.bottleId);
-        if (bottle) bottle.mlRemaining = Math.max(0, bottle.mlRemaining - d.ml);
+        if (!bottle) continue;
+        if (d.sell) {
+          if (bottle.sealed && !bottle.soldAt) bottle.soldAt = new Date().toISOString();
+        } else {
+          bottle.mlRemaining = Math.max(0, bottle.mlRemaining - d.ml);
+        }
       }
       return true;
     });

@@ -26,7 +26,7 @@ export default async function AdminZones() {
   const { areas } = await loadAdminData();
   return (
     <div className="max-w-2xl space-y-4">
-      <h1 className="text-3xl font-extrabold">Delivery zones</h1>
+      <h1 className="text-3xl font-medium">Delivery zones</h1>
       <p className="text-muted">
         Which ODeliver zone each area is in. The list is our best guess: correct it against ODeliver&apos;s own area
         list.

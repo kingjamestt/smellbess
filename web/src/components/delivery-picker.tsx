@@ -25,7 +25,7 @@ export function DeliveryPicker({
 }) {
   const methods: { id: DeliveryMethod; price: string; blurb: string }[] = [
     { id: "pickup", price: "Free", blurb: `${pickupDay} pickup run. Cash or transfer.` },
-    { id: "odeliver", price: "TT$30–90", blurb: "Courier anywhere in T&T, priced by zone." },
+    { id: "odeliver", price: "TT$30-90", blurb: "Courier anywhere in T&T, priced by zone." },
   ];
 
   return (
@@ -35,8 +35,8 @@ export function DeliveryPicker({
         {methods.map((m) => (
           <label
             key={m.id}
-            className={`flex cursor-pointer items-start gap-3 rounded-xl border-2 p-3 ${
-              value.method === m.id ? "border-hibiscus bg-hibiscus/5" : "border-line"
+            className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 ${
+              value.method === m.id ? "border-ink bg-mist" : "border-line"
             }`}
           >
             <input
@@ -47,7 +47,7 @@ export function DeliveryPicker({
               onChange={() => onChange({ method: m.id })}
             />
             <span className="flex-1">
-              <span className="flex justify-between gap-2 font-semibold">
+              <span className="flex justify-between gap-2 font-medium">
                 {METHOD_LABELS[m.id]} <span>{m.price}</span>
               </span>
               <span className="block text-sm text-muted">{m.blurb}</span>
@@ -62,19 +62,19 @@ export function DeliveryPicker({
           {config.pickupPoints.map((p) => (
             <label
               key={p.id}
-              className={`flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 ${
-                value.pickupPointId === p.id ? "border-sea bg-sea/5" : "border-line"
+              className={`flex cursor-pointer items-center gap-3 rounded-md border p-3 ${
+                value.pickupPointId === p.id ? "border-ink bg-mist" : "border-line"
               }`}
             >
               <input
                 type="radio"
                 name="pickup"
-                className="h-5 w-5 accent-[var(--sea)]"
+                className="h-5 w-5 accent-[var(--hibiscus)]"
                 checked={value.pickupPointId === p.id}
                 onChange={() => onChange({ ...value, pickupPointId: p.id })}
               />
-              <span className="flex-1 font-semibold">{p.name}</span>
-              <span className="font-semibold">{p.time}</span>
+              <span className="flex-1 font-medium">{p.name}</span>
+              <span className="font-medium">{p.time}</span>
             </label>
           ))}
         </fieldset>

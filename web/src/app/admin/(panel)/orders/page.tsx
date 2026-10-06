@@ -28,7 +28,7 @@ export default async function AdminOrders({ searchParams }: Props) {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-2">
-        <h1 className="text-3xl font-extrabold">Orders</h1>
+        <h1 className="text-3xl font-medium">Orders</h1>
         <Link href="/admin/orders/new" className="btn-primary">
           + New order
         </Link>

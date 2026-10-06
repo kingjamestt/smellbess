@@ -1,217 +1,50 @@
 @import "tailwindcss";
 
 /*
- * Smell Bess look: bright, confident, a bit playful. Ink on white with a
- * hibiscus pink, a sunshine yellow and a sea teal. Not cream-and-serif.
+ * Smell Bess brand (business-plan.md §5a, locked 5 Oct 2026): quiet luxury.
+ * Night ground, Pearl text, Ash for quiet text, and Amber as the only accent.
+ * Archivo only: Expanded Light caps for the wordmark and display, normal
+ * width for reading. One dark theme for the whole site.
+ *
+ * Token names predate the rebrand (hibiscus, sun, sea) and now map to brand
+ * roles: hibiscus = Amber (the accent), sun and sea = Pearl fills.
  * All text/background pairs below meet WCAG AA.
  */
 :root {
-  color-scheme: light;
-  --ink: #17131f;
-  --muted: #5a5468;
-  --paper: #ffffff;
-  --mist: #f4f2f9;
-  --line: #e2deec;
-  --hibiscus: #c4145a; /* white text on this: 5.9:1 */
-  --hibiscus-dark: #9c0f47;
-  --sun: #ffc83d; /* ink text on this */
-  --sea: #0b6f6a; /* white text on this: 6.2:1 */
-  --danger: #b42318;
+  color-scheme: dark;
+  --ink: #eae8e5; /* Pearl: text */
+  --muted: #8f8a93; /* Ash: 5.5:1 on Night */
+  --paper: #121014; /* Night: the ground */
+  --mist: #1e1b21; /* Smoke: raised surfaces */
+  --line: #2e2a31;
+  --hibiscus: #e3a23b; /* Amber: main button, prices, the rule. Night text on it */
+  --hibiscus-dark: #f0b85e; /* hover goes lighter on a dark ground */
+  --sun: #eae8e5; /* Pearl fill: cart count, highlight tiles */
+  --sea: #eae8e5; /* Pearl fill: WhatsApp button, success text */
+  --danger: #ff8f7f;
+  /* On Pearl surfaces (photo cases, free-5ml card): Amber washes out there. */
+  --amber-deep: #b57a1d;
+  --pearl-ink-soft: #4a4650;
+  --pearl-ink-quiet: #5e5962;
 
-  /* Text on coloured surfaces, so each look can flip them. */
-  --on-hibiscus: #ffffff;
-  --on-sun: #17131f;
-  --on-sea: #ffffff;
-  --inverse: #17131f;
-  --on-inverse: #ffffff;
+  /* Text on coloured surfaces. */
+  --on-hibiscus: #121014;
+  --on-sun: #121014;
+  --on-sea: #121014;
+  --inverse: #eae8e5;
+  --on-inverse: #121014;
 
   /* Hero and placeholder art. */
-  --hero-bg: var(--ink);
-  --hero-fg: #ffffff;
-  --hero-accent: var(--sun);
-  --art-bg-l: 92%;
-  --art-glass-l: 98%;
-  --art-stroke: #17131f;
+  --hero-bg: #121014;
+  --hero-fg: #eae8e5;
+  --hero-accent: #e3a23b;
+  --art-bg-l: 16%;
+  --art-glass-l: 24%;
+  --art-stroke: #eae8e5;
 }
 
-/*
- * DESIGN PREVIEW: two looks the owners are choosing between. Switch with the
- * floating "Look" control, or ?look=carnival / ?look=luxe. Delete the losing
- * block (and the switcher) once one is picked.
- */
-
-/* 1. Carnival bold: colour blocks, thick outlines, hard shadows, stickers. */
-[data-look="carnival"] {
-  --paper: #fffaf0;
-  --mist: #fff1cc;
-  --line: #17131f;
-  --hero-bg: var(--hibiscus);
-  --hero-fg: #ffffff;
-  --hero-accent: var(--sun);
-}
-[data-look="carnival"] .card,
-[data-look="carnival"] .chip {
-  border: 2px solid var(--ink);
-  box-shadow: 3px 3px 0 var(--ink);
-}
-[data-look="carnival"] .btn {
-  border: 2px solid var(--ink);
-  box-shadow: 3px 3px 0 var(--ink);
-  transition: transform 120ms, box-shadow 120ms;
-}
-[data-look="carnival"] .btn:active {
-  transform: translate(3px, 3px);
-  box-shadow: none;
-}
-[data-look="carnival"] .hero {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent 0 22px,
-    rgb(255 255 255 / 0.07) 22px 44px
-  );
-  border-bottom: 3px solid var(--ink);
-}
-[data-look="carnival"] .hero .btn-primary {
-  background: var(--sun);
-  color: var(--on-sun);
-}
-[data-look="carnival"] .hero .btn:not(.btn-primary) {
-  background: var(--paper);
-  color: var(--ink);
-}
-[data-look="carnival"] .hero-sticker {
-  transform: rotate(-4deg);
-  border: 2px solid var(--ink);
-  box-shadow: 3px 3px 0 var(--ink);
-}
-[data-look="carnival"] header {
-  border-bottom: 3px solid var(--ink);
-}
-[data-look="carnival"] footer {
-  background: var(--sun);
-  border-top: 3px solid var(--ink);
-}
-
-/* 2. Night-out luxe: black and gold, lighter headings, quiet lines, glow. */
-[data-look="luxe"] {
-  color-scheme: dark;
-  --ink: #f3ead8;
-  --muted: #b3a892;
-  --paper: #0d0c0a;
-  --mist: #1a1814;
-  --line: #2f2b24;
-  --hibiscus: #d9b46c; /* gold accent; dark text on it */
-  --hibiscus-dark: #c29d55;
-  --sun: #e9d3a0;
-  --sea: #8cc9b7;
-  --danger: #ff9a8a;
-  --on-hibiscus: #14110c;
-  --on-sun: #14110c;
-  --on-sea: #0d0c0a;
-  --inverse: #d9b46c;
-  --on-inverse: #14110c;
-  --hero-bg: #050504;
-  --hero-fg: #f3ead8;
-  --hero-accent: #d9b46c;
-  --art-bg-l: 14%;
-  --art-glass-l: 22%;
-  --art-stroke: #d9b46c;
-}
-[data-look="luxe"] h1,
-[data-look="luxe"] h2,
-[data-look="luxe"] .font-display {
-  font-weight: 600;
-  letter-spacing: -0.03em;
-}
-[data-look="luxe"] .hero {
-  background-image: radial-gradient(60% 80% at 85% 10%, rgb(217 180 108 / 0.22), transparent 70%);
+.hero {
   border-bottom: 1px solid var(--line);
-}
-[data-look="luxe"] .hero-sticker {
-  background: transparent;
-  color: var(--hibiscus);
-  border: 1px solid var(--hibiscus);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-}
-[data-look="luxe"] .card {
-  background: linear-gradient(180deg, #16140f, #100f0c);
-}
-[data-look="luxe"] .btn {
-  letter-spacing: 0.04em;
-}
-[data-look="luxe"] .btn-primary {
-  background: linear-gradient(180deg, #e7c682, #c99d4f);
-}
-
-/*
- * 3. Forest (the owners' pick): Northern Range green, bone and amber.
- * Light or dark follows the customer's phone. Soft cards, no hard shadows.
- */
-[data-look="forest"] {
-  --ink: #10261b;
-  --muted: #4a5d52;
-  --paper: #f4f4ee;
-  --mist: #e8ebe1;
-  --line: #d3d9cc;
-  --hibiscus: #1a5c3e; /* deep green: buttons, links, the big deal tile */
-  --hibiscus-dark: #12452e;
-  --sun: #f2a93b; /* amber: stickers, the surprise tile */
-  --sea: #1a5c3e;
-  --danger: #b42318;
-  --on-hibiscus: #f4f4ee;
-  --on-sun: #10261b;
-  --on-sea: #f4f4ee;
-  --inverse: #10261b;
-  --on-inverse: #f4f4ee;
-  --hero-bg: #123d2b;
-  --hero-fg: #f4f4ee;
-  --hero-accent: #f2a93b;
-  --art-bg-l: 90%;
-  --art-glass-l: 97%;
-  --art-stroke: #10261b;
-}
-@media (prefers-color-scheme: dark) {
-  [data-look="forest"] {
-    color-scheme: dark;
-    --ink: #e9ece4;
-    --muted: #a1b1a7;
-    --paper: #0c1712;
-    --mist: #13221a;
-    --line: #253a2e;
-    --hibiscus: #5cb487; /* lighter green, dark text on it */
-    --hibiscus-dark: #4a9d73;
-    --sun: #f2a93b;
-    --sea: #5cb487;
-    --danger: #ff9a8a;
-    --on-hibiscus: #0c1712;
-    --on-sun: #10170f;
-    --on-sea: #0c1712;
-    --inverse: #e9ece4;
-    --on-inverse: #0c1712;
-    --hero-bg: #0f2a1d;
-    --hero-fg: #e9ece4;
-    --hero-accent: #f2a93b;
-    --art-bg-l: 15%;
-    --art-glass-l: 23%;
-    --art-stroke: #c9d6cd;
-  }
-}
-[data-look="forest"] .hero {
-  border-bottom: 1px solid var(--line);
-}
-/* Green on green would vanish: the hero's main button goes amber. */
-[data-look="forest"] .hero .btn-primary {
-  background: var(--sun);
-  color: var(--on-sun);
-}
-[data-look="forest"] .hero .btn-primary:hover {
-  filter: brightness(1.06);
-}
-[data-look="forest"] .card,
-[data-look="forest"] .deal {
-  box-shadow: 0 1px 2px rgb(16 38 27 / 0.06);
 }
 
 @theme inline {
@@ -225,13 +58,16 @@
   --color-sun: var(--sun);
   --color-sea: var(--sea);
   --color-danger: var(--danger);
+  --color-amber-deep: var(--amber-deep);
+  --color-pearl-ink-soft: var(--pearl-ink-soft);
+  --color-pearl-ink-quiet: var(--pearl-ink-quiet);
   --color-on-hibiscus: var(--on-hibiscus);
   --color-on-sun: var(--on-sun);
   --color-on-sea: var(--on-sea);
   --color-inverse: var(--inverse);
   --color-on-inverse: var(--on-inverse);
-  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 html {
@@ -245,12 +81,23 @@ body {
   overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-.font-display {
+/* :where() keeps this at zero specificity so utilities (label-caps,
+   wordmark) can still set their own tracking on a heading. */
+:where(h1, h2, h3, .font-display) {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+}
+
+/* The wordmark: Archivo Expanded Light caps, tracked wide. The negative
+   margin trims the trailing tracking so the word sits optically centred. */
+.wordmark {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  margin-right: -0.22em;
+  text-transform: uppercase;
+  line-height: 1;
 }
 
 :focus-visible {
@@ -269,20 +116,34 @@ h3,
   }
 }
 
+/* Archivo's width axis: wide = Expanded, for labels, prices and display. */
+@utility wide {
+  font-stretch: 125%;
+}
+/* Small caps labels: Expanded Medium, tracked 0.24em. */
+@utility label-caps {
+  font-stretch: 125%;
+  font-weight: 500;
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
 @utility btn {
-  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-base font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 text-sm font-medium uppercase tracking-[0.14em] transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  font-stretch: 125%;
 }
 @utility btn-primary {
   @apply btn bg-hibiscus text-on-hibiscus hover:bg-hibiscus-dark;
 }
 @utility btn-secondary {
-  @apply btn border-2 border-ink bg-paper text-ink hover:bg-mist;
+  @apply btn border border-ink bg-transparent text-ink hover:bg-mist;
 }
 @utility btn-whatsapp {
-  @apply btn bg-sea text-on-sea hover:brightness-110;
+  @apply btn bg-sea text-on-sea hover:bg-white;
 }
 @utility chip {
-  @apply inline-flex min-h-9 items-center rounded-full border border-line bg-paper px-3 text-sm font-medium text-ink;
+  @apply inline-flex min-h-9 items-center rounded-md border border-line bg-transparent px-3 text-sm text-ink;
 }
 @utility chip-on {
   @apply border-inverse bg-inverse text-on-inverse;
@@ -291,55 +152,34 @@ h3,
   @apply rounded-2xl border border-line bg-paper;
 }
 @utility field {
-  @apply block min-h-11 w-full rounded-xl border border-line bg-paper px-3 py-2 text-base text-ink;
+  @apply block min-h-11 w-full rounded-md border border-line bg-mist px-3 py-2 text-base text-ink placeholder:text-muted;
 }
 @utility label {
   @apply mb-1 block text-sm font-semibold text-ink;
 }
 @utility container-page {
-  @apply mx-auto w-full max-w-5xl px-4;
+  @apply mx-auto w-full max-w-[76rem] px-4 md:px-6 lg:px-8;
 }
 
-/* Free 5ml surprise: the card pops in and the gift gives a little shake. */
+/* Free 5ml card: rises in once, then its Amber rule draws across. */
 @keyframes surprise-pop {
-  0% { opacity: 0; transform: scale(0.85) translateY(8px); }
-  60% { opacity: 1; transform: scale(1.03) translateY(0); }
-  100% { transform: scale(1); }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
 }
-@keyframes gift-shake {
-  0%, 100% { transform: rotate(0); }
-  20% { transform: rotate(-12deg); }
-  40% { transform: rotate(10deg); }
-  60% { transform: rotate(-6deg); }
-  80% { transform: rotate(4deg); }
-}
-@keyframes sparkle {
-  0%, 100% { opacity: 0; transform: scale(0.4); }
-  50% { opacity: 1; transform: scale(1); }
+@keyframes rule-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 @utility animate-surprise-pop {
-  animation: surprise-pop 450ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  animation: surprise-pop 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-@utility animate-gift-shake {
-  animation: gift-shake 900ms ease-in-out 450ms 2;
-  transform-origin: 50% 80%;
-}
-@utility animate-sparkle {
-  animation: sparkle 1.6s ease-in-out infinite;
+@utility animate-rule-draw {
+  animation: rule-draw 900ms cubic-bezier(0.16, 1, 0.3, 1) 380ms both;
 }
 
 /* Homepage: coloured deal tiles (not .card, so a look can't repaint them). */
 .deal {
   border-radius: 1rem;
-}
-[data-look="carnival"] .deal {
-  border: 2px solid var(--ink);
-  box-shadow: 3px 3px 0 var(--ink);
-}
-[data-look="luxe"] .deal.bg-sun {
-  background: var(--mist);
-  color: var(--ink);
-  border: 1px solid var(--hibiscus);
 }
 
 /* Homepage hero: copy, then the fanned scents, rise in once on load. */
@@ -347,23 +187,78 @@ h3,
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: none; }
 }
-.hero-in {
-  animation: hero-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-.hero-in-late {
-  animation-delay: 150ms;
-}
-/* Fanned scent cards lift and straighten on hover. */
-.fan-card {
-  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.fan-card:hover,
-.fan-card:focus-visible {
-  transform: translateY(-10px) rotate(0deg);
-}
 
 /* The hero: colours come from the active look. */
 @utility hero {
   background-color: var(--hero-bg);
   color: var(--hero-fg);
+}
+
+/* Spinner (components/spinner.tsx): the arc sweeps round while its length
+   breathes; the monogram's Amber line pulses gently with it. */
+@keyframes spinner-sweep {
+  to { transform: rotate(360deg); }
+}
+@keyframes spinner-breathe {
+  0% { stroke-dasharray: 8 120; stroke-dashoffset: 0; }
+  50% { stroke-dasharray: 62 120; stroke-dashoffset: -14; }
+  100% { stroke-dasharray: 8 120; stroke-dashoffset: -106; }
+}
+@keyframes spinner-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.spinner-sweep {
+  transform-origin: 20px 20px;
+  animation: spinner-sweep 1.6s linear infinite;
+}
+.spinner-arc {
+  stroke-dasharray: 26 120; /* the resting quarter ring under reduced motion */
+  transform: rotate(-90deg);
+  transform-origin: 20px 20px;
+  animation: spinner-breathe 1.6s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+.spinner-line {
+  animation: spinner-pulse 1.6s ease-in-out infinite;
+}
+
+/* Tester tray (components/shelf.tsx): "Sizes" turns the tester over. With
+   reduced motion the turn is instant (the global rule shortens it). */
+.case-flip {
+  perspective: 1400px;
+}
+.case-face {
+  backface-visibility: hidden;
+  transition: transform 640ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.case-back {
+  transform: rotateY(180deg);
+}
+.case-flip[data-flipped="true"] .case-front {
+  transform: rotateY(-180deg);
+}
+.case-flip[data-flipped="true"] .case-back {
+  transform: rotateY(0deg);
+}
+
+/* Browser surfaces in the brand's colours. */
+::selection {
+  background: var(--hibiscus);
+  color: var(--on-hibiscus);
+}
+html {
+  caret-color: var(--hibiscus);
+  scrollbar-color: var(--line) var(--paper);
+  accent-color: var(--hibiscus);
+}
+a {
+  text-underline-offset: 0.2em;
+}
+
+/* Horizontal chip rows scroll by swipe; the bar itself is noise on a phone. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

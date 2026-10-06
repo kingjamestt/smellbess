@@ -9,8 +9,8 @@ export const metadata: Metadata = { title: "Checkout", robots: { index: false } 
 export default async function CheckoutPage() {
   const catalog = await getCatalog();
   return (
-    <div className="container-page py-6">
-      <h1 className="mb-4 text-3xl font-extrabold">Checkout</h1>
+    <div className="container-page pb-6 pt-8 md:pt-12">
+      <h1 className="wordmark mb-8 text-[1.75rem] leading-tight lg:text-[2.25rem]">Checkout</h1>
       <CheckoutForm catalog={catalog} pickupDay={catalog.delivery.pickupDay} />
     </div>
   );

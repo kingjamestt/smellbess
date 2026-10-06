@@ -14,6 +14,7 @@ import type {
 export type OrderSource = "web" | "admin";
 
 export interface Shortfall {
+  /** A product id, or `bottle:<productId>` for sealed bottles (then the numbers are counts). */
   productId: string;
   neededMl: number;
   availableMl: number;
@@ -21,10 +22,12 @@ export interface Shortfall {
 
 export type PlaceOrderResult = { ok: true; order: Order } | { ok: false; shortfalls: Shortfall[] };
 
-/** Juice taken out of one bottle when an order is decanted. */
+/** Juice taken out of one bottle when an order is decanted, or a sealed bottle sold. */
 export interface BottleDeduction {
   bottleId: string;
   ml: number;
+  /** A sealed bottle leaving with this order: mark it sold. */
+  sell?: boolean;
 }
 
 /**

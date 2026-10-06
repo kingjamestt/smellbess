@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { loadAdminData } from "@/lib/admin-ops";
-import { decantingList, SURPRISE_ID } from "@/lib/pipeline";
+import { decantingList, sealedToPack, SURPRISE_ID } from "@/lib/pipeline";
 
 export const metadata = { title: "Decanting" };
 
 export default async function AdminDecanting() {
   const { orders, bottles } = await loadAdminData();
   const rows = decantingList(orders);
+  const sealed = sealedToPack(orders);
   const due = orders.filter(
     (o) => o.status === "paid" || (o.status === "new" && o.payment === "cash_on_pickup"),
   );
@@ -14,7 +15,7 @@ export default async function AdminDecanting() {
 
   return (
     <div className="max-w-2xl space-y-4">
-      <h1 className="text-3xl font-extrabold">Decanting list</h1>
+      <h1 className="text-3xl font-medium">Decanting list</h1>
       <p className="text-muted">
         Paid orders, plus cash-at-pickup orders. {due.length} order{due.length === 1 ? "" : "s"}, {totalMl}ml in
         all. Mark each order decanted when it&apos;s filled: that takes the ml out of the bottles.
@@ -48,6 +49,20 @@ export default async function AdminDecanting() {
             })}
           </tbody>
         </table>
+      )}
+      {sealed.length > 0 && (
+        <section className="card space-y-2 p-4">
+          <h2 className="text-lg font-bold">Sealed bottles to pack</h2>
+          <p className="text-sm text-muted">Pack these whole, cellophane on. Marking the order decanted marks them sold.</p>
+          <ul className="space-y-1 text-sm">
+            {sealed.map((r) => (
+              <li key={r.productId} className="flex justify-between gap-2">
+                <span className="font-semibold">{r.label}</span>
+                <span>{r.count} bottle{r.count === 1 ? "" : "s"}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
       {due.length > 0 && (
         <section className="space-y-2">

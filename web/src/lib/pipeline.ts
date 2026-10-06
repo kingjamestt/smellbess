@@ -72,10 +72,34 @@ export function decantingList(orders: readonly Order[]): DecantRow[] {
       order.status === "paid" || (order.status === "new" && order.payment === "cash_on_pickup");
     if (!due) continue;
     for (const line of order.lines) {
+      if (line.kind === "bottle") continue; // sealed: packed whole, nothing to decant (see sealedToPack)
       if (line.kind === "set") for (const i of line.items) add(i.productId, i.label, line.size, line.qty);
       else if (line.productId) add(line.productId, line.label, line.size, line.qty);
       else add(SURPRISE_ID, "Free 5ml surprise (your pick)", line.size, line.qty);
     }
   }
   return [...rows.values()].sort((a, b) => a.label.localeCompare(b.label) || a.size - b.size);
+}
+
+export interface SealedRow {
+  productId: string;
+  label: string;
+  count: number;
+}
+
+/** Sealed bottles to pack for the same orders as the decanting list. */
+export function sealedToPack(orders: readonly Order[]): SealedRow[] {
+  const rows = new Map<string, SealedRow>();
+  for (const order of orders) {
+    const due =
+      order.status === "paid" || (order.status === "new" && order.payment === "cash_on_pickup");
+    if (!due) continue;
+    for (const line of order.lines) {
+      if (line.kind !== "bottle") continue;
+      const row = rows.get(line.productId) ?? { productId: line.productId, label: line.label, count: 0 };
+      row.count += line.qty;
+      rows.set(line.productId, row);
+    }
+  }
+  return [...rows.values()].sort((a, b) => a.label.localeCompare(b.label));
 }

@@ -33,11 +33,11 @@ export function SetButtons({
           </button>
         ))}
       </div>
-      <p role="status" aria-live="polite" className="min-h-5 text-sm font-semibold text-sea">
+      <p role="status" aria-live="polite" className="min-h-5 text-sm">
         {added && (
           <>
             {added}{" "}
-            <Link href="/cart" className="underline">
+            <Link href="/cart" className="text-hibiscus underline">
               View cart
             </Link>
           </>

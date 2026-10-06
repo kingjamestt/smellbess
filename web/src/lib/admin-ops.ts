@@ -35,7 +35,7 @@ export async function advanceOrder(id: string, to: OrderStatus): Promise<OpResul
   if (!order) return { ok: false, error: "Order not found." };
   if (!canTransition(order, to)) return { ok: false, error: "That step isn't allowed from here." };
 
-  let deductions: { bottleId: string; ml: number }[] = [];
+  let deductions: { bottleId: string; ml: number; sell?: true }[] = [];
   if (to === "decanted") {
     if (order.lines.some((l) => l.kind === "free" && !l.productId)) {
       return { ok: false, error: "Pick the scent for the free 5ml first." };
@@ -44,7 +44,7 @@ export async function advanceOrder(id: string, to: OrderStatus): Promise<OpResul
     if (plan.missing.length > 0) {
       return {
         ok: false,
-        error: `Not enough juice in the bottles for: ${plan.missing.map((m) => `${m.productId} (${m.ml}ml short)`).join(", ")}. Check the stock page.`,
+        error: `Not enough stock for: ${plan.missing.map((m) => (m.sealed ? `${m.productId} (no sealed bottle left)` : `${m.productId} (${m.ml}ml short)`)).join(", ")}. Check the stock page.`,
       };
     }
     deductions = plan.deductions;
@@ -83,7 +83,12 @@ const BOTTLE_ID = /^[A-Za-z0-9][A-Za-z0-9-]{0,19}$/;
 export async function saveBottle(input: Bottle): Promise<OpResult> {
   const { products } = await loadAdminData();
   if (!BOTTLE_ID.test(input.id)) return { ok: false, error: "Bottle ID: letters, numbers and dashes, e.g. KH-02." };
-  if (!products.some((p) => p.id === input.productId)) return { ok: false, error: "Pick a scent." };
+  const product = products.find((p) => p.id === input.productId);
+  if (!product) return { ok: false, error: "Pick a scent." };
+  if (input.sealed && !product.bottle) {
+    return { ok: false, error: `${productLabel(product)} has no sealed-bottle price yet, so it can't be sold whole.` };
+  }
+  if (input.soldAt && !input.sealed) return { ok: false, error: "Only a sealed bottle can be marked sold." };
   if (!(input.sizeMl > 0 && input.sizeMl <= 500)) return { ok: false, error: "Bottle size must be 1–500ml." };
   if (!(input.mlRemaining >= 0 && input.mlRemaining <= input.sizeMl)) {
     return { ok: false, error: "ml left must be between 0 and the bottle size." };
