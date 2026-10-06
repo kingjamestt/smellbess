@@ -26,7 +26,12 @@ export default async function Home() {
             </h1>
             <span aria-hidden className="block h-0.5 w-14 bg-hibiscus" />
             <p className="max-w-md text-[0.9375rem] leading-relaxed text-muted md:text-base">
-              We only carry scents that are a 10/10, or real close. Fragrance is like food, everybody has their own
+              We ONLY carry 10/10 (or close) fragrances for men and women, with our main focus on quality of scent,
+              affordability and customer service. Our website automatically applies{" "}
+              <a href="#deals" className="text-ink underline decoration-hibiscus underline-offset-4 hover:text-hibiscus">
+                discounts and deals
+              </a>
+              . Fragrance is like food, everybody has their own
               taste, but these are the best smelling affordable frags around. Decants from {formatTtd(60)}
               {bottles > 0 ? ", sealed bottles while they last." : "."} Designer decants coming soon.
             </p>
@@ -34,7 +39,7 @@ export default async function Home() {
         }
       />
 
-      <div className="mt-12">
+      <div id="deals" className="mt-12 scroll-mt-24">
         <Deals products={live} setCount={sets.length} setFrom={setsFrom(sets)} layout="row" />
       </div>
 
