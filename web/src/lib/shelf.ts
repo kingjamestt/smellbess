@@ -51,7 +51,7 @@ export function matchesShelf(p: ProductView, f: ShelfFilter): boolean {
   if (f.deal && !countsToward(p, f.deal)) return false;
   const q = f.query?.trim().toLowerCase();
   if (q) {
-    const hay = [p.house, p.name, p.variant, p.blurb, ...p.smellsLike, ...p.notes.top, ...p.notes.heart, ...p.notes.base, ...p.vibes]
+    const hay = [p.house, p.name, p.variant, p.blurb, ...p.smellsLike, ...(p.inspiredBy ?? []), ...p.notes.top, ...p.notes.heart, ...p.notes.base, ...p.vibes]
       .join(" ")
       .toLowerCase();
     // Every word must match somewhere, so "sweet vanilla" finds a sweet scent with vanilla in it.

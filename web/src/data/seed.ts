@@ -56,6 +56,7 @@ export const PRODUCTS: Product[] = [
     gender: "him",
     status: "live",
     smellsLike: [],
+    inspiredBy: ["Paco Rabanne Invictus Aqua"],
     // Fragrantica #89050
     notes: {
       top: ["apple", "lemon", "bergamot", "star anise"],
@@ -81,6 +82,7 @@ export const PRODUCTS: Product[] = [
     gender: "her",
     status: "live",
     smellsLike: [],
+    inspiredBy: ["Valentino Born in Roma Intense"],
     // Fragrantica #113190
     notes: {
       top: ["red fruits", "rhubarb", "lychee"],
@@ -106,7 +108,7 @@ export const PRODUCTS: Product[] = [
     gender: "unisex",
     leans: "her",
     status: "live",
-    smellsLike: [],
+    smellsLike: ["Burberry Goddess"],
     // Fragrantica #96768
     notes: {
       top: ["ginger", "mandarin", "pink pepper"],
@@ -131,7 +133,7 @@ export const PRODUCTS: Product[] = [
     tier: "A",
     gender: "unisex",
     status: "coming_soon",
-    smellsLike: ["Kilian Angels' Share DNA"],
+    smellsLike: ["Kilian Angels' Share"],
     // Fragrantica #75805
     notes: {
       top: ["cinnamon", "nutmeg", "bergamot"],
@@ -176,7 +178,7 @@ export const PRODUCTS: Product[] = [
     tier: "A",
     gender: "her",
     status: "coming_soon",
-    smellsLike: [],
+    smellsLike: ["Valentino Born in Roma Donna"],
     // Fragrantica #76880
     notes: {
       top: ["orchid", "heliotrope", "tangerine"],
@@ -199,7 +201,7 @@ export const PRODUCTS: Product[] = [
     gender: "him",
     leans: "him",
     status: "live",
-    smellsLike: [],
+    smellsLike: ["Creed Virgin Island Water"],
     // Fragrantica #120605
     notes: {
       top: ["lime", "coconut milk", "bergamot", "mandarin"],
@@ -242,6 +244,7 @@ export const PRODUCTS: Product[] = [
     gender: "him",
     status: "coming_soon",
     smellsLike: [],
+    inspiredBy: ["Creed Aventus Absolu"],
     // Fragrantica #98689
     notes: {
       top: ["pineapple", "bergamot", "white flowers", "apple"],
@@ -264,6 +267,7 @@ export const PRODUCTS: Product[] = [
     gender: "him",
     status: "coming_soon",
     smellsLike: [],
+    inspiredBy: ["Azzaro Most Wanted"],
     // Fragrantica #101124
     notes: {
       top: ["lavender", "mirabelle", "pink pepper"],
@@ -285,7 +289,7 @@ export const PRODUCTS: Product[] = [
     tier: "A",
     gender: "unisex",
     status: "live",
-    smellsLike: [],
+    smellsLike: ["Billie Eilish Eilish"],
     // Fragrantica #78560
     notes: {
       top: ["red berries", "mandarin"],
@@ -336,6 +340,7 @@ export const PRODUCTS: Product[] = [
     gender: "unisex",
     status: "live",
     smellsLike: [],
+    inspiredBy: ["Xerjoff Erba Pura"],
     // Fragrantica #51816
     notes: {
       top: ["bergamot", "green notes"],
@@ -378,12 +383,15 @@ export const PRODUCTS: Product[] = [
   },
 
   // ---------------------------------------------------------- coming soon (9 more)
-  comingSoon("rare-reef", "Afnan", "Rare Reef", "A", "unisex", ["fresh", "fruity"], 170, {
-    // Fragrantica #106835
-    top: ["orange", "mint", "citron", "grapefruit", "blackcurrant", "coriander"],
-    heart: ["apricot", "basil", "violet leaf", "rose"],
-    base: ["fig", "ambrette", "amberwood", "dates"],
-  }),
+  {
+    ...comingSoon("rare-reef", "Afnan", "Rare Reef", "A", "unisex", ["fresh", "fruity"], 170, {
+      // Fragrantica #106835
+      top: ["orange", "mint", "citron", "grapefruit", "blackcurrant", "coriander"],
+      heart: ["apricot", "basil", "violet leaf", "rose"],
+      base: ["fig", "ambrette", "amberwood", "dates"],
+    }),
+    inspiredBy: ["Louis Vuitton Pacific Chill"],
+  },
   comingSoon("cdn-untold", "Armaf", "Club de Nuit Untold", "A", "unisex", ["sweet", "amber", "woody"], 350),
   comingSoon("teriaq-intense", "Lattafa", "Teriaq Intense", "A", "unisex", ["sweet", "gourmand", "amber"], 10),
   comingSoon("vintage-radio", "Lattafa", "Vintage Radio", "A", "unisex", ["woody", "sweet"], 40),

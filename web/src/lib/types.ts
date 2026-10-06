@@ -59,6 +59,8 @@ export interface Product {
   status: ProductStatus;
   /** "Smells like" DNA, our opinion. Never implies it IS the original. */
   smellsLike: string[];
+  /** Looser than smellsLike: same idea or DNA with its own twist. Our opinion too. */
+  inspiredBy?: string[];
   notes: { top: string[]; heart: string[]; base: string[] };
   vibes: Vibe[];
   occasions: Occasion[];

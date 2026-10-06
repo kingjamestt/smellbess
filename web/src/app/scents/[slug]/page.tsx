@@ -82,6 +82,12 @@ export default async function ScentPage({ params }: Props) {
                 <span className="text-muted"> (our opinion)</span>
               </p>
             )}
+            {p.inspiredBy && p.inspiredBy.length > 0 && (
+              <p>
+                Inspired by <span className="text-hibiscus">{p.inspiredBy.join(", ")}</span>
+                <span className="text-muted"> (our opinion)</span>
+              </p>
+            )}
             <p className="max-w-prose text-lg leading-relaxed">
               {p.blurb} {p.draft && <DraftBadge className="align-middle" />}
             </p>

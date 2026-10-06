@@ -17,7 +17,7 @@ export const SITE = {
 
   /** Shown on every scent page and in the footer (website-brief.md). */
   legal:
-    "Decanted by hand from authentic bottles. Smell Bess is not affiliated with any brand. 'Smells like' comparisons are our opinion.",
+    "Decanted by hand from authentic bottles. Smell Bess is not affiliated with any brand. 'Smells like' and 'inspired by' comparisons are our opinion.",
 } as const;
 
 /** Absolute site address for link previews, canonical URLs and the sitemap. */
