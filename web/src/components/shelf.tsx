@@ -464,6 +464,18 @@ export function Shelf({
   const [filter, setFilter] = useState<ShelfFilter>(initial);
   const filters = <ShelfFilters filter={filter} onChange={setFilter} full={full} />;
   const chips = <FilterChips filter={filter} onChange={setFilter} full={full} />;
+  const search = (
+    <label className="block">
+      <span className="sr-only">Search scents</span>
+      <input
+        type="search"
+        value={filter.query ?? ""}
+        onChange={(e) => setFilter({ ...filter, query: e.target.value || undefined })}
+        placeholder="Search a name, a note, or a vibe"
+        className="field"
+      />
+    </label>
+  );
   if (intro || deals) {
     return (
       <div className="grid gap-8 md:grid-cols-[19rem_minmax(0,1fr)] md:gap-10 lg:grid-cols-[22rem_minmax(0,1fr)] lg:gap-14">
@@ -473,7 +485,10 @@ export function Shelf({
           {deals}
         </aside>
         <section aria-label="The scents" className="min-w-0 space-y-6">
-          <div className="md:hidden">{chips}</div>
+          <div className="space-y-3 md:hidden">
+            {search}
+            {chips}
+          </div>
           <ShelfResults products={products} filter={filter} emptyHint={emptyHint} />
         </section>
       </div>
@@ -483,18 +498,7 @@ export function Shelf({
     <div className="space-y-6">
       <div className="hidden md:block">{filters}</div>
       <div className="space-y-3 md:hidden">
-        {full && (
-          <label className="block">
-            <span className="sr-only">Search scents</span>
-            <input
-              type="search"
-              value={filter.query ?? ""}
-              onChange={(e) => setFilter({ ...filter, query: e.target.value || undefined })}
-              placeholder="Search a name, a note, or a vibe"
-              className="field"
-            />
-          </label>
-        )}
+        {search}
         {chips}
       </div>
       <ShelfResults products={products} filter={filter} emptyHint={emptyHint} />
