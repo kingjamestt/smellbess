@@ -1,6 +1,6 @@
 "use client";
 
-import { METHOD_LABELS, ZONE_FEES, ZONE_LABELS, type DeliveryConfig } from "@/lib/delivery";
+import { METHOD_LABELS, pickupDayOf, ZONE_FEES, ZONE_LABELS, type DeliveryConfig } from "@/lib/delivery";
 import { formatTtd } from "@/lib/pricing";
 import type { DeliveryMethod, Zone } from "@/lib/types";
 
@@ -24,7 +24,7 @@ export function DeliveryPicker({
   onChange: (next: DeliveryState) => void;
 }) {
   const methods: { id: DeliveryMethod; price: string; blurb: string }[] = [
-    { id: "pickup", price: "Free", blurb: `${pickupDay} pickup run. Cash or transfer.` },
+    { id: "pickup", price: "Free", blurb: config.pickupPoints.some((p) => p.day) ? "Free pickup. Cash or transfer." : `${pickupDay} pickup run. Cash or transfer.` },
     { id: "odeliver", price: "TT$30-90", blurb: "Courier anywhere in T&T, priced by zone." },
   ];
 
@@ -58,7 +58,7 @@ export function DeliveryPicker({
 
       {value.method === "pickup" && (
         <fieldset className="space-y-2">
-          <legend className="label">Pick your {pickupDay} stop</legend>
+          <legend className="label">Pick your stop</legend>
           {config.pickupPoints.map((p) => (
             <label
               key={p.id}
@@ -74,7 +74,10 @@ export function DeliveryPicker({
                 onChange={() => onChange({ ...value, pickupPointId: p.id })}
               />
               <span className="flex-1 font-medium">{p.name}</span>
-              <span className="font-medium">{p.time}</span>
+              <span className="text-right text-sm">
+                <span className="block font-medium">{pickupDayOf(p, pickupDay)}</span>
+                <span className="block text-muted">{p.time}</span>
+              </span>
             </label>
           ))}
         </fieldset>

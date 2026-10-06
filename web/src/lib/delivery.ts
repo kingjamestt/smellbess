@@ -21,7 +21,7 @@ export const ZONE_LABELS: Readonly<Record<Zone, string>> = {
 };
 
 export const METHOD_LABELS: Readonly<Record<DeliveryMethod, string>> = {
-  pickup: "Saturday pickup",
+  pickup: "Free pickup",
   workplace: "Workplace hand-off",
   odeliver: "ODeliver courier",
 };
@@ -54,16 +54,19 @@ export type DeliveryQuote =
     }
   | { ok: false; error: string };
 
+/** The stop's own days, or the run day: "Tue & Thu" / "Saturday". */
+export const pickupDayOf = (point: PickupPoint, runDay: string) => point.day?.trim() || runDay;
+
 export function quoteDelivery(choice: DeliveryChoice, config: DeliveryConfig): DeliveryQuote {
   const area = choice.areaId ? config.areas.find((a) => a.id === choice.areaId) : undefined;
   switch (choice.method) {
     case "pickup": {
       const point = config.pickupPoints.find((p) => p.id === choice.pickupPointId);
-      if (!point) return { ok: false, error: `Pick a ${config.pickupDay} pickup spot.` };
+      if (!point) return { ok: false, error: "Pick a pickup spot." };
       return {
         ok: true,
         method: "pickup",
-        label: `${config.pickupDay} pickup: ${point.name}, ${point.time}`,
+        label: `${pickupDayOf(point, config.pickupDay)} pickup: ${point.name}, ${point.time}`,
         fee: 0,
         pickupPoint: point,
       };

@@ -121,7 +121,7 @@ describe("buildOrder", () => {
   it("refuses cash for delivery orders", () => {
     const r = buildOrder({ ...base, delivery: { method: "odeliver", areaId: "pos" } }, ctx);
     expect(r.ok).toBe(false);
-    if (!r.ok) expect(r.errors[0]).toMatch(/Cash is only for Saturday pickup/);
+    if (!r.ok) expect(r.errors[0]).toMatch(/Cash is only for pickup/);
   });
 
   it("adds the free 5ml as a surprise line with no scent picked", () => {

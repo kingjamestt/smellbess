@@ -130,14 +130,14 @@ export async function savePickup(pickupDay: string, points: PickupPoint[]): Prom
   const day = pickupDay.trim().slice(0, 20);
   if (day.length < 3) return { ok: false, error: "Which day is the pickup run?" };
   const clean = points
-    .map((p) => ({ name: p.name.trim().slice(0, 60), time: p.time.trim().slice(0, 20), id: p.id }))
+    .map((p) => ({ name: p.name.trim().slice(0, 60), time: p.time.trim().slice(0, 40), day: p.day?.trim().slice(0, 30), paused: p.paused, id: p.id }))
     .filter((p) => p.name && p.time);
   const seen = new Set<string>();
   const withIds: Settings["pickupPoints"] = clean.map((p) => {
     let id = p.id || p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "stop";
     while (seen.has(id)) id = `${id}-2`;
     seen.add(id);
-    return { id, name: p.name, time: p.time };
+    return { id, name: p.name, time: p.time, ...(p.day ? { day: p.day } : {}), ...(p.paused ? { paused: true } : {}) };
   });
   await getRepository().updateSettings({ pickupDay: day, pickupPoints: withIds });
   return { ok: true };

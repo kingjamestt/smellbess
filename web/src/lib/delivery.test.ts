@@ -35,7 +35,7 @@ describe("delivery fees (customer always pays)", () => {
   });
 
   it("Saturday pickup is free and needs a pickup spot", () => {
-    expect(quoteDelivery({ method: "pickup" }, config)).toEqual({ ok: false, error: "Pick a Saturday pickup spot." });
+    expect(quoteDelivery({ method: "pickup" }, config)).toEqual({ ok: false, error: "Pick a pickup spot." });
     const q = quoteDelivery({ method: "pickup", pickupPointId: "mt" }, config);
     expect(q).toMatchObject({ ok: true, fee: 0, label: "Saturday pickup: MovieTowne, Port of Spain, 1:00pm" });
     if (q.ok) expect(q.pickupPoint?.time).toBe("1:00pm");

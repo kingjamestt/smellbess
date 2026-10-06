@@ -135,12 +135,16 @@ export interface Area {
 export type DeliveryMethod = "pickup" | "workplace" | "odeliver";
 export type PaymentMethod = "bank_transfer" | "cash_on_pickup";
 
-/** A Saturday pickup stop. Edited in admin (settings). */
+/** A pickup stop: the Saturday run, or a weekday stop with its own days. Edited in admin (settings). */
 export interface PickupPoint {
   id: string;
   name: string;
   /** Display time, e.g. "10:00am". */
   time: string;
+  /** Days for this stop when they differ from the run day, e.g. "Tue & Thu". */
+  day?: string;
+  /** Hidden from customers (e.g. a work-from-home week). Admin flips it each week. */
+  paused?: boolean;
 }
 
 export interface Settings {
@@ -235,7 +239,7 @@ export interface Order {
     areaId?: string;
     areaName?: string;
     zone?: Zone;
-    pickupPoint?: { id: string; name: string; time: string };
+    pickupPoint?: { id: string; name: string; time: string; day?: string };
     fee: number;
   };
   payment: PaymentMethod;

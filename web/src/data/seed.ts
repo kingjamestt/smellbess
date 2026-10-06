@@ -520,6 +520,8 @@ export const DEFAULT_SETTINGS: Settings = {
     { id: "price-plaza", name: "Price Plaza, Chaguanas", time: "10:00am" },
     { id: "movietowne-pos", name: "MovieTowne, Port of Spain", time: "1:00pm" },
     { id: "east-gates", name: "East Gates Mall", time: "5:00pm" },
+    // Weekday stop opposite the owner's office. Untick "Live this week" in admin on work-from-home weeks.
+    { id: "pennywise-trincity", name: "Pennywise Plaza, Trincity", day: "Tue & Thu", time: "12-1pm or 4:30-5:30pm" },
   ],
 };
 

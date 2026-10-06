@@ -554,6 +554,7 @@ Website / DM order → WhatsApp message → confirm stock + total + delivery met
 | Option | Customer pays | Notes |
 |---|---|---|
 | **Saturday pickup** at Price Plaza Chaguanas (10am), MovieTowne POS (1pm) or East Gates Mall (5pm) | **TT$0** | This is collection, not delivery. Push it: it costs you nothing, and you can upsell in person. Add a Wednesday stop later if volume justifies it |
+| **Weekday pickup** at Pennywise Plaza, Trincity, Tue & Thu, 12-1pm or 4:30-5:30pm (added 7 Oct 2026) | **TT$0** | Opposite the owner's office, so office weeks only. Turn it off in admin ("Live this week") on work-from-home weeks |
 | **Workplace hand-off** (your office, coworkers) | **TT$0** | Your easiest early customers. **Not shown on the website:** coworkers order on WhatsApp and you mark the order as workplace in admin. Cash is fine |
 | **ODeliver (Trinidad)** | **ODeliver's rate at cost: TT$30 urban / 40 rural / 50 extended / 60 remote** | Pass the rate straight through, rounded up. Shown at checkout by area |
 | **ODeliver Instant** (same day) | Distance rate + 5%, rounded up | Only on request |

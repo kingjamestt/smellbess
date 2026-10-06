@@ -10,7 +10,7 @@ export default async function AdminPickup() {
       <h1 className="text-3xl font-medium">Pickup run</h1>
       <p className="text-muted">
         The stops customers pick at checkout, in route order. Change a time, add or remove a stop. Remove every stop
-        to turn pickup off for a week.
+        to turn pickup off for a week. Untick &quot;Live this week&quot; to hide one stop, like Pennywise on a work-from-home week.
       </p>
       <PickupEditor day={settings.pickupDay} points={settings.pickupPoints} />
     </div>

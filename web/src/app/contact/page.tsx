@@ -41,7 +41,7 @@ export default async function ContactPage() {
         <div className="grid gap-1 py-5 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-6">
           <dt className="text-muted">Pickup</dt>
           <dd>
-            Free every {delivery.pickupDay}: {delivery.pickupPoints.map((p) => `${p.name} ${p.time}`).join(", ")}.{" "}
+            Free at {delivery.pickupPoints.map((p) => `${p.name} (${p.day || delivery.pickupDay} ${p.time})`).join(", ")}.{" "}
             <Link href="/delivery" className="underline decoration-hibiscus underline-offset-4 hover:text-hibiscus">
               Delivery &amp; pickup
             </Link>

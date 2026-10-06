@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Delivery & pickup",
   description:
-    "Free Saturday pickup in Chaguanas, Port of Spain and East Gates, or delivery anywhere in Trinidad & Tobago from TT$30. Order on WhatsApp.",
+    "Free pickup in Chaguanas, Port of Spain, East Gates and Trincity, or delivery anywhere in Trinidad & Tobago from TT$30. Order on WhatsApp.",
   alternates: { canonical: "/delivery" },
   openGraph: { url: "/delivery" },
 };
@@ -30,14 +30,17 @@ export default async function DeliveryPage() {
 
       <section aria-labelledby="pickup" className="space-y-3">
         <h2 id="pickup" className="text-xl font-medium">
-          {delivery.pickupDay} pickup: free
+          Pickup: free
         </h2>
         <p>Pick your stop at checkout. Pay by transfer before, or bring cash.</p>
         <ol className="space-y-2">
           {delivery.pickupPoints.map((p) => (
             <li key={p.id} className="rounded-md border border-line flex items-center justify-between p-3">
               <span className="font-medium">{p.name}</span>
-              <span className="label-caps rounded-md border border-line px-3 py-2 tabular-nums">{p.time}</span>
+              <span className="text-right text-sm tabular-nums">
+                <span className="block font-medium">{p.day || delivery.pickupDay}</span>
+                <span className="block text-muted">{p.time}</span>
+              </span>
             </li>
           ))}
         </ol>

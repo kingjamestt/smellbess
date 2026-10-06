@@ -34,7 +34,7 @@ When a decision changes, update `business-plan.md` first, run `python tools/buil
   - **Surprise free 5ml** with 3+ single decants of 10ml or larger, of any tier. The customer doesn't choose; we pick a Tier A 5ml when packing, to move slow sellers. The site shows a "you qualify" card with an animation.
   - **No vouchers. No free delivery.**
 - **Delivery (customer pays):**
-  - Free: Saturday pickup route (Price Plaza Chaguanas 10am, MovieTowne POS 1pm, East Gates Mall 5pm; editable in admin) and workplace hand-off (WhatsApp only, never on the public site).
+  - Free: Saturday pickup route (Price Plaza Chaguanas 10am, MovieTowne POS 1pm, East Gates Mall 5pm; editable in admin), Pennywise Plaza Trincity on Tue & Thu at 12-1pm or 4:30-5:30pm (office weeks only; untick "Live this week" in admin on work-from-home weeks) and workplace hand-off (WhatsApp only, never on the public site).
   - WhatsApp orders go to +1 868-305-0506. **Bank details are never on the website**; the owners send them on WhatsApp.
   - **No own-drop-off option.** Customers pay the ODeliver rate. The owner delivers in person when passing (public spots and businesses only) and keeps the fee.
   - ODeliver at cost: Urban 30 / Rural 40 / Extended 50 / Remote 60. Tobago 90 (60 + 30 inter-island, confirmed).

@@ -22,7 +22,7 @@ const SECTIONS: { id: string; title: string; body: React.ReactNode }[] = [
       <>
         <p>
           Your order goes to us on WhatsApp. We confirm stock there, then send our bank details. Pay by bank transfer before
-          we send your order out, or pay cash at Saturday pickup.
+          we send your order out, or pay cash at pickup.
         </p>
         <p>
           Prices are in TTD. The best deal is applied for you automatically, one offer per order. Full bottles are not part of
@@ -36,7 +36,7 @@ const SECTIONS: { id: string; title: string; body: React.ReactNode }[] = [
     title: "Delivery and pickup",
     body: (
       <p>
-        Saturday pickup is free. ODeliver courier goes anywhere in Trinidad &amp; Tobago, priced by zone at cost, and you see the
+        Pickup is free: the Saturday run, or some Tuesdays and Thursdays in Trincity. ODeliver courier goes anywhere in Trinidad &amp; Tobago, priced by zone at cost, and you see the
         price before you order. Stops, times and prices are on{" "}
         <Link href="/delivery" className="underline decoration-hibiscus underline-offset-4 hover:text-hibiscus">
           Delivery &amp; pickup

@@ -24,7 +24,8 @@ async function loadAll() {
 const deliveryConfig = (settings: Settings, areas: Awaited<ReturnType<typeof loadAll>>["areas"]) => ({
   areas,
   pickupDay: settings.pickupDay,
-  pickupPoints: settings.pickupPoints,
+  // Paused stops (an owner's work-from-home week) never reach customers or checkout.
+  pickupPoints: settings.pickupPoints.filter((p) => !p.paused),
 });
 
 /** Storefront data: catalog, live stock, delivery config. */

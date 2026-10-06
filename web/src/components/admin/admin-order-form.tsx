@@ -169,7 +169,7 @@ export function AdminOrderForm({ catalog }: { catalog: CatalogSnapshot }) {
             <option value="">Which stop?</option>
             {catalog.delivery.pickupPoints.map((p) => (
               <option key={p.id} value={p.id}>
-                {p.name}, {p.time}
+                {p.name}, {p.day ? `${p.day} ` : ""}{p.time}
               </option>
             ))}
           </select>

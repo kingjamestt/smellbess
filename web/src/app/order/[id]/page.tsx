@@ -70,7 +70,7 @@ export default async function OrderPage({ params }: Props) {
         {pickup ? (
           <p className="text-lg">
             <strong>
-              {pickupDay}, {pickup.time}
+              {pickup.day || pickupDay}, {pickup.time}
             </strong>{" "}
             at <strong>{pickup.name}</strong>
           </p>

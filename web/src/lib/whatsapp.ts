@@ -24,7 +24,7 @@ export function orderMessage(order: Order, pickupDay = "Saturday"): string {
   out.push("");
   if (order.delivery.pickupPoint) {
     const p = order.delivery.pickupPoint;
-    out.push(`Pickup: ${pickupDay}, ${p.name} at ${p.time}`);
+    out.push(`Pickup: ${p.day || pickupDay}, ${p.name} at ${p.time}`);
   } else {
     out.push(`Delivery: ${order.delivery.label} (${formatTtd(order.delivery.fee)})`);
   }

@@ -106,7 +106,8 @@ describe("seed catalog (from scent-lists.md)", () => {
     expect(AREAS.find((a) => a.zone === "tobago")).toBeDefined();
   });
 
-  it("three Saturday pickup stops", () => {
-    expect(DEFAULT_SETTINGS.pickupPoints.map((p) => p.time)).toEqual(["10:00am", "1:00pm", "5:00pm"]);
+  it("three Saturday stops plus the Tue & Thu Pennywise stop", () => {
+    expect(DEFAULT_SETTINGS.pickupPoints.map((p) => p.time)).toEqual(["10:00am", "1:00pm", "5:00pm", "12-1pm or 4:30-5:30pm"]);
+    expect(DEFAULT_SETTINGS.pickupPoints.at(-1)?.day).toBe("Tue & Thu");
   });
 });

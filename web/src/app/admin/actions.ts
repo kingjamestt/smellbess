@@ -127,6 +127,9 @@ export async function savePickupAction(_prev: FormState, fd: FormData): Promise<
   const names = fd.getAll("name").map(String);
   const times = fd.getAll("time").map(String);
   const ids = fd.getAll("pid").map(String);
-  const points: PickupPoint[] = names.map((name, i) => ({ id: ids[i] ?? "", name, time: times[i] ?? "" }));
+  const days = fd.getAll("pday").map(String);
+  // Checkboxes only post when ticked, so each row posts its index as "live".
+  const live = new Set(fd.getAll("live").map(String));
+  const points: PickupPoint[] = names.map((name, i) => ({ id: ids[i] ?? "", name, time: times[i] ?? "", day: days[i] ?? "", paused: !live.has(String(i)) }));
   return done(await savePickup(text(fd, "pickupDay"), points), "/");
 }

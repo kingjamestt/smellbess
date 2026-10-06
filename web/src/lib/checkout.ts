@@ -189,7 +189,7 @@ export function buildOrder(input: CheckoutInput, ctx: CheckoutContext): Checkout
   const delivery = quoteDelivery(input.delivery, ctx.delivery);
   if (!delivery.ok) errors.push(delivery.error);
   else if (!paymentOptionsFor(delivery.method).includes(input.payment)) {
-    errors.push("Cash is only for Saturday pickup. Delivery orders are paid by bank transfer before dispatch.");
+    errors.push("Cash is only for pickup. Delivery orders are paid by bank transfer before dispatch.");
   }
 
   if (errors.length > 0 || !delivery.ok || !phone) return { ok: false, errors: [...new Set(errors)] };

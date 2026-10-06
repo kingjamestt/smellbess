@@ -11,7 +11,7 @@ import { getCatalog } from "@/lib/server";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const { products, sets, delivery } = await getCatalog();
+  const { products, sets } = await getCatalog();
   const live = products.filter((p) => p.status === "live");
   const bottles = live.filter((p) => p.sealed).length;
 
@@ -92,7 +92,7 @@ export default async function Home() {
             ["Choose", "A 5ml to try it out, a 10ml to wear it, a 15ml if you can't stop. Or grab a brand new full bottle."],
             ["See the full price", "Delivery added and the best deal applied for you. No surprises."],
             ["Send it on WhatsApp", "One tap sends your order to us. We check stock and reply right there."],
-            ["Pay, then collect", `Bank transfer, or cash at ${delivery.pickupDay} pickup.`],
+            ["Pay, then collect", "Bank transfer, or cash at pickup."],
           ].map(([title, text], i) => (
             <li key={title} className="flex gap-4">
               <span aria-hidden className="wide w-5 shrink-0 text-sm text-hibiscus tabular-nums">

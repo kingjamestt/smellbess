@@ -31,8 +31,16 @@ export function PickupEditor({ day, points }: { day: string; points: PickupPoint
               <input name="name" defaultValue={r.name} className="field" required />
             </label>
             <label>
+              <span className="label">Days (blank = run day)</span>
+              <input name="pday" defaultValue={r.day ?? ""} className="field w-32" placeholder="Tue & Thu" />
+            </label>
+            <label>
               <span className="label">Time</span>
-              <input name="time" defaultValue={r.time} className="field w-28" placeholder="10:00am" required />
+              <input name="time" defaultValue={r.time} className="field w-44" placeholder="10:00am" required />
+            </label>
+            <label className="flex items-center gap-2 pb-3 text-sm">
+              <input type="checkbox" name="live" value={i} defaultChecked={!r.paused} className="h-5 w-5 accent-[var(--hibiscus)]" />
+              Live this week
             </label>
             <span className="flex gap-1 pb-1">
               <button type="button" className="chip" aria-label="Move up" onClick={() => move(i, -1)}>
