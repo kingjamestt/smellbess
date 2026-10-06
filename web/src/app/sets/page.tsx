@@ -44,7 +44,10 @@ export default async function SetsPage() {
                   <li key={id}>
                     <Link href={`/scents/${id}`} className="group block space-y-2">
                       <ScentPhoto product={p} sizes="(min-width: 768px) 16vw, 30vw" className="aspect-[4/5] w-full" />
-                      <span className="block truncate px-1 text-center text-sm group-hover:text-hibiscus">{p.name}</span>
+                      <span className="block px-1 text-center leading-tight">
+                        <span className="block text-xs text-muted">{p.house}</span>
+                        <span className="block text-sm group-hover:text-hibiscus">{p.name}</span>
+                      </span>
                     </Link>
                   </li>
                 );

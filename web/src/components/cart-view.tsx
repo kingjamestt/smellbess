@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { CatalogSnapshot } from "@/lib/catalog";
 import { cartActions, useCart, useHydrated } from "@/lib/cart-store";
 import { formatTtd } from "@/lib/pricing";
+import { fullName } from "@/lib/shelf";
 import { OfferBox } from "./offer-box";
 import { ScentPhoto } from "./scent-photo";
 import { Spinner } from "./spinner";
@@ -73,7 +74,7 @@ export function CartView({ catalog }: { catalog: CatalogSnapshot }) {
                 <Link href={href} className="font-medium leading-snug hover:text-hibiscus">
                   {pl.label}
                 </Link>
-                {set && <p className="text-xs text-muted">{set.productIds.map((id) => byId.get(id)?.name).join(", ")}</p>}
+                {set && <p className="text-xs text-muted">{set.productIds.map((id) => byId.get(id)).filter((p) => p !== undefined).map(fullName).join(", ")}</p>}
                 {line.kind === "single" && line.size === 15 && fifteenSplit && <p className="text-xs text-muted">Ships as a 10ml and a 5ml</p>}
                 {line.kind === "bottle" && <p className="text-xs text-muted">Brand new and boxed. Not part of offers.</p>}
                 <div className="mt-auto flex flex-wrap items-center justify-between gap-x-3 gap-y-1 pt-2">

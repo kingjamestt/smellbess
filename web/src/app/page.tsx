@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Deals, setsFrom } from "@/components/deals";
 import { ScentPhoto } from "@/components/scent-photo";
 import { Shelf } from "@/components/shelf";
+import { fullName } from "@/lib/shelf";
 import { SITE } from "@/config/site";
 import { formatTtd } from "@/lib/pricing";
 import { setPrice } from "@/lib/offers";
@@ -65,7 +66,7 @@ export default async function Home() {
                 </span>
                 <span className="text-lg font-medium">{s.name}</span>
                 <span className="text-sm text-muted">
-                  {s.productIds.map((id) => products.find((p) => p.id === id)?.name).filter(Boolean).join(", ")}
+                  {s.productIds.map((id) => products.find((p) => p.id === id)).filter((p) => p !== undefined).map(fullName).join(", ")}
                 </span>
                 <span className="label-caps mt-auto pt-3 text-hibiscus tabular-nums">
                   3×5ml {formatTtd(setPrice(s, 5))} · 3×10ml {formatTtd(setPrice(s, 10))}

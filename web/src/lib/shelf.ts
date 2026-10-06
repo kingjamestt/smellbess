@@ -111,3 +111,6 @@ export function wearLabel(p: Pick<ProductView, "wear">): string | null {
   const weather = WEATHERS.find((w) => w.id === p.wear!.weather)?.label.toLowerCase();
   return weather ? `${time}, ${weather}` : time;
 }
+
+/** House and name together, e.g. "Rayhaan Aquatica". Used wherever a set lists its scents. */
+export const fullName = (p: { house: string; name: string }) => `${p.house} ${p.name}`;
