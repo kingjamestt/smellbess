@@ -17,3 +17,8 @@ Thumbs.db
 
 # Claude Code local state
 .claude/
+
+# impeccable design skill: installed per machine, not part of the site
+.agents/skills/impeccable/
+.codex/
+.impeccable/
