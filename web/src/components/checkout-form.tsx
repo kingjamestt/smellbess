@@ -70,7 +70,7 @@ export function CheckoutForm({ catalog, pickupDay }: { catalog: CatalogSnapshot;
   }
 
   return (
-    <form onSubmit={submit} className="grid gap-8 md:grid-cols-[minmax(0,1fr)_22rem] md:gap-12" noValidate>
+    <form onSubmit={submit} className="grid grid-cols-[minmax(0,1fr)] gap-8 md:grid-cols-[minmax(0,1fr)_22rem] md:gap-12" noValidate>
       <div className="space-y-6">
         <section aria-labelledby="you" className="space-y-3">
           <h2 id="you" className="text-lg font-medium">

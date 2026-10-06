@@ -61,7 +61,7 @@ export default async function ScentPage({ params }: Props) {
         <span aria-current="page">{p.name}</span>
       </nav>
 
-      <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:gap-12 lg:gap-16">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:gap-12 lg:gap-16">
         <div className="md:sticky md:top-20 md:self-start">
           <ScentPhoto
             product={p}

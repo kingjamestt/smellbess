@@ -55,7 +55,7 @@ export function CartView({ catalog }: { catalog: CatalogSnapshot }) {
   const fifteenSplit = catalog.settings.atomizers[15] === false;
 
   return (
-    <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_22rem] md:gap-12">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-8 md:grid-cols-[minmax(0,1fr)_22rem] md:gap-12">
       <ul className="divide-y divide-line border-y border-line">
         {quote.lines.map((pl) => {
           const line = pl.line;
@@ -76,7 +76,7 @@ export function CartView({ catalog }: { catalog: CatalogSnapshot }) {
                 {set && <p className="text-xs text-muted">{set.productIds.map((id) => byId.get(id)?.name).join(", ")}</p>}
                 {line.kind === "single" && line.size === 15 && fifteenSplit && <p className="text-xs text-muted">Ships as a 10ml and a 5ml</p>}
                 {line.kind === "bottle" && <p className="text-xs text-muted">Brand new and boxed. Not part of offers.</p>}
-                <div className="mt-auto flex items-center justify-between gap-3 pt-2">
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-x-3 gap-y-1 pt-2">
                   <div className="flex items-center gap-4">
                     {line.kind !== "bottle" && <Stepper label={pl.label} qty={line.qty} onChange={(q) => cartActions.setQty(pl.index, q)} />}
                     <button
@@ -88,7 +88,7 @@ export function CartView({ catalog }: { catalog: CatalogSnapshot }) {
                       Remove
                     </button>
                   </div>
-                  <p className="text-right tabular-nums">
+                  <p className="ml-auto whitespace-nowrap text-right tabular-nums">
                     {pl.total !== pl.regularTotal && <s className="mr-2 text-sm text-muted">{formatTtd(pl.regularTotal)}</s>}
                     <span className="wide text-[0.9375rem]">{formatTtd(pl.total)}</span>
                   </p>

@@ -478,7 +478,7 @@ export function Shelf({
   );
   if (intro || deals) {
     return (
-      <div className="grid gap-8 md:grid-cols-[19rem_minmax(0,1fr)] md:gap-10 lg:grid-cols-[22rem_minmax(0,1fr)] lg:gap-14">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-8 md:grid-cols-[19rem_minmax(0,1fr)] md:gap-10 lg:grid-cols-[22rem_minmax(0,1fr)] lg:gap-14">
         <aside className="space-y-7 md:sticky md:top-20 md:self-start">
           {intro}
           <div className="hidden md:block">{filters}</div>
