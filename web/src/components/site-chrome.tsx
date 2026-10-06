@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { SITE } from "@/config/site";
 import { Seal, Wordmark } from "./brand";
+import { MobileMenu } from "./mobile-menu";
 import { CartLink, UtmCapture } from "./site-chrome-client";
+
+const NAV = [
+  { href: "/scents", label: "Scents" },
+  { href: "/sets", label: "Sets" },
+  { href: "/delivery", label: "Delivery" },
+];
 
 export function Header() {
   return (
@@ -11,18 +18,19 @@ export function Header() {
         <Link href="/" aria-label="Smell Bess, home" className="py-2">
           <Wordmark size="sm" />
         </Link>
-        <nav aria-label="Main" className="label-caps flex items-center gap-0 text-ink sm:gap-3">
-          <Link href="/scents" className="rounded-md px-3 py-2 hover:bg-mist">
-            Scents
-          </Link>
-          <Link href="/sets" className="hidden rounded-md px-3 py-2 hover:bg-mist sm:inline-block">
-            Sets
-          </Link>
-          <Link href="/delivery" className="hidden rounded-md px-3 py-2 hover:bg-mist md:inline-block">
-            Delivery
-          </Link>
-          <CartLink />
-        </nav>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <nav aria-label="Main" className="label-caps hidden items-center gap-3 text-ink md:flex">
+            {NAV.map((item) => (
+              <Link key={item.href} href={item.href} className="rounded-md px-3 py-2 hover:bg-mist">
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <span className="label-caps text-ink">
+            <CartLink />
+          </span>
+          <MobileMenu items={NAV} whatsappHref={`https://wa.me/${SITE.whatsappNumber}`} whatsappLabel={`WhatsApp ${SITE.whatsappDisplay}`} />
+        </div>
       </div>
     </header>
   );
