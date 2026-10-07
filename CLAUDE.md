@@ -10,6 +10,7 @@
 | `landed_cost.py` | Landed-cost calculator (Websource → TT, full-value declaration, 7% Miami sales tax on Jomashop). Calibrated to a real Websource invoice (6 Oct 2026): freight US$3.26/lb, fuel 17% of freight, insurance US$1 per shipment |
 | `scent-lists.md` | Bess List (approved), to-decide, retired and research lists, with competitor signals |
 | `website-brief.md` | Build prompt for the smellbess.com website |
+| `brand/` | Master logo files (wordmark, lockup, monogram, avatar, seal) as outlined SVG + PNG, and the site's link card. Rebuild with `python brand/build.py` then `node brand/render.mjs`; see `brand/README.md` |
 | `tools/build_page.py` | Rebuilds `business-plan.html` from the .md (`pip install markdown`). Styling lives in `tools/page-template.html` |
 
 When a decision changes, update `business-plan.md` first, run `python tools/build_page.py`, and republish `business-plan.html` to the same artifact URL.
