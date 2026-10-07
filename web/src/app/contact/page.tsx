@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE } from "@/config/site";
+import { pageOpenGraph, SITE } from "@/config/site";
 import { getCatalog } from "@/lib/server";
 
 export const dynamic = "force-dynamic";
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Contact",
   description: "Message Smell Bess on WhatsApp to ask about a scent, place an order or sort out delivery in Trinidad & Tobago.",
   alternates: { canonical: "/contact" },
-  openGraph: { url: "/contact" },
+  openGraph: pageOpenGraph("/contact"),
 };
 
 const WHATSAPP = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent("Hi Smell Bess, ")}`;

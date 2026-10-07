@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/config/site";
 import { ScentRow, Shelf } from "@/components/shelf";
 import { getCatalog } from "@/lib/server";
 import { DEALS, filterFromParams } from "@/lib/shelf";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   description:
     "Shop 5ml, 10ml and 15ml perfume decants in Trinidad from TT$60. No fillers: every scent is a 10/10 or close. Filter by day or night, weather, him or her.",
   alternates: { canonical: "/scents" },
-  openGraph: { url: "/scents" },
+  openGraph: pageOpenGraph("/scents"),
 };
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };

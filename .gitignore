@@ -22,3 +22,6 @@ Thumbs.db
 .agents/skills/impeccable/
 .codex/
 .impeccable/
+
+# Brand build font cache (downloaded from Google Fonts)
+brand/.fonts/

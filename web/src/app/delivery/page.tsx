@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE } from "@/config/site";
+import { pageOpenGraph, SITE } from "@/config/site";
 import { ZONE_FEES, ZONE_LABELS } from "@/lib/delivery";
 import { formatTtd } from "@/lib/pricing";
 import { getCatalog } from "@/lib/server";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "Free pickup in Chaguanas, Port of Spain, East Gates and Trincity, or delivery anywhere in Trinidad & Tobago from TT$30. Order on WhatsApp.",
   alternates: { canonical: "/delivery" },
-  openGraph: { url: "/delivery" },
+  openGraph: pageOpenGraph("/delivery"),
 };
 
 const ZONES: Zone[] = ["urban", "rural", "extended", "remote", "tobago"];

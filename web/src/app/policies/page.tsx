@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DraftBadge } from "@/components/badges";
-import { SITE } from "@/config/site";
+import { pageOpenGraph, SITE } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Policies",
   description: "How Smell Bess handles orders, payment, delivery, authenticity, returns, pre-orders and your personal details.",
   alternates: { canonical: "/policies" },
-  openGraph: { url: "/policies" },
+  openGraph: pageOpenGraph("/policies"),
 };
 
 // DRAFT: written from business-plan.md decisions. Returns, pre-order refunds and

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { DraftBadge } from "@/components/badges";
 import { Purchase } from "@/components/purchase";
 import { ScentPhoto } from "@/components/scent-photo";
-import { SITE } from "@/config/site";
+import { pageOpenGraph, SITE } from "@/config/site";
 import { formatTtd, priceFor } from "@/lib/pricing";
 import { getCatalog } from "@/lib/server";
 import { genderLabel, wearLabel } from "@/lib/shelf";
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: { canonical: `/scents/${p.id}` },
-    openGraph: { url: `/scents/${p.id}`, title: `${title} | Smell Bess`, description },
+    openGraph: pageOpenGraph(`/scents/${p.id}`, { title: `${title} | Smell Bess`, description }),
   };
 }
 

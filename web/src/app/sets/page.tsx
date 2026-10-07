@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/config/site";
 import Link from "next/link";
 import { DraftBadge } from "@/components/badges";
 import { ScentPhoto } from "@/components/scent-photo";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   description:
     "Can't decide? We did the picking. Perfume gift sets in Trinidad: 3 scents for the fete, date night or the office, from TT$150. Gift box and card included.",
   alternates: { canonical: "/sets" },
-  openGraph: { url: "/sets" },
+  openGraph: pageOpenGraph("/sets"),
 };
 
 export default async function SetsPage() {
